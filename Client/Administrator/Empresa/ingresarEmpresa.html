@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Empresa</title>
+
+
+    <script src="../js/libs/jquery-2.0.2.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+<form class="form" role="form">
+    <p class="span4" data-ng-bind="mensaje"></p>
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Configuración Empresa </h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+
+                    <h3 class="panel-title">Ingreso y Selección de la Empresa </h3>
+
+                </div>
+                <div class="container">
+                    <div class="panel-body">
+
+                        <div class=" row">
+                            <div class="col-md-6 col-xs-12">
+                                <label for="Empresa"> Empresa: </label><br>
+                                Búsqueda <input type="text" ng-model="search" class="form-control"><br>
+                                <select name="Empresa" ng-model="empresaSelected" class="form-control" multiple
+                                        style="height: 150px;" ng-click="searchDependenciaPorEmpresa()">
+                                    <option value={{empresaAux}}
+                                            ng-repeat="empresaAux in listaEmpresas | filter:search| orderBy:empresaAux.nombre_empresa">
+                                        {{empresaAux.nombre_empresa}}
+                                    </option>
+                                </select><br>
+
+
+                            </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <br>
+                                <br>
+                                <label for="EmpresaNew"> Nombre Nueva Empresa: </label><br>
+                                <input name="EmpresaNew" ng-model="nuevaEmpresa" class="form-control"/><br>
+                                <input class="btn btn-default" type="submit" ng-click="inputEmpresa()"
+                                       value="Ingresar"/>
+                                <br>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class=" row">
+                            <div class="col-md-6 col-xs-12">
+                                <label for="Dependencia"> Dependencias: </label><br>
+                                Búsqueda <input type="text" ng-model="search1" class="form-control"><br>
+                                <select name="Dependencia" ng-model="" class="form-control" multiple
+                                        style="height: 150px;">
+                                    <option value={{dependencias}}
+                                            ng-repeat="dependencias in listaDependencias | filter:search| orderBy:dependencia.nombre_dependencia">
+                                        {{dependencias.nombre_dependencia}}
+                                    </option>
+                                </select><br>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+</form>
+
+</body>

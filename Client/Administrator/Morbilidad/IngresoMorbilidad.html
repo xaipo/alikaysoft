@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morbilidad</title>
+    <!-----estilos -->
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/bootstrap.css" id="pagesheet"/>
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/OverrideComponents.css" id="pageshee1"/>
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/datepicker.css" id="pageshee3"/>
+
+
+    <style>
+        .selected {
+            background-color:#bbbbbb;
+            color:black;
+            font-weight:bold;
+        }
+
+    </style>
+    <!-----angular-->
+
+    <!-----angular-->
+
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular-route.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/ngStorage.min.js"></script>
+    <script src="/tesisSaludOcupacional/Client/app.js"></script>
+
+    <script src="/tesisSaludOcupacional/Client/controllers/CargasController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/controllers/EmpresaController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/controllers/ControllerMorbilidad.js"></script>
+
+    <script src="/tesisSaludOcupacional/Client/controllers/LoginController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular-local-storage.min.js"></script>
+
+</head>
+<body ng-app="myApp" ng-controller="CargasController as controlador" >
+
+<script src="/tesisSaludOcupacional/Client/scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/bootstrap.min.js"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/ui-bootstrap-tpls-1.3.2.min.js"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/bootstrap-datepicker.js"></script>
+
+
+<script>
+
+
+    $(function(){
+
+
+        $('.datepicker').datepicker();
+
+
+        $('#date').change(function(){
+
+            $scope.historiaClinica.fecha_examen = $("#date").val();
+        });
+        console.log('entra');
+
+    });
+
+
+
+
+</script>
+
+
+<!--<script>
+    $(function() {
+        $(".datepicker").datepicker(
+                {
+                    dateFormat: "dd/mm/yy",
+                    dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+                    dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                    firstDay: 1,
+                    gotoCurrent: true,
+                    monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre" ]
+                }
+        );
+    });
+</script>-->
+
+<!-----menu -->
+<header>
+    <nav class="navbar navbar-inverse navbar-static-top " role="navigation">
+        <div class="container" >
+            <div class="row">
+                <br>
+                <div class="col-md-1 col-lg-1">
+                    <a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html" ><img src="/tesisSaludOcupacional/Client/images/icono.png"/></a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html"  class="navbar-brand"> HEALTH END POINT  </a>
+                </div>
+
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menuPrincipal-fm">
+                            <span class="sr-only"> Desplegar/Ocultar </span>
+                            <span class="icon-bar">  </span>
+                            <span class="icon-bar">  </span>
+                            <span class="icon-bar">  </span>
+                        </button>
+
+
+
+
+                    </div><br>
+                    <!-- Iniciar menu-->
+                    <div class="collapse navbar-collapse" id="menuPrincipal-fm">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html"  >DashBoard</a> </li>
+
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Historia Clinica <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/newClinicHistory.html" >Nueva Historia Clínica</a> </li>
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/inicioModificar.html">Modificación Historia Clinica</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Pacientes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Paciente/ingresoPaciente.html">Ingreso Paciente</a> </li>
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Paciente/modificarPaciente.html">Modificación Paciente</a> </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Ausentismo <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Ausentismo/ingresoAusentismo.html">Ingreso Ausentismo</a> </li>
+                                    <li ><a href="#">Busqueda Ausentismo</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Evoluciones <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Ausentismo/ingresoAusentismo.html">Ingreso Ausentismo</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion CIE 10 <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Cie10/ConfiguracionCIe10.html">Administrar</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion API <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/APIAdmin/genericAccess.html">Administrar</a> </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> {{usuarioLog.nombre_usuario}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="#" >Perfil</a> </li>
+                                    <li ><a href="#" ng-click="logout()">Salir</a> </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<form class="form" role="form" ng-controller="ControllerMorbilidad" ng-init="getHistoria()">
+    <div class="panel panel-primary">
+        <div class="panel-heading hidden-print">
+
+            <h3 class="  text-center panel-title">Morbilidad </h3>
+
+
+        </div>
+        <div class="container">
+            <div class="row hidden-print">
+
+                <h2> DATOS AFILIACIÓN </h2><br>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label> Ingrese la Cedula del Paciente: </label><br><br>
+                    <input name="Paciente" ng-model="cedula" class="form-control"/><br>
+                    <input class="btn btn-default" type="submit" ng-click="searchUser()"
+                           value="Buscar Paciente"/><br>
+                    <br>
+                </div>
+
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label> Datos Paciente </label><br>
+                    <label> Primer Nombre: {{pacienteEncontrado.primer_nombre}} </label><br>
+                    <label> Segundo Nombre: {{pacienteEncontrado.segundo_nombre}} </label><br>
+                    <label> Primer Apellido: {{pacienteEncontrado.primer_apellido}} </label><br>
+                    <label> Segundo Apellido: {{pacienteEncontrado.segundo_apellido}} </label><br>
+                    <label> Edad: {{pacienteEncontrado.edad}} </label><br>
+
+
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <br>
+                    <label>Motivo Consulta</label>
+                    <textarea type="text" class="form-control" placeholder="Motivo Consulta" cols="6" ng-model="morbilidad.motivo_consulta" ></textarea>
+
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <br>
+                    <label>Enfermedad Actual</label>
+                    <textarea  class="form-control" placeholder="Enferemedad Actual" cols="6" ng-model="morbilidad.enfermedad_actual"></textarea>
+                </div>
+
+
+            </div>
+            <div class="row hidden-print">
+                <h1>Signos Vitales</h1>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label>Tension Arterial Diastolica:</label>
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.tension_arterial_numerador">
+                    <label>Talla:</label>
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.talla">
+
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label>Tension Arterial Sistolica:</label>
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.tension_arterial_denominador">
+                    <label>Peso:</label>
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.peso">
+
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label>Frecuencia Respiratoria Por Minuto:</label>
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.frecuencia_cardiaca">
+                    <label>Indice Masa Corporal:</label>
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.indice_masa_corporal">
+
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label>Lateralidad Cerebral:</label>
+                    <select class="form-control" name="singleSelect" ng-model="selectLateralidadCerebral" ng-click="changeLateralidad()">
+                        <option value="D">Dieztro </option>
+                        <option value="Z">Zurdo </option>
+                        <option value="A">Ambidiestro </option>
+                    </select>
+                    <label>Interpretacion IMC:</label>
+                    <select name="Alimentos" ng-model="examen_fisico.interpretacion_imc" class="form-control" simple  >
+                        <option value={{al}}
+                                ng-repeat="al in listaImc | filter:search1| orderBy:al.descripcion_interpretacion_IMC">
+                            {{al.descripcion_interpretacion_IMC}}
+                        </option>
+                    </select><br><br>
+                </div>
+            </div>
+
+
+
+            <div class="row hidden-print">
+            <h2>Organos/Sistemas</h2>
+            <div class="col-md-3 col-xs-12">
+
+                <label>Tipo de Organo o Sistema:</label>
+                <select name="Alimentos" ng-model="tipoSelected" class="form-control" simple ng-click="changeType()"  >
+                    <option value={{al}}
+                            ng-repeat="al in listaTipos">
+                        {{al.descripcion_tipo_organo}}
+                    </option>
+                </select><br><br>
+
+
+            </div>
+            <div class="col-md-3 col-xs-12">
+
+                <label>Sub Indicadores:</label>
+                <select name="Alimentos" ng-model="organo_sistema.organo" class="form-control" simple  >
+                    <option value={{al}}
+                            ng-repeat="al in listaIndicadores ">
+                        {{al.descripcion_organo}}
+                    </option>
+                </select><br><br>
+
+
+
+            </div>
+            <div class="col-md-3 col-xs-12">
+
+                <label>Normal/Anormal:</label>
+                <select class="form-control" name="singleSelect" ng-model="organo_sistema.normal_anormal" ng-click="changeLateralidad()">
+                    <option value="normal">Normal </option>
+                    <option value="anormal">Anormal </option>
+
+                </select>
+
+
+            </div>
+            <div class="col-md-3 col-xs-12">
+
+                <label>Observacion:</label>
+                <input type="text" class="form-control" placeholder="Observacion" ng-model="organo_sistema.observacion">
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row hidden-print">
+
+
+            <div class="col-md-3 col-xs-12" >
+                <br>
+                <br>
+                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar12()">
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <br>
+                <br>
+
+
+                <input class="btn btn-warning" type="submit" ng-click="quitar12()"
+                       value="Quitar"/><br><br>
+
+            </div>
+        </div>
+
+
+
+        <div class="row hidden-print">
+            <div class="col-md-12 col-xs-12">
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Organo</th>
+                        <th>Normal/Anormal</th>
+                        <th>Observacion</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in listaOrganosSistemas " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow12($index,item)" >
+                        <td>{{$index}}</td>
+                        <td>{{ item.organo.descripcion_organo }}</td>
+                        <td>{{ item.normal_anormal }}</td>
+                        <td>{{ item.observacion }}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+            <div class="row hidden-print">
+                <h2> ANTESCEDENTES PERSONALES</h2><br>
+                <div class="col-md-4 col-xs-11" >
+                    <br>
+                    <label > Tipo Antescedente Personal </label><br>
+                    <select name="cie10tipo"  class="form-control"   ng-model="antescedetnes_personales.tipo">
+                        <option id="valor4" value={{empresaAux1}}
+                                ng-repeat="empresaAux1 in tipo" >
+                            {{empresaAux1.descripcion_tipo_presonales}}
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="col-md-4 col-xs-11" >
+                    <br>
+                    <label > Patología </label><br>
+                    <input type="text" class="form-control" placeholder="Patología" min="1" ng-model="antescedetnes_personales.enfermedad"/>
+
+
+                </div>
+
+
+
+
+
+                <div class="col-md-4 col-xs-11" >
+                    <br>
+                    <label > Observacion </label><br>
+                    <input type="text" class="form-control" placeholder="Observacion" min="1" ng-model="antescedetnes_personales.observacion"/>
+                </div>
+
+                <div class="col-md-6 col-xs-11" >
+                    <br>
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP1()">
+
+                </div>
+
+                <div class="col-md-6 col-xs-11" >
+
+                    <br>
+
+                    <input class="btn btn-warning" type="submit" ng-click="quitar1()"
+                           value="Quitar"/><br><br>
+                </div>
+
+            </div>
+
+
+            <div class="row hidden-print">
+                <div class="col-md-12 col-xs-12">
+                    <br>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo Patologia</th>
+                            <th>Patologia</th>
+                            <th>Observacion</th>
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in listaAntescedentesPersonales | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow1($index,item)" >
+                            <td>{{$index}}</td>
+                            <td>{{ item.tipo.descripcion_tipo_presonales }}</td>
+                            <td>{{ item.enfermedad }}</td>
+                            <td>{{ item.observacion }}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="row hidden-print">
+                <h1>Exámenes</h1>
+                <div class="col-md-3 col-xs-12">
+
+                    <br>
+                    <label>Examen:</label>
+                    <select name="Alimentos" ng-model="examen.examen" class="form-control" simple ng-click="changeType()"  >
+                        <option value={{al}}
+                                ng-repeat="al in examenes">
+                            {{al.descripcion_examen_laboratorio}}
+                        </option>
+                    </select><br><br>
+
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+
+                    <label>Fecha:</label><br>
+                    <input class="datepicker" type="text" id="datepicker" name="date" /><br>
+                    <br><br>
+
+
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label>Normal/Anormal:</label>
+                    <select class="form-control" name="singleSelect" ng-model="examen.normal_anormal" ng-click="changeLateralidad()">
+                        <option value="normal">Normal </option>
+                        <option value="anormal">Anormal </option>
+
+                    </select>
+
+
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <label>Observacion:</label>
+                    <input type="text" class="form-control" placeholder="Observacion" ng-model="examen.observacion">
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row hidden-print">
+
+
+                <div class="col-md-3 col-xs-12" >
+                    <br>
+                    <br>
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <br>
+
+
+                    <input class="btn btn-warning" type="submit" ng-click="quitar()"
+                           value="Quitar"/><br><br>
+
+                </div>
+            </div>
+
+
+
+            <div class="row hidden-print">
+                <div class="col-md-12 col-xs-12">
+                    <br>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Examen</th>
+                            <th>Normal/Anormal</th>
+                            <th>Fecha</th>
+                            <th>Observacion</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in listaExamenes " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                            <td>{{$index}}</td>
+                            <td>{{ item.examen.descripcion_examen_laboratorio }}</td>
+                            <td>{{ item.normal_anormal }}</td>
+                            <td>{{ item.fecha }}</td>
+                            <td>{{ item.observacion }}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="row hidden-print">
+                <div class="col-md-12 col-xs-12" >
+                    <br>
+                    <h2> IMPRESIÓN DIAGNÓSTICA </h2><br>
+                    <label> Tipo Cie 10: </label>
+                    Búsqueda <input type="text" ng-model="search1" class="form-control" placeholder="Busqueda"><br>
+                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
+                        <option id="valor1" value={{empresaAux1}}
+                                ng-repeat="empresaAux1 in tipoCie10 |filter:search1" >
+                            {{empresaAux1.descripcion_tipo_CIE10}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-12 col-xs-12"  >
+                    <label>  Cie 10: </label>
+                    Búsqueda <input type="text" ng-model="search2" class="form-control" placeholder="Busqueda"><br>
+                    <select name="cie10"  class="form-control"   ng-model="cie10Select" >
+                        <option id="valor2" value={{empresaAux2}}
+                                ng-repeat="empresaAux2 in cie10 |filter:search2">
+                            {{empresaAux2.sintoma}}
+                        </option>
+                    </select>
+
+                </div>
+
+
+
+                <div class="col-md-11 col-xs-11" >
+                    <br>
+                    <input class="form-control" placeholder="Busqueda Por Código CIE 10" ng-model="seleccionada">
+                </div>
+                <div class="col-md-1 col-xs-1" >
+                    <br>
+                    <input  type="submit" class="form-control " value="Buscar" ng-click="busquedaPorCodigoPropio()">
+                </div>
+
+
+
+                <div class="col-md-2 col-xs-12" >
+                    <br>
+                    <p data-ng-bind="encontrada.codigo_cie10">  </p>
+                </div>
+                <div class="col-md-10 col-xs-12" >
+                    <br>
+                    <p data-ng-bind="encontrada.sintoma">  </p>
+                </div>
+
+
+                <div class="col-md-3 col-xs-12" >
+                    <br>
+                    <br>
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <br>
+
+
+                    <input class="btn btn-warning" type="submit" ng-click="quitar()"
+                           value="Quitar"/><br><br>
+
+                </div>
+
+                <div class="col-md-12 col-xs-12" >
+                    <br>
+
+
+                    <label> Cie 10 Seleccionado: </label>
+
+                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Quitar"  multiple>
+                        <option id="valor" value={{empresaAux1}}
+                                ng-repeat="empresaAux1 in listaSelectedCie10" >
+                            {{empresaAux1.sintoma}}
+                        </option>
+                    </select><br><br><br><br>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+            <div class="row" >
+
+
+
+                <div class="col-md-3 col-xs-3" >
+                    <img src="../../images/unach.png" id="img1" ><br>
+                    <h4>Fecha:{{now}}</h4><br>
+                    <h4>Rp:</h4><br><br><br>
+
+                </div>
+                <div class="col-md-6 col-xs-6" >
+                    <h4 style="text-align: center">UNIVERSIDAD NACIONAL DE CHIMBORAZO</h4>
+                    <h5 style="text-align: center">DEPARTAMENTO MÉDICO ODONTOLÓGICO</h5>
+                    <h5 style="text-align: center">Ext: 1240 1241 1242 1243 1246 1247</h5>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="col-md-3 col-xs-3" >
+
+                    <img src="../../images/salud.png" id="img2" >
+                    <br>
+
+                    <br>
+                    <br>
+                    <h4>Prescripción:</h4><br><br>
+                </div>
+                 </div>
+            <div class="row" >
+                <div class="col-md-6 col-xs-6"  >
+                    <textarea class="form-control" rows="20" ng-model="morbilidad.receta"></textarea>
+
+                </div>
+                <div class="col-md-6 col-xs-6"  >
+                    <textarea class="form-control" rows="20"  ng-model="morbilidad.indicaciones"></textarea>
+
+                </div>
+
+           </div>
+            <div class="row hidden-print">
+            <div class="col-md-12 col-xs-12" >
+                <br>
+                <br>
+                <input type="submit" class="btn btn-submit" value="Imprimir" onclick="printDiv()">
+                <br>
+                <br>
+            </div>
+
+            <div class="col-md-12 col-xs-12" >
+                <br>
+                <br>
+                <input type="submit" class="btn btn-submit" value="Certificado Convalidación" ng-click="redirect()">
+                <br>
+                <br>
+            </div>
+                <div class="col-md-12 col-xs-12" >
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-submit" value="Ingresar">
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div><!--div fin contaniner-->
+            </div><!--div fin contaniner-->
+
+        </div><!--div fin contaniner-->
+    </div><!--div fin contaniner-->
+</form>
+<footer class="footer hidden-print">
+    <center><span style="color: #ececf0"> <p>TODOS LOS DERECHOS RESERVADOS 2016</p></span></center>
+</footer>
+<script>
+
+    function printDiv() {
+        var divToPrint = document.getElementById('areaToPrint');
+
+        window.print();
+    }
+</script>
+
+</body>
+</html>

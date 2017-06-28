@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Clinica</title>
+    <!-----estilos -->
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/bootstrap.css" id="pagesheet"/>
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/OverrideComponents.css"
+          id="pageshee1"/>
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/datepicker.css" id="pageshee3"/>
+
+
+    <style>
+        .selected {
+            background-color: #bbbbbb;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+    <!-----angular-->
+
+    <!-----angular-->
+
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular-route.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/ngStorage.min.js"></script>
+    <script src="/tesisSaludOcupacional/Client/app.js"></script>
+
+    <script src="/tesisSaludOcupacional/Client/controllers/CargasController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/controllers/EmpresaController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/controllers/HistoriaClinicaFiveteenController.js"></script>
+
+    <script src="/tesisSaludOcupacional/Client/controllers/LoginController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular-local-storage.min.js"></script>
+
+</head>
+<body ng-app="myApp" ng-controller="CargasController as controlador">
+
+<script src="/tesisSaludOcupacional/Client/scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/bootstrap.min.js"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/ui-bootstrap-tpls-1.3.2.min.js"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/bootstrap-datepicker.js"></script>
+
+
+<script>
+
+
+    $(function () {
+
+
+        $('.datepicker').datepicker();
+
+
+        $('#date').change(function () {
+
+            $scope.historiaClinica.fecha_examen = $("#date").val();
+        });
+        console.log('entra');
+
+    });
+
+
+</script>
+
+
+<!--<script>
+    $(function() {
+        $(".datepicker").datepicker(
+                {
+                    dateFormat: "dd/mm/yy",
+                    dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+                    dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                    firstDay: 1,
+                    gotoCurrent: true,
+                    monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre" ]
+                }
+        );
+    });
+</script>-->
+
+<!-----menu -->
+<header>
+    <nav class="navbar navbar-inverse navbar-static-top " role="navigation">
+        <div class="container" >
+            <div class="row">
+                <br>
+                <div class="col-md-1 col-lg-1">
+                    <a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html" ><img src="/tesisSaludOcupacional/Client/images/icono.png"/></a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html"  class="navbar-brand"> HEALTH END POINT  </a>
+                </div>
+
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menuPrincipal-fm">
+                            <span class="sr-only"> Desplegar/Ocultar </span>
+                            <span class="icon-bar">  </span>
+                            <span class="icon-bar">  </span>
+                            <span class="icon-bar">  </span>
+                        </button>
+
+
+
+
+                    </div><br>
+                    <!-- Iniciar menu-->
+                    <div class="collapse navbar-collapse" id="menuPrincipal-fm">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html"  >DashBoard</a> </li>
+
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Historia Clinica <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/newClinicHistory.html" >Nueva Historia Clínica</a> </li>
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/inicioModificar.html">Modificación Historia Clinica</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Pacientes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Paciente/ingresoPaciente.html">Ingreso Paciente</a> </li>
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Paciente/modificarPaciente.html">Modificación Paciente</a> </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Ausentismo <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Ausentismo/ingresoAusentismo.html">Ingreso Ausentismo</a> </li>
+                                    <li ><a href="#">Busqueda Ausentismo</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Evoluciones <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Morbilidad/IngresoMorbilidad.html">Ingreso Evoluciones</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion CIE 10 <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Cie10/ConfiguracionCIe10.html">Administrar</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion API <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/APIAdmin/genericAccess.html">Administrar</a> </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> {{usuarioLog.nombre_usuario}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="#" >Perfil</a> </li>
+                                    <li ><a href="#" ng-click="logout()">Salir</a> </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<form class="form" role="form" ng-controller="HistoriaClinicaControllerFiveteenth" ng-init="getHistoria()">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <h3 class="  text-center panel-title">Historia Clínica </h3>
+
+
+
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12 col-xs-12" >
+                    <br>
+
+
+                    <label> IMPRESION DIAGNOSTICA </label><br>
+                    <label> Tipo Cie 10: </label>
+
+                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
+                        <option id="valor1" value={{empresaAux1}}
+                                ng-repeat="empresaAux1 in tipoCie10" >
+                            {{empresaAux1.descripcion_tipo_CIE10}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-12 col-xs-12"  >
+                    <label>  Cie 10: </label>
+                    <select name="cie10"  class="form-control"   ng-model="cie10Select" >
+                        <option id="valor2" value={{empresaAux2}}
+                                ng-repeat="empresaAux2 in cie10">
+                            {{empresaAux2.sintoma}}
+                        </option>
+                    </select>
+
+                </div>
+
+
+
+                <div class="col-md-11 col-xs-11" >
+                    <br>
+                    <input class="form-control" placeholder="Busqueda Por Código CIE 10" ng-model="seleccionada">
+                </div>
+                <div class="col-md-1 col-xs-1" >
+                    <br>
+                    <input  type="submit" class="form-control " value="Buscar" ng-click="busquedaPorCodigoPropio()">
+                </div>
+
+
+
+                <div class="col-md-2 col-xs-12" >
+                    <br>
+                    <p data-ng-bind="encontrada.codigo_cie10">  </p>
+                </div>
+                <div class="col-md-10 col-xs-12" >
+                    <br>
+                    <p data-ng-bind="encontrada.sintoma">  </p>
+                </div>
+
+
+                <div class="col-md-3 col-xs-12" >
+                    <br>
+                    <br>
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <br>
+
+
+                    <input class="btn btn-warning" type="submit" ng-click="quitar()"
+                           value="Quitar"/><br><br>
+
+                </div>
+
+                <div class="col-md-12 col-xs-12" >
+                    <br>
+
+
+                    <label> Cie 10 Seleccionado: </label>
+
+                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Quitar"  multiple>
+                        <option id="valor" value={{empresaAux1}}
+                                ng-repeat="empresaAux1 in listaSelectedCie10" >
+                            {{empresaAux1.sintoma}}
+                        </option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-3 col-xs-12" >
+                    <br>
+                    <br>
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar2()">
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <br>
+                    <br>
+
+
+                    <input class="btn btn-warning" type="submit" ng-click="quitar2()"
+                           value="Quitar"/><br><br>
+
+                </div>
+
+                <div class="col-md-12 col-xs-12" >
+                    <br>
+
+
+                    <label> Ocupacionales: </label>
+
+                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Quitar2"  multiple>
+                        <option id="valor11" value={{empresaAux1}}
+                                ng-repeat="empresaAux1 in listaSelectedCie102" >
+                            {{empresaAux1.sintoma}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-xs-12" >
+                    <br>
+                    <label>Concepto:</label>
+                    <select class="form-control" name="singleSelect" ng-model="finalHistoria.concepto" >
+                        <option value="A">Apto Para el Cargo </option>
+                        <option value="AL">Apto con Limitaciones para el Cargo </option>
+                        <option value="D">No Apto para el cargo </option>
+
+                    </select><br>
+                </div>
+                <div class="col-md-4 col-xs-12" >
+                    <br>
+                    <label>Tipo de Restricciones o Limitaciones:</label>
+                    <input class="form-control" type="text" ng-model="finalHistoria.restricciones_limitaciones" >
+                </div>
+                <div class="col-md-4 col-xs-12" >
+                    <br>
+                    <label>Recomendaciones:</label>
+                    <input class="form-control" type="text" ng-model="finalHistoria.recomendaciones" >
+                </div>
+            </div>
+                <div class="row">
+                <div class="col-md-4 col-xs-12" >
+                    <br>
+                    <label>Remision Especialista:</label>
+                    <select class="form-control" name="singleSelect" ng-model="finalHistoria.remision_especialista" >
+                        <option value="S">SI </option>
+                        <option value="N">NO </option>
+
+
+                    </select><br><br><br>
+                    </div>
+                <div class="col-md-4 col-xs-12" >
+                    <br>
+                    <label>Nombre:</label>
+                    <input class="form-control" type="text" ng-model="finalHistoria.nombre_especialista" >
+                    </div>
+                    <div class="col-md-4 col-xs-12" >
+                        <br>
+                        <label>Necesita Reubicacion:</label>
+                        <select class="form-control" name="singleSelect" ng-model="finalHistoria.reubicacion" >
+                            <option value="S">Si</option>
+                            <option value="N">No </option>
+
+
+                        </select><br>
+
+                    </div>
+
+                    <div class="col-md-4 col-xs-12" >
+                        <input type="submit" class="form-control" value="Ingresar Historia Clinica" ng-click="ingresarHistoriaClinica()">
+                    </div>
+            </div>
+            </div>
+
+    </div>
+</form>
+
+</body>
+</html>

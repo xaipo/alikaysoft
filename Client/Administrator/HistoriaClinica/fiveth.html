@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Clinica</title>
+    <!-----estilos -->
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/bootstrap.css" id="pagesheet"/>
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/OverrideComponents.css" id="pageshee1"/>
+    <link rel="stylesheet" type="text/css" href="/tesisSaludOcupacional/Client/css/datepicker.css" id="pageshee3"/>
+
+
+    <style>
+        .selected {
+            background-color:#bbbbbb;
+            color:black;
+            font-weight:bold;
+        }
+    </style>
+    <!-----angular-->
+
+    <!-----angular-->
+
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular-route.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/ngStorage.min.js"></script>
+    <script src="/tesisSaludOcupacional/Client/app.js"></script>
+
+    <script src="/tesisSaludOcupacional/Client/controllers/CargasController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/controllers/EmpresaController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/controllers/HistoriaClinicaControllerSixth.js"></script>
+
+    <script src="/tesisSaludOcupacional/Client/controllers/LoginController.js"></script>
+    <script src="/tesisSaludOcupacional/Client/angular-1.4.6/angular-local-storage.min.js"></script>
+
+</head>
+<body ng-app="myApp" ng-controller="CargasController as controlador" >
+
+<script src="/tesisSaludOcupacional/Client/scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/bootstrap.min.js"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/ui-bootstrap-tpls-1.3.2.min.js"></script>
+<script src="/tesisSaludOcupacional/Client/scripts/bootstrap-datepicker.js"></script>
+
+
+<script>
+
+
+    $(function(){
+
+
+        $('.datepicker').datepicker();
+
+
+        $('#date').change(function(){
+
+            $scope.historiaClinica.fecha_examen = $("#date").val();
+        });
+        console.log('entra');
+
+    });
+
+
+
+
+</script>
+
+
+<!--<script>
+    $(function() {
+        $(".datepicker").datepicker(
+                {
+                    dateFormat: "dd/mm/yy",
+                    dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+                    dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                    firstDay: 1,
+                    gotoCurrent: true,
+                    monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre" ]
+                }
+        );
+    });
+</script>-->
+
+<!-----menu -->
+<header>
+    <nav class="navbar navbar-inverse navbar-static-top " role="navigation">
+        <div class="container" >
+            <div class="row">
+                <br>
+                <div class="col-md-1 col-lg-1">
+                    <a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html" ><img src="/tesisSaludOcupacional/Client/images/icono.png"/></a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html"  class="navbar-brand"> HEALTH END POINT  </a>
+                </div>
+
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menuPrincipal-fm">
+                            <span class="sr-only"> Desplegar/Ocultar </span>
+                            <span class="icon-bar">  </span>
+                            <span class="icon-bar">  </span>
+                            <span class="icon-bar">  </span>
+                        </button>
+
+
+
+
+                    </div><br>
+                    <!-- Iniciar menu-->
+                    <div class="collapse navbar-collapse" id="menuPrincipal-fm">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/tesisSaludOcupacional/Client/Administrator/indexAdmin.html"  >DashBoard</a> </li>
+
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Historia Clinica <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/newClinicHistory.html" >Nueva Historia Clínica</a> </li>
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/inicioModificar.html">Modificación Historia Clinica</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Pacientes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Paciente/ingresoPaciente.html">Ingreso Paciente</a> </li>
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Paciente/modificarPaciente.html">Modificación Paciente</a> </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Ausentismo <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Ausentismo/ingresoAusentismo.html">Ingreso Ausentismo</a> </li>
+                                    <li ><a href="#">Busqueda Ausentismo</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Evoluciones <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Morbilidad/IngresoMorbilidad.html">Ingreso Evoluciones</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion CIE 10 <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/Cie10/ConfiguracionCIe10.html">Administrar</a> </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion API <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="/tesisSaludOcupacional/Client/Administrator/APIAdmin/genericAccess.html">Administrar</a> </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> {{usuarioLog.nombre_usuario}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ><a href="#" >Perfil</a> </li>
+                                    <li ><a href="#" ng-click="logout()">Salir</a> </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<form class="form" role="form" ng-controller="HistoriaClinicaSixth" ng-init="getHistoria()">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <h3 class="  text-center panel-title">Historia Clínica </h3>
+            <h5 class=" text-center panel-title">Antescedentes Patológicos</h5>
+
+        </div>
+        <div class="container">
+            <h4 > Familiares </h4><br>
+            <div class="row">
+
+
+
+
+                <div class="col-md-6 col-xs-11" >
+                    <br>
+                    <label > Patología </label><br>
+                    <input type="text" class="form-control" placeholder="Patología" min="1" ng-model="antescedentes_familiares.patologia"/>
+
+
+                </div>
+
+
+
+                <div class="col-md-6 col-xs-11" >
+                    <br>
+                    <label > Parentezco </label><br>
+                <select name="cie10tipo"  class="form-control"   ng-model="antescedentes_familiares.parentezco">
+                    <option id="valor1" value={{empresaAux1}}
+                            ng-repeat="empresaAux1 in lsita_parentezco" >
+                        {{empresaAux1.descripcion_parentezco}}
+                    </option>
+                </select>
+
+            </div>
+
+
+                <div class="col-md-6 col-xs-11" >
+                    <br>
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP()">
+
+                </div>
+
+                <div class="col-md-6 col-xs-11" >
+
+                    <br>
+
+                    <input class="btn btn-warning" type="submit" ng-click="quitar()"
+                           value="Quitar"/><br><br>
+                </div>
+
+
+                <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <br>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Patologia</th>
+                            <th>Parentezco</th>
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in listaAntescedentesFamiliares | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                            <td>{{$index}}</td>
+                            <td>{{ item.parentezco.descripcion_parentezco }}</td>
+                            <td>{{ item.patologia }}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+
+                <h4 > Personales </h4><br>
+
+
+                <div class="row">
+
+
+
+
+                    <div class="col-md-4 col-xs-11" >
+                        <br>
+                        <label > Patología </label><br>
+                        <input type="text" class="form-control" placeholder="Patología" min="1" ng-model="antescedetnes_personales.enfermedad"/>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-4 col-xs-11" >
+                        <br>
+                        <label > Tipo Antescedente Personal </label><br>
+                        <select name="cie10tipo"  class="form-control"   ng-model="antescedetnes_personales.tipo">
+                            <option id="valor2" value={{empresaAux1}}
+                                    ng-repeat="empresaAux1 in tipo" >
+                                {{empresaAux1.descripcion_tipo_presonales}}
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4 col-xs-11" >
+                        <br>
+                        <label > Observacion </label><br>
+                        <input type="text" class="form-control" placeholder="Observacion" min="1" ng-model="antescedetnes_personales.observacion"/>
+                    </div>
+
+                    <div class="col-md-6 col-xs-11" >
+                        <br>
+                        <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP1()">
+
+                    </div>
+
+                    <div class="col-md-6 col-xs-11" >
+
+                        <br>
+
+                        <input class="btn btn-warning" type="submit" ng-click="quitar1()"
+                               value="Quitar"/><br><br>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <br>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Patologia</th>
+                                <th>Parentezco</th>
+                                <th>Observacion</th>
+
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="item in listaAntescedentesPersonales | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow1($index,item)" >
+                                <td>{{$index}}</td>
+                                <td>{{ item.tipo.descripcion_tipo_presonales }}</td>
+                                <td>{{ item.enfermedad }}</td>
+                                <td>{{ item.observacion }}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+
+                    <div class="col-md-3 col-xs-12">
+                        <br>
+
+                        <input class="btn btn-info" type="submit" ng-click="saveFiveth()"
+                               value="Siguiente"/><br><br>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div><!--div fin contaniner-->
+    </div><!--div fin contaniner-->
+    </div><!--div fin contaniner-->
+
+</form>
+
+</body>
+</html>

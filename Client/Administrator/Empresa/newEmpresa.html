@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Empresa</title>
+
+
+    <script src="../js/libs/jquery-2.0.2.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+<form class="form" role="form">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Configuración Empresa </h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+
+                    <h3 class="panel-title">Seleccione la Empresa </h3>
+                    <p data-ng-bind="mensaje"></p>
+                </div>
+                <div class="container">
+                    <div class="panel-body"  >
+
+                        <div class=" row">
+                            <div class="col-md-4 col-xs-4">
+                                <label for="Empresa"> Empresa: </label><br>
+                                <select name="Empresa" ng-model="empresaSelected" class="form-control"  >
+                                    <option value={{empresaAux}} ng-repeat="empresaAux in listaEmpresas">{{empresaAux.nombre_empresa}}</option>
+                                </select><br>
+                            </div>
+                            <div class="col-md-4 col-xs-4">
+                                <label for="Nombre Nueva Empresa"> Empresa: </label><br>
+                                <input name="EmpresaNew" ng-model="nuevaEmpresa" class="text" />
+                                <input class="btn-success" type="submit" ng-click="inputEmpresa()" value="Ingresar"/>
+                                <br>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 col-xs-2">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+</form>
+
+</body>
