@@ -10,8 +10,8 @@ var cors = require('cors');
 //mongoose.connect('xaipo:xaipo14@ds064278.mlab.com:64278/MongoLab-l');
 
 
-//mongoose.connect('mongodb://40.83.182.235/saludOcupacional', function(error){
-mongoose.connect('mongodb://localhost/salud_ocupacional', function(error){
+mongoose.connect('mongodb://localhost/SaludOcupacional', function(error){
+//mongoose.connect('mongodb://localhost/salud_ocupacional', function(error){
     if(error){
         throw error;
     }else{

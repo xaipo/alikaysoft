@@ -2,8 +2,6 @@
  * Created by xaipo on 9/30/2015.
  */
 
-
-
 app.controller('LoginController', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
 
     console.log(myProvider.getUser());
@@ -27,14 +25,15 @@ app.controller('LoginController', ['$scope', '$http', '$location','myProvider','
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-          //  console.log(response.data[0].nombre_usuario);
-          //  console.log(response.data);
+         //  console.log(response.data[0].nombre_usuario);
+            console.log(response.data);
             $scope.usuario1= angular.fromJson(response.data[0]);
-            //console.log($scope.usuario1);
-           // console.log($scope.usuario1.nombre_usuario);
-           // console.log($scope.usuario1.contrasena);
-           // console.log($scope.usuario1._id);
+           console.log($scope.usuario1);
+       //    console.log($scope.usuario1.nombre_usuario);
+        //   console.log($scope.usuario1.contrasena);
+        //   console.log($scope.usuario1._id);
             if(response.data.length>0){
+
             if($scope.usuario1.nombre_usuario==$scope.usuario && $scope.usuario1.contrasena==$scope.password ){
                 console.log($scope.usuario1.contrasena);
                 $scope.mensaje="Bienvenido "+response.data[0].nombre_usuario.toString();
@@ -44,16 +43,16 @@ app.controller('LoginController', ['$scope', '$http', '$location','myProvider','
                     case 1:
                         console.log($scope.usuario1);
                         window.localStorage.setItem("usuario", JSON.stringify($scope.usuario1));
-                        window.location ='/tesisSaludOcupacional/Client/Administrator/indexAdmin.html';
+                        window.location ='Administrator/indexAdmin.html';
 
                         break;
                     case 2:
                         window.localStorage.setItem("usuario", JSON.stringify($scope.usuario1));
-                        window.location ='/tesisSaludOcupacional/Client/SysAdmin/indexAdmin.html';
+                        window.location ='SysAdmin/indexAdmin.html';
                         break;
                     case 3:
                         window.localStorage.setItem("usuario", JSON.stringify($scope.usuario1));
-                        window.location ='/tesisSaludOcupacional/Client/Administrator/CieUser/ConfiguracionCIe10.html';
+                        window.location ='Administrator/CieUser/ConfiguracionCIe10.html';
                         break;
                     default:
 

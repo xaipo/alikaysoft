@@ -40,9 +40,18 @@ app.controller('CargasController', function ($timeout, $rootScope, $scope, $loca
     $scope.logout= function() {
        // $localStorage.removeAll();
        localStorage.removeItem('usuario');
-       window.location = '/tesisSaludOcupacional/Client/login.html';
+       window.location = '../index.html';
     };
-
+    $scope.logout2= function() {
+        // $localStorage.removeAll();
+        localStorage.removeItem('usuario');
+        window.location = '../../index.html';
+    };
+    $scope.logout3= function() {
+        // $localStorage.removeAll();
+        localStorage.removeItem('usuario');
+        window.location = '../../../index.html';
+    };
 
 
     $scope.load=function(){
