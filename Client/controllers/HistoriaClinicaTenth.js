@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 9/8/2016.
  */
-app.controller('HistoriaClinicaTenth', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaTenth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
 
@@ -185,8 +185,20 @@ app.controller('HistoriaClinicaTenth', ['$scope', '$http', '$location','myProvid
 
         $scope.historiaClinica.habitos_toxicos=$scope.listaHabitosToxicos;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/eleventh.html';
+       // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/eleventh.html';
+
+        $rootScope.noveno=true;
     }
 
+    $scope.noAplica= function(){
+
+        $scope.historiaClinica.habitos_toxicos="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/eleventh.html';
+
+        $rootScope.noveno=true;
+
+   
+    }
 
 }]);

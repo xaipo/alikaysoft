@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 9/26/2016.
  */
-app.controller('HistoriaClinicaControllerTwelve', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaControllerTwelve', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.getHistoria = function () {
@@ -185,7 +185,21 @@ app.controller('HistoriaClinicaControllerTwelve', ['$scope', '$http', '$location
 
         $scope.historiaClinica.organos_sistemas=$scope.listaOrganosSistemas;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/thirteenth.html';
+       // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/thirteenth.html';
+
+
+        $rootScope.once=true;
+    }
+
+
+    $scope.noAplica= function(){
+
+        $scope.historiaClinica.organos_sistemas="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/thirteenth.html';
+
+
+        $rootScope.once=true;
     }
 
 }]);

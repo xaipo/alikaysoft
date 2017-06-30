@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 8/8/2016.
  */
-app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ( $scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
 
@@ -93,7 +93,7 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
                 //console.log(url);
 
                 var n = response.data.length;
-                // console.log(n);
+                 console.log(response.data);
 
                 if (n == 0) {
 
@@ -157,7 +157,7 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
 
                 if (n == 0) {
 
-                    alert('no se encontro el código ingresado');
+                    alert('no se encontro el cï¿½digo ingresado');
                     $scope.encontrada='';
                 } else {
                    // $scope.seleccionada = '';
@@ -212,10 +212,10 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
             }
 
         }else{
-            console.log( $scope.cie10Select);
+            console.log( JSON.parse($scope.cie10Select));
             if($scope.cie10Select=="" || $scope.cie10Select==undefined ||  $scope.antecedentesHistoricos.fecha=='' ||  $scope.antecedentesHistoricos.fecha==undefined){
 
-               alert('Seleccione una enfermedad de la lista o busquela por código');
+               alert('Seleccione una enfermedad de la lista o busquela por cï¿½digo');
 
             }else{
                 $scope.antecedentesHistoricos.sintoma_cie10=JSON.parse($scope.cie10Select);
@@ -278,7 +278,19 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
 
         $scope.historiaClinica.enfermedades_actuales_historicas=$scope.listaCie10Selecionada;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveth.html';
+       // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveth.html';
+
+        $rootScope.cuarto=true;
+    }
+
+    $scope.noAplica=function(){
+
+
+        $scope.historiaClinica.enfermedades_actuales_historicas="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveth.html';
+
+        $rootScope.cuarto=true;
     }
 
     $scope.skipt3=function(){

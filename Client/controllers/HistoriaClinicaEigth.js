@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 9/5/2016.
  */
-app.controller('HistoriaClinicaEigth', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaEigth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.tiposistemaSelected;
@@ -180,6 +180,19 @@ app.controller('HistoriaClinicaEigth', ['$scope', '$http', '$location','myProvid
 
         $scope.historiaClinica.revision_sistemas=$scope.revision_sistemas;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/nineth.html';
+     //   window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/nineth.html';
+        $rootScope.septimo=true;
+
     }
+
+
+    $scope.noAplica= function(){
+
+        $scope.historiaClinica.revision_sistemas="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        //   window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/nineth.html';
+        $rootScope.septimo=true;
+
+    }
+
 }]);

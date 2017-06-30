@@ -1,5 +1,5 @@
 
-app.controller('HistoriaClinicaControllerNineth', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaControllerNineth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.listaVacunas=[]
@@ -134,7 +134,16 @@ app.controller('HistoriaClinicaControllerNineth', ['$scope', '$http', '$location
 
         $scope.historiaClinica.inmunizacion=$scope.inmunizacion;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/tenth.html';
+       // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/tenth.html';
+        $rootScope.octavo=true;
+    }
+
+    $scope.noAplica= function(){
+
+        $scope.historiaClinica.inmunizacion="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+    //    window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/tenth.html';
+        $rootScope.octavo=true;
     }
 
 

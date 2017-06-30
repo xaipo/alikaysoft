@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 7/19/2016.
  */
-app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
 
@@ -149,11 +149,26 @@ app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvid
 
         $scope.historiaClinica.accidentesTrabajo=$scope.listaAccidentesTrabajo;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/third.html';
+      //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/third.html';
 
+        $rootScope.tercero=true;
 
 
     }
+
+
+    $scope.noAplica= function (){
+
+
+        $scope.historiaClinica.accidentesTrabajo="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/third.html';
+
+        $rootScope.tercero=true;
+
+
+    }
+
     $scope.skipt2= function (){
 
 

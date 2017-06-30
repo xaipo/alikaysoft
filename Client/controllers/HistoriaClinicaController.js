@@ -523,7 +523,8 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
                //console.log('entra la ptm');
                   //  console.log($scope.pacienteEncontrado);
                     window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-                window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/first.html';
+               window.location ='first.html';
+
                 }
         }else{
 

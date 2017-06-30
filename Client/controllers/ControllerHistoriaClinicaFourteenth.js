@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 9/28/2016.
  */
-app.controller('HistoriaClinicaControllerFourteenth', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaControllerFourteenth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.lista_paraclinicos_seleccionados=[];
@@ -186,14 +186,23 @@ app.controller('HistoriaClinicaControllerFourteenth', ['$scope', '$http', '$loca
     $scope.saveFourteen= function(){
       //  console.log($scope.lista_paraclinicos_seleccionados);
         $scope.historiaClinica.examenes_paraclinicos=$scope.lista_paraclinicos_seleccionados;
-        $scope.historiaClinica.observacion_paraclinicos=$scope.observacion_paraclinicos
+        $scope.historiaClinica.observacion_paraclinicos=$scope.observacion_paraclinicos;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
        // console.log($scope.historiaClinica);
-       window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveteenth.html';
+      // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveteenth.html';
+        $rootScope.trece=true;
     }
 
 
-
+    $scope.noAplica= function(){
+        //  console.log($scope.lista_paraclinicos_seleccionados);
+        $scope.historiaClinica.examenes_paraclinicos="No Aplica";
+        $scope.historiaClinica.observacion_paraclinicos="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        // console.log($scope.historiaClinica);
+        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveteenth.html';
+        $rootScope.trece=true;
+    }
 
 
 

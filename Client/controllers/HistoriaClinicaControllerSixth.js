@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 8/31/2016.
  */
-app.controller('HistoriaClinicaSixth', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaSixth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.anstecedentes_salud;
@@ -243,8 +243,22 @@ app.controller('HistoriaClinicaSixth', ['$scope', '$http', '$location','myProvid
         $scope.historiaClinica.antescedentes_personales=$scope.listaAntescedentesPersonales;
 
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/sixth.html';
+      //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/sixth.html';
 
+        $rootScope.quinto=true;
+
+    }
+
+    $scope.noAplica = function (){
+
+
+        $scope.historiaClinica.antescedentes_familiares="No aplica";
+        $scope.historiaClinica.antescedentes_personales="No aplica";
+
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/sixth.html';
+
+        $rootScope.quinto=true;
 
     }
 

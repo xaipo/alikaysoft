@@ -1,7 +1,7 @@
 /**
  * Created by xaipo on 9/8/2016.
  */
-app.controller('HistoriaClinicaEleventh', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaEleventh', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.examen_fisico = {
@@ -173,7 +173,19 @@ app.controller('HistoriaClinicaEleventh', ['$scope', '$http', '$location','myPro
 
         $scope.historiaClinica.examen_fisico=$scope.listaExamenFisico;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/twelveth.html';
+      //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/twelveth.html';
+
+        $rootScope.decimo=true;
+    }
+
+
+    $scope.noAplica= function(){
+
+        $scope.historiaClinica.examen_fisico="No Aplica";
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/twelveth.html';
+
+        $rootScope.decimo=true;
     }
 
 }]);

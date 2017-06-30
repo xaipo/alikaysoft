@@ -2,7 +2,7 @@
  * Created by xaipo on 7/8/2016.
  */
 
-app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
+app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
     $scope.search1;
@@ -464,6 +464,8 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
          console.log(item);*/
     }
 
+    console.log( $scope.segundo);
+
     $scope.nextSecond= function(){
 
        // console.log($scope.historiaClinica);
@@ -471,7 +473,25 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
         $scope.historiaClinica.riesgosOcupacionales=$scope.listaRiesgosOcupacionales;
         console.log($scope.historiaClinica.riesgosOcupacionales);
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-        window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/second.html';
+        //window.location ='second.html';
+
+        $rootScope.segundo=true;
+        console.log($rootScope.segundo);
+
+    }
+
+    $scope.noAplica= function(){
+
+        // console.log($scope.historiaClinica);
+
+        $scope.historiaClinica.riesgosOcupacionales="No Aplica";
+        console.log($scope.historiaClinica.riesgosOcupacionales);
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+        //window.location ='second.html';
+
+        $rootScope.segundo=true;
+        console.log($rootScope.segundo);
+
     }
 
     $scope.skipt= function(){
@@ -552,5 +572,25 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
        }
 
     }
+
+}]);
+
+
+app.controller('HistoriaClinicaUnido', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
+
+    $rootScope.segundo=false;
+    $rootScope.tercero=false;
+    $rootScope.cuarto=false;
+    $rootScope.quinto=false;
+    $rootScope.sexto=false;
+    $rootScope.septimo=false;
+    $rootScope.octavo=false;
+    $rootScope.noveno=false;
+    $rootScope.decimo=false;
+    $rootScope.once=false;
+    $rootScope.doce=false;
+
+    $rootScope.trece=false;
+
 
 }]);
