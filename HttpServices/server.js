@@ -10,8 +10,8 @@ var cors = require('cors');
 //mongoose.connect('xaipo:xaipo14@ds064278.mlab.com:64278/MongoLab-l');
 
 
-mongoose.connect('mongodb://localhost/SaludOcupacional', function(error){
-//mongoose.connect('mongodb://localhost/salud_ocupacional', function(error){
+//mongoose.connect('mongodb://localhost/SaludOcupacional', function(error){
+mongoose.connect('mongodb://localhost/salud_ocupacional', function (error) {
     if(error){
         throw error;
     }else{
@@ -99,6 +99,8 @@ app.use('/api',require('./Routes/apiAusentismoCompleto'));
 app.use('/api',require('./Routes/apiMedico'));
 app.use('/api',require('./Routes/apiMorbilidad'));
 app.use('/api',require('./Routes/apiGetDate'));
+
+app.use('/api', require('./Routes/eventos'));
 
 // </editor-fold >
 
