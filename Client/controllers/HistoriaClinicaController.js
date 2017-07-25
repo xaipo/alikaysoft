@@ -19,10 +19,7 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
     $('.datepicker').datepicker();
 
 
-    $('#date').change(function () {
 
-        $scope.historiaClinica.fecha_examen = $("#date").val();
-    });
     console.log('entra');
 
 
@@ -514,7 +511,9 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
       //  console.log(angular.element('#datepicker').val());
 
         $scope.historiaClinica.fecha_examen=document.getElementById('datepicker').value;
-       // console.log($scope.historiaClinica.fecha_examen);
+
+
+        // console.log($scope.historiaClinica.fecha_examen);
         if( $scope.pacienteEncontrado!=""&&$scope.historiaClinica.fecha_examen!="") {
 
 

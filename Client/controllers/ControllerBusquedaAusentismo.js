@@ -143,7 +143,7 @@ app.controller('ControllerBusquedaAusentismo', ['$scope', '$http', '$location', 
         window.localStorage.setItem("ficha", JSON.stringify(ficha));
 
 
-        window.location = '/alikaysoft/Client/Administrator/Ausentismo/mostrarAusentismo.html';
+        $location.path('/VF');
 
 
     }

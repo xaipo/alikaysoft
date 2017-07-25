@@ -198,23 +198,60 @@ app.factory("myProvider",function(){
    //$locationProvider.html5Mode(true);
         $routeProvider.when("/", {templateUrl: "inicio.html"});
         $routeProvider.when("/RHC", {
-            templateUrl: "HistoriaClinica/registroHistoriaClinica.html",
+            templateUrl: "HistoriaClinica/newClinicHistory.html",
             controller: 'HistoriaClinicaController'
         });
 
+        $routeProvider.when("/MHC", {
+            templateUrl: "HistoriaClinica/modificar/inicioModificar.html",
+            controller: 'ControllerValidacionHistoria'
+        });
+        $routeProvider.when("/IP", {
+            templateUrl: "Paciente/ingresoPaciente.html",
+            controller: 'PacienteController'
+        });
 
-    $routeProvider.when("/newEmpresa",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/Empresa/ingresarEmpresa.html", controller:'EmpresaController'});
-    $routeProvider.when("/newHistory",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/newClinicHistory.html", controller:'HistoriaClinicaController'});
-    $routeProvider.when("/first",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/first.html", controller:'HistoriaClinicaController'});
-    $routeProvider.when("/second",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/second.html", controller:'HistoriaClinicaController'});
 
-        /*$provide.factory("ApiUrl", function () {
-            return {
-                urlUsuarios: 'http://'+server+':3000/api/usuarios'
-            };
-        })*/
+        $routeProvider.when("/MP", {
+            templateUrl: "Paciente/modificarPaciente.html",
+            controller: 'PacienteControllerModificar'
+        });
 
-        //$provide.value('urlUsuarios', 'http://'+server+':3000/api/usuarios');
+
+        $routeProvider.when("/IA", {
+            templateUrl: "Ausentismo/ingresoAusentismo.html",
+            controller: 'ControllerAusentismo'
+        });
+
+
+        $routeProvider.when("/BA", {
+            templateUrl: "Ausentismo/busquedaAusentismo.html",
+            controller: 'ControllerBusquedaAusentismo'
+        });
+
+
+        $routeProvider.when("/VF", {
+            templateUrl: "Ausentismo/mostrarAusentismo.html",
+            controller: 'ControllerMostrarAusentismo'
+        });
+
+
+        $routeProvider.when("/MI", {
+            templateUrl: "Morbilidad/IngresoMorbilidad.html",
+            controller: 'ControllerMorbilidad'
+        });
+
+
+        $routeProvider.when("/CIE", {
+            templateUrl: "Cie10/ConfiguracionCIe10.html",
+            controller: 'ControllerCie10'
+        });
+
+
+        $routeProvider.when("/CCG", {
+            templateUrl: "APIAdmin/genericAccess.html",
+            controller: 'ControllerCreacionGenerica'
+        });
 
 
 
@@ -222,16 +259,4 @@ app.factory("myProvider",function(){
 });
 
 
-
-//('urlUsuarios', 'http://'+server+':3000/api/usuarios');
-
-
-
-    /*app.config(['$routeProvider', function ($routeProvider) {
-
-        $routeProvider.when('/newEmpresa', { templateUrl: '/tesisSaludOcupacional/Client/Administrator/newEmpresa.html', controller: 'EmpresaController' });
-        $routeProvider.when('/', { templateUrl: '/indexAdmin.html' });
-        $routeProvider.otherwise({ redirectTo: '/error' });
-
-    }]);*/
 
