@@ -132,7 +132,7 @@ app.controller('ControllerCie10', ['$scope', '$http', '$location','myProvider','
 
 
 
-    $scope.selectedRow = null;  // initialize our variable to null
+    //$scope.selectedRow = null;  // initialize our variable to null
     $scope.setClickedRow = function(index,item){  //function that sets the value of selectedRow to current index
         $scope.selectedRow = index;
         $scope.cie10Selected1=item;

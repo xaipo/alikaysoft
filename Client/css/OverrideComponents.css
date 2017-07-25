@@ -7,8 +7,9 @@
 
 .navbar{
     margin-bottom: 15px;
-    /*background: #2a6496;*/
+    //background: #6991CB;
     color:white;
+    font-weight: bold;
 }
 .navbar-brand{
 
@@ -45,4 +46,13 @@ body {
 
 .img2{
    width: 20%; height: 20%; text-align: center;
+}
+
+.footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+
 }

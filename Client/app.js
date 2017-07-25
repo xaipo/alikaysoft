@@ -1,186 +1,189 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module("myApp", ['ngStorage','ngRoute'])
-
+var app = angular.module("myApp", ['ngStorage','ngRoute','angularUtils.directives.dirPagination'])
+var server='localhost';
 
 function ApiUrl(){
 
     this.getUser=function(){
-        return 'http://localhost:3000/api/usuarios';
+        return 'http://'+server+':3000/api/usuarios';
     }
     this.getHistoriaClinica=function(){
-        return 'http://localhost:3000/api/historiaClinica';
+        return 'http://'+server+':3000/api/historiaClinica';
     }
     this.getPaciente=function(){
-        return 'http://localhost:3000/api/pacientes';
+        return 'http://'+server+':3000/api/pacientes';
     }
     this.getPuestoTrabajo=function(){
-        return 'http://localhost:3000/api/puestoTrabajo';
+        return 'http://'+server+':3000/api/puestoTrabajo';
     }
     this.getDependencia=function(){
-        return 'http://localhost:3000/api/dependencia';
+        return 'http://'+server+':3000/api/dependencia';
     }
     this.getEmpresa=function(){
-        return 'http://localhost:3000/api/empresa';
+        return 'http://'+server+':3000/api/empresa';
     }
     this.getTipoHistoria1=function(){
-        return 'http://localhost:3000/api/tipoHistoria';
+        return 'http://'+server+':3000/api/tipoHistoria';
     }
     this.getEstadoCivil=function(){
-        return 'http://localhost:3000/api/estadoCivil';
+        return 'http://'+server+':3000/api/estadoCivil';
     }
     this.getCiudad=function(){
-        return 'http://localhost:3000/api/ciudad';
+        return 'http://'+server+':3000/api/ciudad';
     }
     this.getNivelEstudio=function(){
-        return 'http://localhost:3000/api/nivelEstudio';
+        return 'http://'+server+':3000/api/nivelEstudio';
     }
     this.getHerramientas=function(){
-        return 'http://localhost:3000/api/herramienta';
+        return 'http://'+server+':3000/api/herramienta';
     }
 
     this.getProvincia=function(){
-        return 'http://localhost:3000/api/provincia';
+        return 'http://'+server+':3000/api/provincia';
     }
 
     this.getCiudades=function(){
-        return 'http://localhost:3000/api/ciudad';
+        return 'http://'+server+':3000/api/ciudad';
     }
     this.getCargo=function(){
-        return 'http://localhost:3000/api/cargo';
+        return 'http://'+server+':3000/api/cargo';
     }
     this.getMaquinaria=function(){
-        return 'http://localhost:3000/api/maquinaria';
+        return 'http://'+server+':3000/api/maquinaria';
     }
     this.getMateriaPrima=function(){
-        return 'http://localhost:3000/api/materiaPrima';
+        return 'http://'+server+':3000/api/materiaPrima';
     }
     this.getProteccion=function(){
-        return 'http://localhost:3000/api/proteccion';
+        return 'http://'+server+':3000/api/proteccion';
     }
     this.getTipoCie10=function(){
-        return 'http://localhost:3000/api/tipoCie10';
+        return 'http://'+server+':3000/api/tipoCie10';
     }
     this.getCie10=function(){
-        return 'http://localhost:3000/api/cie10';
+        return 'http://'+server+':3000/api/cie10';
     }
     this.getJornada=function(){
-        return 'http://localhost:3000/api/jornada';
+        return 'http://'+server+':3000/api/jornada';
     }
     this.getTipoActividad=function(){
-        return 'http://localhost:3000/api/tipoActividad';
+        return 'http://'+server+':3000/api/tipoActividad';
     }
     this.getCualificacion=function(){
-        return 'http://localhost:3000/api/cualificaciones';
+        return 'http://'+server+':3000/api/cualificaciones';
     }
     this.getFactoresRiesgo=function(){
-        return 'http://localhost:3000/api/factoresRiesgo';
+        return 'http://'+server+':3000/api/factoresRiesgo';
     }
     this.getAlimentos=function(){
-        return 'http://localhost:3000/api/alimentos';
+        return 'http://'+server+':3000/api/alimentos';
     }
     this.getParentezco=function(){
-        return 'http://localhost:3000/api/parentezco';
+        return 'http://'+server+':3000/api/parentezco';
     }
     this.getTipoPersonales=function(){
-        return '  http://localhost:3000/api/tipoPersonales';
+        return '  http://'+server+':3000/api/tipoPersonales';
     }
     this.getMetodosPlanifiacionFamiliar=function(){
-        return ' http://localhost:3000/api/metodosPlanificacionFamiliar';
+        return ' http://'+server+':3000/api/metodosPlanificacionFamiliar';
     }
     this.getTipoRevisionSistemas=function(){
-        return 'http://localhost:3000/api/tipoRevisionSistemas';
+        return 'http://'+server+':3000/api/tipoRevisionSistemas';
     }
     this.RevisionSistemas=function(){
-        return 'http://localhost:3000/api/revisionSistemas';
+        return 'http://'+server+':3000/api/revisionSistemas';
     }
     this.getVacunas=function(){
-        return 'http://localhost:3000/api/vacuna';
+        return 'http://'+server+':3000/api/vacuna';
     }
     this.getTipoHabitoToxico=function(){
-        return 'http://localhost:3000/api/tipoHabitoToxico';
+        return 'http://'+server+':3000/api/tipoHabitoToxico';
     }
     this.getTipoConsumidor=function(){
-        return 'http://localhost:3000/api/tipoConsumidor';
+        return 'http://'+server+':3000/api/tipoConsumidor';
     }
     this.getDetalleFactoresRiesgo=function(){
-        return 'http://localhost:3000/api/detallefactorriesgo';
+        return 'http://'+server+':3000/api/detallefactorriesgo';
     }
     this.getInterpretacionIMC=function(){
-        return 'http://localhost:3000/api/interpretacionIMC';
+        return 'http://'+server+':3000/api/interpretacionIMC';
     }
     this.getTipoOrgano=function(){
-        return 'http://localhost:3000/api/tipoOrgano';
+        return 'http://'+server+':3000/api/tipoOrgano';
     }
     this.getOrganos=function(){
-        return 'http://localhost:3000/api/Organos';
+        return 'http://'+server+':3000/api/Organos';
     }
     this.getExamenesLaboratorio=function(){
-        return 'http://localhost:3000/api/examenLaboratorio';
+        return 'http://'+server+':3000/api/examenLaboratorio';
     }
     this.getExamenesParclinicos=function(){
-        return 'http://localhost:3000/api/examenParaclinico';
+        return 'http://'+server+':3000/api/examenParaclinico';
     }
     this.getResultadoExamenesParclinicos=function(){
-        return 'http://localhost:3000/api/resultadoParaclinico';
+        return 'http://'+server+':3000/api/resultadoParaclinico';
     }
     this.getMedico=function(){
-        return 'http://localhost:3000/api/medico';
+        return 'http://'+server+':3000/api/medico';
     }
     this.getAusentismo=function(){
-        return 'http://localhost:3000/api/ausentismoCompleto';
+        return 'http://'+server+':3000/api/ausentismoCompleto';
     }
     this.getRiesgosOcupacionales=function(){
-        return 'http://localhost:3000/api/riegosOcupacionales';
+        return 'http://'+server+':3000/api/riegosOcupacionales';
     }
     this.getAccidentesTrabajo=function(){
-        return 'http://localhost:3000/api/accidentesTrabajo';
+        return 'http://'+server+':3000/api/accidentesTrabajo';
     }
     this.getGinecoObstetra=function(){
-        return 'http://localhost:3000/api/ginecoObstetra';
+        return 'http://'+server+':3000/api/ginecoObstetra';
     }
     this.getAusentismo1=function(){
-        return 'http://localhost:3000/api/ausentismo';
+        return 'http://'+server+':3000/api/ausentismo';
     }
     this.getEnfermedadesActualesHistoricas=function(){
-        return 'http://localhost:3000/api/enfermedadesActualesHistoricas';
+        return 'http://'+server+':3000/api/enfermedadesActualesHistoricas';
     }
     this.getFamiliares=function(){
-        return 'http://localhost:3000/api/familiares';
+        return 'http://'+server+':3000/api/familiares';
     }
     this.getPersonales=function(){
-        return 'http://localhost:3000/api/personales';
+        return 'http://'+server+':3000/api/personales';
     }
     this.getImnunizacion=function(){
-        return 'http://localhost:3000/api/inmunizacion';
+        return 'http://'+server+':3000/api/inmunizacion';
     }
     this.gethabitosToxicos=function(){
-        return 'http://localhost:3000/api/habitosToxicos';
+        return 'http://'+server+':3000/api/habitosToxicos';
     }
     this.getOrganoSelected=function(){
-        return 'http://localhost:3000/api/organosSelected';
+        return 'http://'+server+':3000/api/organosSelected';
     }
     this.getExamenesPracticados=function(){
-        return 'http://localhost:3000/api/examenesPracticados';
+        return 'http://'+server+':3000/api/examenesPracticados';
     }
     this.getParaclinico=function(){
-        return 'http://localhost:3000/api/paraclinicoSeleccionado';
+        return 'http://'+server+':3000/api/paraclinicoSeleccionado';
     }
     this.getExamenFisico=function(){
-        return 'http://localhost:3000/api/examenFisico';
+        return 'http://'+server+':3000/api/examenFisico';
     }
     this.getHistoriaClinica=function(){
-        return 'http://localhost:3000/api/historiaClinica';
+        return 'http://'+server+':3000/api/historiaClinica';
     }
     this.getDate=function(){
-        return 'http://localhost:3000/api/getDate';
+        return 'http://'+server+':3000/api/getDate';
     }
     this.getToken=function(){
-        return 'http://localhost:3001/token';
+        return 'http://'+server+':3001/token';
     }
     this.getCreacionGenerica=function(){
-        return 'http://localhost:3001/api/create';
+        return 'http://'+server+':3001/api/create';
+    }
+    this.getCapituloCie=function(){
+        return 'http://'+server+':3000/api/capitulosCie10';
     }
 }
 
@@ -200,11 +203,11 @@ app.factory("myProvider",function(){
 
         /*$provide.factory("ApiUrl", function () {
             return {
-                urlUsuarios: 'http://localhost:3000/api/usuarios'
+                urlUsuarios: 'http://'+server+':3000/api/usuarios'
             };
         })*/
 
-        //$provide.value('urlUsuarios', 'http://localhost:3000/api/usuarios');
+        //$provide.value('urlUsuarios', 'http://'+server+':3000/api/usuarios');
 
 
 
@@ -213,7 +216,7 @@ app.factory("myProvider",function(){
 
 
 
-//('urlUsuarios', 'http://localhost:3000/api/usuarios');
+//('urlUsuarios', 'http://'+server+':3000/api/usuarios');
 
 
 
