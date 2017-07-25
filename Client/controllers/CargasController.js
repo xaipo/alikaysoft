@@ -15,6 +15,16 @@ app.controller('CargasController', function ($timeout, $rootScope, $scope, $loca
    // $scope.usuarioLog= JSON.parse ($scope.usuarioLog);
    // console.log($scope.usuarioLog+" entro");
 
+
+    $scope.paginas = function (url) {
+
+
+        $location.path(url);
+
+
+    };
+
+
     $scope.showCargarArchivos = function (pathurl) {
 
         data = JSON.parse(localStorage.getItem("usuario"));

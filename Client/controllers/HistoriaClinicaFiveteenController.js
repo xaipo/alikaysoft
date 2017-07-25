@@ -310,6 +310,13 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
     $scope.ingresarHistoriaClinica=function(){
 
         console.log('ejecuta');
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+
+        console.log($scope.historiaClinica);
+        console.log($scope.historiaClinicIngreso);
+
+        console.log(JSON.parse(window.localStorage.getItem('hci')));
+
 
       //  $scope.historiaClinicIngreso = JSON.parse(window.localStorage.getItem('hci'));
         var n = $scope.historiaClinica.revision_sistemas.length;
@@ -400,7 +407,8 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
             //  }
 
         }
-        $scope.second();
+
+        // $scope.second();
 
     }
 

@@ -193,9 +193,16 @@ app.factory("myProvider",function(){
 
 });
 
+
     app.config (function($routeProvider ,$provide){
    //$locationProvider.html5Mode(true);
-    $routeProvider.when("/",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/inicio.html", controller:'LoginController'});
+        $routeProvider.when("/", {templateUrl: "inicio.html"});
+        $routeProvider.when("/RHC", {
+            templateUrl: "HistoriaClinica/registroHistoriaClinica.html",
+            controller: 'HistoriaClinicaController'
+        });
+
+
     $routeProvider.when("/newEmpresa",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/Empresa/ingresarEmpresa.html", controller:'EmpresaController'});
     $routeProvider.when("/newHistory",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/newClinicHistory.html", controller:'HistoriaClinicaController'});
     $routeProvider.when("/first",{templateUrl:"/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/first.html", controller:'HistoriaClinicaController'});

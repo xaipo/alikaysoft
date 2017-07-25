@@ -6,6 +6,8 @@
 
 app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
 
+
+    console.log("historia clinica");
     $scope.mensaje = "";
     $scope.PacienteEncontrado="";
     $scope.pacienteBusqueda="";
@@ -14,8 +16,14 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
     $scope.tipoHistoriaSelected="";
 
 
+    $('.datepicker').datepicker();
 
 
+    $('#date').change(function () {
+
+        $scope.historiaClinica.fecha_examen = $("#date").val();
+    });
+    console.log('entra');
 
 
     $scope.historiaClinica=  {

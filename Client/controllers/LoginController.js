@@ -4,6 +4,13 @@
 
 app.controller('LoginController', ['$scope', '$http', '$location','myProvider','$localStorage',  function ($scope,$http,$location,myProvider,$localStorage) {
 
+
+    console.log("logincontroler");
+
+
+
+
+
     console.log(myProvider.getUser());
     $scope.mensaje = "";
     $scope.usuario = "";

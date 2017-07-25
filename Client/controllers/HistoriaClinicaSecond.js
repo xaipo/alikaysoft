@@ -22,7 +22,8 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
     $scope.tipoActividadSeleccionada;
     $scope.cualificacionSeleccionada;
     $scope.selectedFactorRiesgo;
-    $scope.historiaClinica;
+    $scope.historiaClinica = {};
+    $scope.historiaClinica.riesgosOcupacionales = [];
     $scope.selectedRow ;
     $scope.riesgosOcupacionalesSelected;
     $scope.listaRiesgosOcupacionales=[];
@@ -48,10 +49,11 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
 
     $scope.getHistoria= function(){
 
-        $scope.historiaClinica=JSON.parse(window.localStorage.getItem('hC'));
+        //   $scope.historiaClinica=JSON.parse(window.localStorage.getItem('hC'));
         console.log($scope.historiaClinica);
 
     }
+
     // <editor-fold defaultstate="collapsed" desc="Cargar empresa">
     $http({
 

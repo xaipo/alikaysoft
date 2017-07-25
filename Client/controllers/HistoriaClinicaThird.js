@@ -146,6 +146,8 @@ app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvid
 
     $scope.saveThird= function (){
 
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
 
         $scope.historiaClinica.accidentesTrabajo=$scope.listaAccidentesTrabajo;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
@@ -159,12 +161,27 @@ app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvid
 
     $scope.noAplica= function (){
 
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
 
-        $scope.historiaClinica.accidentesTrabajo="No Aplica";
+
+        var accidentesTrabajo = {
+            codigo: "",
+            fecha_ocurrencia: "",
+            nombre_empresa: "",
+            naturaleza_lesion: "no aplica",
+            parte_cuerpo_afectada: "",
+            dias_incapacidad: "",
+            secuelas: ""
+        };
+
+        $scope.historiaClinica.accidentesTrabajo = accidentesTrabajo;
+
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
         //  window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/third.html';
 
         $rootScope.tercero=true;
+        console.log(JSON.parse(window.localStorage.getItem('hC')));
 
 
     }

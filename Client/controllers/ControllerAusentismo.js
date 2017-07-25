@@ -405,7 +405,7 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
 
                 if (n == 0) {
 
-                    alert('no se encontro el código ingresado');
+                    alert('no se encontro el cï¿½digo ingresado');
                     $scope.encontrada = '';
                 } else {
                     // $scope.seleccionada = '';
@@ -660,6 +660,7 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
                     tipo_certificado:$scope.ausentismo.tipo_certificado,
                     observaciones:$scope.ausentismo.observaciones,
                     regimen:$scope.ausentismo.regimen,
+                    estado: "activo"
 
                 }
 

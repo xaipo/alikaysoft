@@ -1,0 +1,88 @@
+<form class="form" role="form">
+
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <div class="panel panel-primary">
+                <div class=" panel-heading">
+
+                    <h3 class=" text-center panel-title ">Historia Clínica </h3>
+
+
+                </div>
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-md-3 col-xs-12">
+                            <br>
+                            <label> Ingrese la Cedula del Paciente: </label><br><br>
+                            <input name="Paciente" ng-model="pacienteBusqueda" class="form-control"/><br>
+                            <input class="btn btn-default" type="submit" ng-click="searchPaciente()"
+                                   value="Buscar Paciente"/><br>
+                            <br>
+                            <input class="btn btn-default" type="submit"
+                                   ng-click="redirect1('../../Administrator/Paciente/ingresoPaciente.html')"
+                                   value="Nuevo Paciente"/><br>
+                            <br>
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <br>
+                            <label> Datos Paciente: </label><br>
+                            <label> Primer Nombre: {{pacienteEncontrado.primer_nombre}} </label>
+                            <label> Segundo Nombre: {{pacienteEncontrado.segundo_nombre}} </label>
+                            <label> Primer Apellido: {{pacienteEncontrado.primer_apellido}} </label>
+                            <label> Segundo Apellido: {{pacienteEncontrado.segundo_apellido}} </label><br>
+                            <label> Edad: {{pacienteEncontrado.edad}} </label><br>
+                            <label> Lugar Nacimiento: {{pacienteEncontrado.ciudad.nombre_ciudad}} </label><br>
+
+
+                        </div>
+                        <div class="col-md-3 col-xs-12">
+                            <br>
+                            <label> Puesto Trabajo:{{pacienteEncontrado.puesto_trabajo.nombre_puesto}} </label><br>
+                            <label> Dependencia:
+                                {{pacienteEncontrado.puesto_trabajo.dependencia.nombre_dependencia}} </label><br>
+                            <label>Empresa:
+                                {{pacienteEncontrado.puesto_trabajo.dependencia.empresa.nombre_empresa}} </label><br>
+                            <label>Genero: {{pacienteEncontrado.sexo}} </label><br>
+                            <label>Estado Civil:
+                                {{pacienteEncontrado.estado_civil.descripcion_estado_civil}} </label><br>
+                            <label>Nivel Estudio:
+                                {{pacienteEncontrado.nivel_estudio.descripcion_nivel_estudio}} </label><br>
+                            <label>Telefono: {{pacienteEncontrado.telefono}} </label><br>
+
+
+                        </div>
+
+                        <div class="col-md-3 col-xs-12">
+                            <br>
+                            <label> Fecha Examen </label><br>
+                            <input class="datepicker" type="text" id="datepicker" name="date"
+                                   value="{{ historiaClinica.fecha_examen}}"/><br>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+
+                        <div class="col-md-3 col-xs-12">
+                            <br>
+
+                            <input class="btn btn-info" type="submit" ng-click="next1()"
+                                   value="Siguiente"/><br><br>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div><!--div fin contaniner-->
+    </div>
+    </div>
+</form>
+
+

@@ -15,12 +15,13 @@ var categoriaSchema = new mongoose.Schema({
     horas:Number,
     minutos:Number,
     laboral_nolaboral:String,
-
+    estado: String,
     diagnostico:Array,
     medico: mongoose.Schema.ObjectId,
     tipo_certificado:String,
     observaciones:String,
     regimen:String,
+    fechaRegistro: {type: Date, default: Date.now}
 
 
 
