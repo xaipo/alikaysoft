@@ -86,7 +86,7 @@ app.controller('ControllerBusquedaAusentismo', ['$scope', '$http', '$location', 
                 $http({
 
                     method: 'GET',
-                    url: myProvider.getAusentismo() + '?paciente=' + $scope.pacienteEncontrado._id,
+                    url: myProvider.getAusentismo() + '?estado=activo&&paciente=' + $scope.pacienteEncontrado._id,
 
                     headers: {
                         'Content-Type': 'application/json'
@@ -153,7 +153,39 @@ app.controller('ControllerBusquedaAusentismo', ['$scope', '$http', '$location', 
 
         console.log(ficha);
 
+
+        $http({
+            method: 'Put',
+            url: myProvider.getAusentismo() + "/" + ficha._id,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+
+
+                estado: "inactivo"
+
+
+            }
+
+
+        }).then(function successCallback(response) {
+            alert('Eliminado Correctamente')
+
+
+        }, function errorCallback(response) {
+
+            console.log('falla');
+        });
+
         console.log("eliminar");
+
+
+        var indice = $scope.lista.indexOf(ficha);
+        $scope.lista.splice(indice, 1);
+
+       
+
 
     }
 

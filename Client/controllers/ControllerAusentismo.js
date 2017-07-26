@@ -666,6 +666,10 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
 
 
             }).then(function successCallback(response) {
+
+                $location.path('/BA');
+
+
                 alert('Ingresado Correctamente')
                 $scope.listaSelectedCie10=[];
                 $scope.ausentismo = {

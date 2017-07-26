@@ -111,6 +111,35 @@ app.controller('ControllerMostrarAusentismo', ['$scope', '$http', '$location', '
 
         console.log(ficha);
 
+
+        $http({
+            method: 'Put',
+            url: myProvider.getAusentismo() + "/" + ficha._id,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+
+
+                estado: "inactivo"
+
+
+            }
+
+
+        }).then(function successCallback(response) {
+            alert('Eliminado Correctamente')
+            $location.path('/BA');
+
+        }, function errorCallback(response) {
+
+            console.log('falla');
+        });
+
+
+
+
+
     }
 
 
