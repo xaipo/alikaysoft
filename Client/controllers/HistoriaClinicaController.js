@@ -16,7 +16,10 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
     $scope.tipoHistoriaSelected="";
 
 
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+        autoclose: true,
+        language: 'es'
+    });
 
 
 

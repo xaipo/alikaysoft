@@ -11,7 +11,7 @@ var cors = require('cors');
 
 
 //mongoose.connect('mongodb://localhost/SaludOcupacional', function(error){
-mongoose.connect('mongodb://localhost/SaludOcupacional', function (error) {
+mongoose.connect('mongodb://localhost/salud_ocupacional', function (error) {
     if(error){
         throw error;
     }else{
