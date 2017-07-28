@@ -254,6 +254,10 @@ app.factory("myProvider",function(){
         });
 
 
+        $routeProvider.when("/HC1", {
+            templateUrl: "HistoriaClinica/first.html",
+            controller: 'HistoriaClinicaUnido'
+        });
 
 
 });

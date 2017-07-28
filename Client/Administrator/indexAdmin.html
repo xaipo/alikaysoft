@@ -19,6 +19,14 @@
     </style>
     <!-----angular-->
 
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
+
     <script src="../angular-1.4.6/angular.js"></script>
     <script src="../angular-1.4.6/angular-route.js"></script>
     <script src="../angular-1.4.6/ngStorage.min.js"></script>
@@ -41,6 +49,41 @@
     <script src="../controllers/ControllerMorbilidad.js"></script>
     <script src="../controllers/ControllerCie10.js"></script>
     <script src="../controllers/ControllerCreacionGenerica.js"></script>
+
+
+    <script src="../controllers/HistoriaClinicaSecond.js"></script>
+    <script src="../controllers/HistoriaClinicaThird.js"></script>
+    <script src="../controllers/HistoriaClinicaFourth.js"></script>
+    <script src="../controllers/HistoriaClinicaControllerSixth.js"></script>
+
+    <script src="../controllers/HistoriaClinicaControllerSeventh.js"></script>
+
+    <script src="../controllers/HistoriaClinicaEigth.js"></script>
+
+    <script src="../controllers/HistoriaClinicaControllerNine.js"></script>
+    <script src="../controllers/HistoriaClinicaTenth.js"></script>
+
+    <script src="../controllers/HistoriaClinicaEleventh.js"></script>
+    <script src="../controllers/HistoriaClinicaControllerTwelve.js"></script>
+    <script src="../controllers/ControllerHistoriaClinicaThirteenth.js"></script>
+    <script src="../controllers/ControllerHistoriaClinicaFourteenth.js"></script>
+
+    <script src="../controllers/HistoriaClinicaFiveteenController.js"></script>
+
+
+    <script src="../controllers/LoginController.js"></script>
+    <script src="../angular-1.4.6/angular-local-storage.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
 
 </head>
@@ -181,31 +224,17 @@
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script>
 
 
-    $(function(){
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page script -->
 
 
-        $('.datepicker').datepicker();
 
 
-        $('#date').change(function(){
 
-            $scope.historiaClinica.fecha_examen = $("#date").val();
-        });
-        //  console.log('entra');
-
-    });
-
-    /*$("#datepicker").change("dp.change", function() {
-     console.log('entra1');
-     $scope.historiaClinica.fecha_examen = $("datepicker").val();
-     alert("selected date is " + $scope.historiaClinica.fecha_examen);
-
-     });*/
-
-
-</script>
 </body>
 </html>

@@ -565,7 +565,10 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
                //console.log('entra la ptm');
                   //  console.log($scope.pacienteEncontrado);
                     window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
-               window.location ='first.html';
+
+
+                $location.path('/HC1');
+
 
                 }
         }else{

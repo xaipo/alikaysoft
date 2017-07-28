@@ -1,250 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia Clinica</title>
-    <!-----estilos -->
-    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css" id="pagesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../css/OverrideComponents.css" id="pageshee1"/>
-    <link rel="stylesheet" type="text/css" href="../../css/datepicker.css" id="pageshee3"/>
+<form class="form" role="form">
 
 
-    <style>
-        .selected {
-            background-color:#bbbbbb;
-            color:black;
-            font-weight:bold;
-        }
-    </style>
-    <!-----angular-->
-
-    <!-----angular-->
-
-    <script src="../../angular-1.4.6/angular.js"></script>
-    <script src="../../angular-1.4.6/angular-route.js"></script>
-    <script src="../../angular-1.4.6/ngStorage.min.js"></script>
-    <script src="../../node_modules/angular-utils-pagination/dirPagination.js"></script>
-    <script src="../../app.js"></script>
-
-    <script src="../../controllers/CargasController.js"></script>
-    <script src="../../controllers/EmpresaController.js"></script>
-    <script src="../../controllers/HistoriaClinicaSecond.js"></script>
-    <script src="../../controllers/HistoriaClinicaThird.js"></script>
-    <script src="../../controllers/HistoriaClinicaFourth.js"></script>
-
-    <script src="../../controllers/HistoriaClinicaControllerSixth.js"></script>
-
-    <script src="../../controllers/HistoriaClinicaControllerSeventh.js"></script>
-
-    <script src="../../controllers/HistoriaClinicaEigth.js"></script>
-
-    <script src="../../controllers/HistoriaClinicaControllerNine.js"></script>
-    <script src="../../controllers/HistoriaClinicaTenth.js"></script>
-
-    <script src="../../controllers/HistoriaClinicaEleventh.js"></script>
-    <script src="../../controllers/HistoriaClinicaControllerTwelve.js"></script>
-    <script src="../../controllers/ControllerHistoriaClinicaThirteenth.js"></script>
-    <script src="../../controllers/ControllerHistoriaClinicaFourteenth.js"></script>
-
-    <script src="../../controllers/HistoriaClinicaFiveteenController.js"></script>
-
-
-    <script src="../../controllers/LoginController.js"></script>
-    <script src="../../angular-1.4.6/angular-local-storage.min.js"></script>
-
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-
-
-
-</head>
-<body ng-app="myApp" ng-controller="CargasController as controlador" >
-
-<script src="../../scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
-<script src="../../scripts/bootstrap.min.js"></script>
-<script src="../../scripts/ui-bootstrap-tpls-1.3.2.min.js"></script>
-<script src="../../scripts/bootstrap-datepicker.js"></script>
-
-
-<<script>
-
-
-    $(function(){
-
-
-        $('.datepicker').datepicker();
-
-
-        $('#date').change(function(){
-
-            $scope.historiaClinica.fecha_examen = $("#date").val();
-        });
-        console.log('entra');
-
-    });
-
-    /*$("#datepicker").change("dp.change", function() {
-     console.log('entra1');
-     $scope.historiaClinica.fecha_examen = $("datepicker").val();
-     alert("selected date is " + $scope.historiaClinica.fecha_examen);
-
-     });*/
-
-
-</script>
-
-
-<!--<script>
-    $(function() {
-        $(".datepicker").datepicker(
-                {
-                    dateFormat: "dd/mm/yy",
-                    dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
-                    dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-                    firstDay: 1,
-                    gotoCurrent: true,
-                    monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre" ]
-                }
-        );
-    });
-</script>-->
-
-<!-----menu -->
-<header>
-    <nav class="navbar navbar-inverse navbar-static-top " role="navigation">
-        <div class="container" >
-            <div class="row">
-                <br>
-                <div class="col-md-1 col-lg-1">
-                    <a href="../../Administrator/indexAdmin.html" ><img src="../../images/icono.png"/></a>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                    <a href="../../Administrator/indexAdmin.html"  class="navbar-brand"> AllikaySoft  </a>
-                </div>
-
-                <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menuPrincipal-fm">
-                            <span class="sr-only"> Desplegar/Ocultar </span>
-                            <span class="icon-bar">  </span>
-                            <span class="icon-bar">  </span>
-                            <span class="icon-bar">  </span>
-                        </button>
-
-
-
-
-                    </div><br>
-                    <!-- Iniciar menu-->
-                    <div class="collapse navbar-collapse" id="menuPrincipal-fm">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="../../Administrator/indexAdmin.html"  >DashBoard</a> </li>
-
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Historia Clinica <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="../../Administrator/HistoriaClinica/newClinicHistory.html" >Nueva Historia Clínica</a> </li>
-                                    <li ><a href="../../Administrator/HistoriaClinica/modificar/inicioModificar.html">Modificación Historia Clinica</a> </li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Pacientes <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="../../Administrator/Paciente/ingresoPaciente.html">Ingreso Paciente</a> </li>
-                                    <li ><a href="../../Administrator/Paciente/modificarPaciente.html">Modificación Paciente</a> </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Ausentismo <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="../../Administrator/Ausentismo/ingresoAusentismo.html">Ingreso Ausentismo</a> </li>
-                                    <li ><a href="#">Busqueda Ausentismo</a> </li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button">Evoluciones <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="../../Administrator/Morbilidad/IngresoMorbilidad.html">Ingreso Evoluciones</a> </li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion CIE 10 <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="../../Administrator/Cie10/ConfiguracionCIe10.html">Administrar</a> </li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> Configuracion API <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="../../Administrator/APIAdmin/genericAccess.html">Administrar</a> </li>
-
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button"> {{usuarioLog.nombre_usuario}} <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ><a href="#" >Perfil</a> </li>
-                                    <li ><a href="#" ng-click="logout2()">Salir</a> </li>
-                                </ul>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<div class="box box-default">
-
-
-
-<form class="form" role="form" ng-controller="HistoriaClinicaUnido ">
-
-
-
-
-    <div class="box box-default" ng-controller="HistoriaClinicaSecond " ng-init="getHistoria()" >
+    <div class="box box-default" ng-controller="HistoriaClinicaSecond " ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Riesgos Ocupacionales</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
+                </div>
             </div>
-        </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
 
                         <div class="row">
 
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label> Empresa: </label>
 
-                                <select name="Provimcia"  class="form-control"  ng-model="riesgosOcupacionales.nombre_empresa"  >
+                                <select name="Provimcia" class="form-control"
+                                        ng-model="riesgosOcupacionales.nombre_empresa">
                                     <option id="valor1" value={{empresaAux1}}
                                             ng-repeat="empresaAux1 in empresas">
                                         {{empresaAux1.nombre_empresa}}
@@ -252,12 +35,15 @@
                                 </select>
 
                                 <label> Cargo Desempeñado: </label>
-                                <input type="text" class="form-control" placeholder="Cargo" ng-model="riesgosOcupacionales.cargo_empresa"/>
+                                <input type="text" class="form-control" placeholder="Cargo"
+                                       ng-model="riesgosOcupacionales.cargo_empresa"/>
                                 <label> Actividades: </label>
-                                <input type="text" class="form-control" placeholder="Actividades" ng-model="riesgosOcupacionales.actividades"/>
+                                <input type="text" class="form-control" placeholder="Actividades"
+                                       ng-model="riesgosOcupacionales.actividades"/>
                                 <br>
                                 <label> Factor Riesgo: </label>
-                                <select name="Provimcia"  class="form-control"  ng-model="factorRiesgoSeleccionado" ng-click="changeDetalleFactorRiesgo()" >
+                                <select name="Provimcia" class="form-control" ng-model="factorRiesgoSeleccionado"
+                                        ng-click="changeDetalleFactorRiesgo()">
                                     <option id="valor11" value={{fac._id}}
                                             ng-repeat="fac in factoresRiesgo">
                                         {{fac.descripcion_factor_riesgo}}
@@ -266,62 +52,69 @@
 
 
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label> Tipo Actividad: </label>
 
-                                <select name="TipoActividad" class="form-control"  ng-model="riesgosOcupacionales.tipo_actividad"  >
+                                <select name="TipoActividad" class="form-control"
+                                        ng-model="riesgosOcupacionales.tipo_actividad">
                                     <option id="valor2" value={{ac}}
                                             ng-repeat="ac in tipoActividad">
                                         {{ac.descripcion_tipo_actividad}}
                                     </option>
                                 </select>
 
-                                <label > Tiempo Exposicion años:</label>
-                                <input type="number" class="form-control" placeholder="1" min="1" ng-model="riesgosOcupacionales.tiempo_anios_exposicion"/>
+                                <label> Tiempo Exposicion años:</label>
+                                <input type="number" class="form-control" placeholder="1" min="1"
+                                       ng-model="riesgosOcupacionales.tiempo_anios_exposicion"/>
 
 
                                 <label> Cualificación: </label>
 
-                                <select name="Cualificacion"  class="form-control"  ng-model="riesgosOcupacionales.cualificacion">
+                                <select name="Cualificacion" class="form-control"
+                                        ng-model="riesgosOcupacionales.cualificacion">
                                     <option id="valor3" value={{cua}}
                                             ng-repeat="cua in cualificaciones">
                                         {{cua.descripcion_cualificacion}}
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label> Sintomatología Individual: </label>
-                                <select class="form-control" name="singleSelect" ng-model="riesgosOcupacionales.sintomatologia_individual">
-                                    <option value="Si" >SI</option>
-                                    <option value="No" >NO</option>
+                                <select class="form-control" name="singleSelect"
+                                        ng-model="riesgosOcupacionales.sintomatologia_individual">
+                                    <option value="Si">SI</option>
+                                    <option value="No">NO</option>
 
                                 </select>
                                 <label> Sintomatología Grupal: </label>
-                                <select class="form-control" name="singleSelect" ng-model="riesgosOcupacionales.sintomatologia_grupal">
-                                    <option value="Si" >SI</option>
-                                    <option value="No" >NO</option>
+                                <select class="form-control" name="singleSelect"
+                                        ng-model="riesgosOcupacionales.sintomatologia_grupal">
+                                    <option value="Si">SI</option>
+                                    <option value="No">NO</option>
 
                                 </select>
                                 <label> EPP: </label>
                                 <select class="form-control" name="singleSelect" ng-model="riesgosOcupacionales.epp">
-                                    <option value="Si" >SI</option>
-                                    <option value="No" >NO</option>
+                                    <option value="Si">SI</option>
+                                    <option value="No">NO</option>
 
                                 </select>
                             </div>
 
 
 
-                        </div>
+                            </div>
                         <div class="row">
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label for="FactorRiesgo"> Factores Riesgo: </label><br>
-                                Búsqueda <input type="text" ng-model="search1" class="form-control" placeholder="Busqueda"><br>
-                                <select name="FactorRiesgo" ng-model="selectedFactorRiesgo" class="form-control" multiple
+                                Búsqueda <input type="text" ng-model="search1" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="FactorRiesgo" ng-model="selectedFactorRiesgo" class="form-control"
+                                        multiple
                                         style="height: 150px;" ng-click="FactorRiesgo()">
                                     <option value={{empresaAux3}}
                                             ng-repeat="empresaAux3 in listaDetalleFactorRiesgo | filter:search1| orderBy:empresaAux3.detalle_factor_riesgo">
@@ -332,12 +125,14 @@
 
                             </div>
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
 
                                 <br>
                                 <label for="FactorRiesgo2"> Factores Riesgo Seleccionados: </label><br>
-                                Búsqueda <input type="text" ng-model="search2" class="form-control" placeholder="Busqueda"><br>
-                                <select name="FactorRiesgo2" ng-model="selectedFactorRiesgo" class="form-control" multiple
+                                Búsqueda <input type="text" ng-model="search2" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="FactorRiesgo2" ng-model="selectedFactorRiesgo" class="form-control"
+                                        multiple
                                         style="height: 150px;" ng-click="FactorRiesgoSeleccionado()">
                                     <option value={{empresaAux4}}
                                             ng-repeat="empresaAux4 in listaFactoresRiesgoSeleccionado | filter:search2| orderBy:empresaAux4.descripcion_factor_riesgo">
@@ -347,10 +142,11 @@
 
                             </div>
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label for="Alimentos"> Hábitos Alimenticios: </label><br>
-                                Búsqueda <input type="text" ng-model="search3" class="form-control" placeholder="Busqueda"><br>
+                                Búsqueda <input type="text" ng-model="search3" class="form-control"
+                                                placeholder="Busqueda"><br>
                                 <select name="Alimentos" ng-model="alimentoSeleccionado" class="form-control" multiple
                                         style="height: 150px;" ng-click="alimentosFunc()">
                                     <option value={{al}}
@@ -360,12 +156,14 @@
                                 </select><br>
                             </div>
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
 
                                 <br>
                                 <label for="AlimentosSelect"> Hábitos Alimenticios Seleccionados: </label><br>
-                                Búsqueda <input type="text" ng-model="search4" class="form-control" placeholder="Busqueda"><br>
-                                <select name="AlimentosSelect" ng-model="alimentoSeleccionado" class="form-control" multiple
+                                Búsqueda <input type="text" ng-model="search4" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="AlimentosSelect" ng-model="alimentoSeleccionado" class="form-control"
+                                        multiple
                                         style="height: 150px;" ng-click="alimentosSeleccionadosFunc()">
                                     <option value={{al1}}
                                             ng-repeat="al1 in listaAlimentosSeleccionados | filter:search4| orderBy:al1.descripcion_alimentos">
@@ -376,7 +174,7 @@
 
 
 
-                        </div>
+                            </div>
                         <div class="row">
 
 
@@ -417,7 +215,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaRiesgosOcupacionales  | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in listaRiesgosOcupacionales  | filter:search2| orderBy:item.sintoma"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.nombre_empresa.nombre_empresa }}</td>
                                         <td>{{ item.cargo_empresa }}</td>
@@ -435,7 +235,7 @@
 
                             </div>
 
-                        </div>
+                            </div>
                         <div class="row">
 
 
@@ -455,10 +255,10 @@
                             </div>
 
 
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
 
 
             </form>
@@ -466,9 +266,9 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-           footer
+            footer
         </div>
-    </div>
+        </div>
 
 
     <div class="box box-default" ng-show="segundo" ng-controller="HistoriaClinicaThird" ng-init="getHistoria()">
@@ -609,14 +409,14 @@
                     </div>
 
 
-</form>
+                </form>
 
 
 
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-               footer
+                footer
             </div>
         </div>
 
@@ -625,38 +425,40 @@
             <h3 class="box-title ">Enfermedad Profesional En Empresa Actual O Anteriores</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
 
-
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
 
                         <div class="row">
 
-                            <div class="col-md-12 col-xs-12" >
+                            <div class="col-md-12 col-xs-12">
                                 <br>
 
 
                                 <label> Tipo Cie 10: </label>
 
-                                <select name="cie10tipo"  class="form-control"   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
+                                <select name="cie10tipo" class="form-control" ng-model="cie10Selected"
+                                        ng-click="busquedaCie10Tipo()">
                                     <option id="valor1" value={{empresaAux1}}
-                                            ng-repeat="empresaAux1 in tipoCie10" >
+                                            ng-repeat="empresaAux1 in tipoCie10">
                                         {{empresaAux1.descripcion_tipo_CIE10}}
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-xs-12"  >
-                                <label>  Cie 10: </label>
-                                <select name="cie10"  class="form-control"   ng-model="cie10Select" >
+                            <div class="col-md-12 col-xs-12">
+                                <label> Cie 10: </label>
+                                <select name="cie10" class="form-control" ng-model="cie10Select">
                                     <option id="valor2" value={{empresaAux2}}
                                             ng-repeat="empresaAux2 in cie10">
                                         {{empresaAux2.sintoma}}
@@ -666,37 +468,37 @@
                             </div>
 
 
-
-                            <div class="col-md-11 col-xs-11" >
+                            <div class="col-md-11 col-xs-11">
                                 <br>
-                                <input class="form-control" placeholder="Busqueda Por Código CIE 10" ng-model="seleccionada">
+                                <input class="form-control" placeholder="Busqueda Por Código CIE 10"
+                                       ng-model="seleccionada">
                             </div>
-                            <div class="col-md-1 col-xs-1" >
+                            <div class="col-md-1 col-xs-1">
                                 <br>
-                                <input  type="submit" class="form-control " value="Buscar" ng-click="busquedaPorCodigoPropio()">
-                            </div>
-
-
-
-                            <div class="col-md-2 col-xs-12" >
-                                <br>
-                                <p data-ng-bind="encontrada.codigo_cie10">  </p>
-                            </div>
-                            <div class="col-md-10 col-xs-12" >
-                                <br>
-                                <p data-ng-bind="encontrada.sintoma">  </p>
+                                <input type="submit" class="form-control " value="Buscar"
+                                       ng-click="busquedaPorCodigoPropio()">
                             </div>
 
-                            <div class="col-md-12 col-xs-12" >
+
+                            <div class="col-md-2 col-xs-12">
+                                <br>
+                                <p data-ng-bind="encontrada.codigo_cie10"></p>
+                            </div>
+                            <div class="col-md-10 col-xs-12">
+                                <br>
+                                <p data-ng-bind="encontrada.sintoma"></p>
+                            </div>
+
+                            <div class="col-md-12 col-xs-12">
                                 <label> Fecha Ocurrencia: </label><br>
-                                <input class=" from-control datepicker" type="text" id="datepicker" name="date" /><br>
+                                <input class=" from-control datepicker" type="text" id="datepicker" name="date"/><br>
                             </div>
 
                         </div>
-                        <div class="col-md-3 col-xs-12" >
-                            <br>
-                            <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
-                        </div>
+                        <div class="col-md-3 col-xs-12">
+                                <br>
+                            <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                            </div>
                         <div class="col-md-3 col-xs-12">
                             <br>
 
@@ -706,8 +508,6 @@
                         </div>
 
 
-
-
                         <div class="row">
                             <div class="col-md-12 col-xs-12">
                                 <br>
@@ -715,18 +515,19 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Codigo </th>
+                                        <th>Codigo</th>
                                         <th>Codigo cie10</th>
 
                                         <th>Descripción</th>
                                         <th>Fecha</th>
 
 
-
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaCie10Selecionada | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in listaCie10Selecionada | filter:search2| orderBy:item.sintoma"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.sintoma_cie10.codigo }}</td>
                                         <td>{{ item.sintoma_cie10.codigo_cie10 }}</td>
@@ -738,8 +539,6 @@
                                 </table>
 
                             </div>
-
-
 
 
                             <div class="row">
@@ -761,14 +560,14 @@
 
                                 </div>
 
+                                </div>
+
+
                             </div>
 
 
+
                         </div>
-
-
-
-                    </div>
 
                 </div><!--div fin contaniner-->
 
@@ -779,8 +578,7 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
-
+        </div>
 
 
     <div class="box box-default" ng-show="cuarto" ng-controller="HistoriaClinicaSixth" ng-init="getHistoria()">
@@ -788,38 +586,39 @@
             <h3 class="box-title ">Antescedentes Patológicos</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
                     <div class="container">
-                        <h4 > Familiares </h4><br>
+                        <h4> Familiares </h4><br>
                         <div class="row">
 
 
-
-
-                            <div class="col-md-6 col-xs-11" >
+                            <div class="col-md-6 col-xs-11">
                                 <br>
-                                <label > Patología </label><br>
-                                <input type="text" class="form-control" placeholder="Patología" min="1" ng-model="antescedentes_familiares.patologia"/>
+                                <label> Patología </label><br>
+                                <input type="text" class="form-control" placeholder="Patología" min="1"
+                                       ng-model="antescedentes_familiares.patologia"/>
 
 
                             </div>
 
 
-
-                            <div class="col-md-6 col-xs-11" >
+                            <div class="col-md-6 col-xs-11">
                                 <br>
-                                <label > Parentezco </label><br>
-                                <select name="cie10tipo"  class="form-control"   ng-model="antescedentes_familiares.parentezco">
+                                <label> Parentezco </label><br>
+                                <select name="cie10tipo" class="form-control"
+                                        ng-model="antescedentes_familiares.parentezco">
                                     <option id="valor1" value={{empresaAux1}}
-                                            ng-repeat="empresaAux1 in lsita_parentezco" >
+                                            ng-repeat="empresaAux1 in lsita_parentezco">
                                         {{empresaAux1.descripcion_parentezco}}
                                     </option>
                                 </select>
@@ -827,13 +626,13 @@
                             </div>
 
 
-                            <div class="col-md-6 col-xs-11" >
+                            <div class="col-md-6 col-xs-11">
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP()">
 
                             </div>
 
-                            <div class="col-md-6 col-xs-11" >
+                            <div class="col-md-6 col-xs-11">
 
                                 <br>
 
@@ -853,11 +652,12 @@
                                             <th>Parentezco</th>
 
 
-
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr ng-repeat="item in listaAntescedentesFamiliares | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                        <tr ng-repeat="item in listaAntescedentesFamiliares | filter:search2| orderBy:item.sintoma"
+                                            ng-class="{'selected':$index == selectedRow}"
+                                            ng-click="setClickedRow($index,item)">
                                             <td>{{$index}}</td>
                                             <td>{{ item.parentezco.descripcion_parentezco }}</td>
                                             <td>{{ item.patologia }}</td>
@@ -871,49 +671,49 @@
                             </div>
 
 
-                            <h4 > Personales </h4><br>
+                            <h4> Personales </h4><br>
 
 
                             <div class="row">
 
 
-
-
-                                <div class="col-md-4 col-xs-11" >
+                                <div class="col-md-4 col-xs-11">
                                     <br>
-                                    <label > Patología </label><br>
-                                    <input type="text" class="form-control" placeholder="Patología" min="1" ng-model="antescedetnes_personales.enfermedad"/>
+                                    <label> Patología </label><br>
+                                    <input type="text" class="form-control" placeholder="Patología" min="1"
+                                           ng-model="antescedetnes_personales.enfermedad"/>
 
 
                                 </div>
 
 
-
-                                <div class="col-md-4 col-xs-11" >
+                                <div class="col-md-4 col-xs-11">
                                     <br>
-                                    <label > Tipo Antescedente Personal </label><br>
-                                    <select name="cie10tipo"  class="form-control"   ng-model="antescedetnes_personales.tipo">
+                                    <label> Tipo Antescedente Personal </label><br>
+                                    <select name="cie10tipo" class="form-control"
+                                            ng-model="antescedetnes_personales.tipo">
                                         <option id="valor2" value={{empresaAux1}}
-                                                ng-repeat="empresaAux1 in tipo" >
+                                                ng-repeat="empresaAux1 in tipo">
                                             {{empresaAux1.descripcion_tipo_presonales}}
                                         </option>
                                     </select>
 
                                 </div>
 
-                                <div class="col-md-4 col-xs-11" >
+                                <div class="col-md-4 col-xs-11">
                                     <br>
-                                    <label > Observacion </label><br>
-                                    <input type="text" class="form-control" placeholder="Observacion" min="1" ng-model="antescedetnes_personales.observacion"/>
+                                    <label> Observacion </label><br>
+                                    <input type="text" class="form-control" placeholder="Observacion" min="1"
+                                           ng-model="antescedetnes_personales.observacion"/>
                                 </div>
 
-                                <div class="col-md-6 col-xs-11" >
+                                <div class="col-md-6 col-xs-11">
                                     <br>
-                                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP1()">
+                                    <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP1()">
 
                                 </div>
 
-                                <div class="col-md-6 col-xs-11" >
+                                <div class="col-md-6 col-xs-11">
 
                                     <br>
 
@@ -921,7 +721,7 @@
                                            value="Quitar"/><br><br>
                                 </div>
 
-                            </div>
+                                </div>
 
 
                             <div class="row">
@@ -936,11 +736,12 @@
                                             <th>Observacion</th>
 
 
-
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr ng-repeat="item in listaAntescedentesPersonales | filter:search2| orderBy:item.sintoma" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow1($index,item)" >
+                                        <tr ng-repeat="item in listaAntescedentesPersonales | filter:search2| orderBy:item.sintoma"
+                                            ng-class="{'selected':$index == selectedRow}"
+                                            ng-click="setClickedRow1($index,item)">
                                             <td>{{$index}}</td>
                                             <td>{{ item.tipo.descripcion_tipo_presonales }}</td>
                                             <td>{{ item.enfermedad }}</td>
@@ -952,7 +753,7 @@
 
                                 </div>
 
-                            </div>
+                                </div>
 
 
                             <div class="row">
@@ -974,14 +775,12 @@
                                 </div>
 
 
-                            </div>
-
-
+                                </div>
 
 
                         </div><!--div fin contaniner-->
+                        </div><!--div fin contaniner-->
                     </div><!--div fin contaniner-->
-                </div><!--div fin contaniner-->
 
             </form>
 
@@ -991,7 +790,7 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 
     <div class="box box-default" ng-show="quinto" ng-controller="HistoriaClinicaSeventh" ng-init="getHistoria()">
@@ -999,15 +798,17 @@
             <h3 class="box-title ">Gineco Obstetricos</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1016,39 +817,41 @@
 
 
                             <div class="col-md-3 col-xs-12">
-                                <br>
+                                    <br>
                                 <label>Ciclo Menstrual:</label><br>
                                 <label>
-                                    <input class="from-control" type="radio" ng-model="ginecoObstetra.normal_anormal" value="normal">
+                                    <input class="from-control" type="radio" ng-model="ginecoObstetra.normal_anormal"
+                                           value="normal">
                                     Normal
                                     <br>
 
                                 </label>
-                                <br>
+                                    <br>
                                 <label>
-                                    <input class="from-control" type="radio" ng-model="ginecoObstetra.normal_anormal" value="anomral">
+                                    <input class="from-control" type="radio" ng-model="ginecoObstetra.normal_anormal"
+                                           value="anomral">
                                     Anormal
                                     <br>
 
                                 </label>
                                 <br>
-                                <label > Abortos: </label><br>
+                                <label> Abortos: </label><br>
                                 <select class="form-control" name="singleSelect" ng-model="ginecoObstetra.abortos">
-                                    <option value="si">si </option>
-                                    <option value="no">no </option>
+                                    <option value="si">si</option>
+                                    <option value="no">no</option>
                                 </select><br>
 
                             </div>
 
                             <div class="col-md-3 col-xs-12">
                                 <br>
-                                <label > Fecha Ultima Regla: </label><br>
+                                <label> Fecha Ultima Regla: </label><br>
                                 <input class="datepicker" type="text" id="datepicker" name="date"/><br><br>
-                                <label > Hijos Vivos: </label><br>
+                                <label> Hijos Vivos: </label><br>
 
                                 <select class="form-control" name="singleSelect" ng-model="ginecoObstetra.hijos_vivos">
-                                    <option value="si">si </option>
-                                    <option value="no">no </option>
+                                    <option value="si">si</option>
+                                    <option value="no">no</option>
                                 </select><br>
 
                             </div>
@@ -1056,24 +859,25 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
 
-                                <label > Embarazos: </label><br>
+                                <label> Embarazos: </label><br>
                                 <input class="form-control" type="number" ng-model="ginecoObstetra.embarazos">
 
                                 <br>
                                 <label>Resultado Ultima Citologia</label>
-                                <input type="text" class="form-control" placeholder="Resultado Ultima Citologia" ng-model="ginecoObstetra.resultados_citologia">
+                                <input type="text" class="form-control" placeholder="Resultado Ultima Citologia"
+                                       ng-model="ginecoObstetra.resultados_citologia">
 
 
                             </div>
 
                             <div class="col-md-3 col-xs-12">
                                 <br>
-                                <label > Partos: </label><br>
+                                <label> Partos: </label><br>
                                 <select class="form-control" name="singleSelect" ng-model="ginecoObstetra.partos">
-                                    <option value="si">si </option>
-                                    <option value="no">no </option>
+                                    <option value="si">si</option>
+                                    <option value="no">no</option>
                                 </select><br>
-                                <label > Fecha Ultima Citologia: </label><br>
+                                <label> Fecha Ultima Citologia: </label><br>
                                 <input class="datepicker" type="text" id="datepicker1" name="date"/><br><br>
 
                             </div>
@@ -1086,7 +890,8 @@
                             <div class="col-md-6 col-xs-12">
                                 <br>
                                 <label for="Alimentos"> Metodos Planifiacion Familiar: </label><br>
-                                Búsqueda <input type="text" ng-model="search1" class="form-control" placeholder="Busqueda"><br>
+                                Búsqueda <input type="text" ng-model="search1" class="form-control"
+                                                placeholder="Busqueda"><br>
                                 <select name="Alimentos" ng-model="selectedMetodo" class="form-control" multiple
                                         style="height: 150px;" ng-click="agregar()">
                                     <option value={{al}}
@@ -1100,8 +905,10 @@
                             <div class="col-md-6 col-xs-12">
                                 <br>
 
-                                <label for="AlimentosSelect"> Metodos de Planifiacion Familiar Seleccionados: </label><br>
-                                Búsqueda <input type="text" ng-model="search2" class="form-control" placeholder="Busqueda"><br>
+                                <label for="AlimentosSelect"> Metodos de Planifiacion Familiar
+                                    Seleccionados: </label><br>
+                                Búsqueda <input type="text" ng-model="search2" class="form-control"
+                                                placeholder="Busqueda"><br>
                                 <select name="AlimentosSelect" ng-model="selectedMetodo" class="form-control" multiple
                                         style="height: 150px;" ng-click="quitar()">
                                     <option value={{al1}}
@@ -1110,33 +917,32 @@
                                     </option>
                                 </select><br>
                             </div>
-                        </div>
+                            </div>
 
                         <div class="row">
                             <div class="col-md-12 col-xs-12">
                                 <br>
                                 <label>Observaciones:</label>
-                                <textarea class="form-control" rows="2" cols="12" ng-model="ginecoObstetra.observacion"></textarea><br>
+                                <textarea class="form-control" rows="2" cols="12"
+                                          ng-model="ginecoObstetra.observacion"></textarea><br>
 
 
                             </div>
 
-                            <div class="col-md-6 col-xs-11" >
+                            <div class="col-md-6 col-xs-11">
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP1()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregarP1()">
 
                             </div>
 
-                            <div class="col-md-6 col-xs-11" >
+                            <div class="col-md-6 col-xs-11">
 
                                 <br>
 
                                 <input class="btn btn-warning" type="submit" ng-click="quitar1()"
                                        value="Quitar"/><br><br>
                             </div>
-                        </div>
-
-
+                            </div>
 
 
                         <div class="row">
@@ -1154,11 +960,12 @@
                                         <th>Abortos</th>
 
 
-
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaGinecoObstetra | filter:search2| orderBy:item.codigo" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow1($index,item)" >
+                                    <tr ng-repeat="item in listaGinecoObstetra | filter:search2| orderBy:item.codigo"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow1($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.codigo }}</td>
                                         <td>{{ item.normal_anormal }}</td>
@@ -1174,7 +981,6 @@
                             </div>
 
                         </div>
-
 
 
                         <div class="row">
@@ -1198,11 +1004,11 @@
 
 
                             </div>
-                        </div>
+                            </div>
 
 
                     </div><!--div fin contaniner-->
-                </div><!--div fin contaniner-->
+                    </div><!--div fin contaniner-->
 
             </form>
 
@@ -1211,22 +1017,24 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
     <div class="box box-default" ng-show="sexto" ng-controller="HistoriaClinicaEigth" ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Revisión Sistemas</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1252,9 +1060,10 @@
                                 <br>
 
                                 <label for="AlimentosSelect">Revision Sistemas: </label><br>
-                                Búsqueda <input type="text" ng-model="search2" class="form-control" placeholder="Busqueda"><br>
+                                Búsqueda <input type="text" ng-model="search2" class="form-control"
+                                                placeholder="Busqueda"><br>
                                 <select name="AlimentosSelect" ng-model="selectRevision" class="form-control" multiple
-                                        style="height: 150px;" >
+                                        style="height: 150px;">
                                     <option value={{al1}}
                                             ng-repeat="al1 in listaRevision | filter:search2| orderBy:al1.descripcion_revision_sistemas">
                                         {{al1.descripcion_revision_sistemas}}
@@ -1262,16 +1071,15 @@
                                 </select><br>
 
 
-
                             </div>
-                        </div>
+                            </div>
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -1282,7 +1090,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
+                            </div>
 
 
                         <div class="row">
@@ -1296,11 +1104,12 @@
                                         <th>Descripcion Revision</th>
 
 
-
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in revision_sistemas | filter:search2| orderBy:item.descripcion_revision_sistemas" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in revision_sistemas | filter:search2| orderBy:item.descripcion_revision_sistemas"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
 
                                         <td>{{ item.descripcion_revision_sistemas }}</td>
@@ -1310,8 +1119,6 @@
                                 </table>
 
                             </div>
-
-
 
 
                             <div class="row">
@@ -1337,7 +1144,7 @@
 
                         </div>
                     </div><!--div fin contaniner-->
-                </div><!--div fin contaniner-->
+                    </div><!--div fin contaniner-->
 
             </form>
 
@@ -1346,21 +1153,24 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
-    <div class="box box-default" ng-show="septimo" ng-controller="HistoriaClinicaControllerNineth" ng-init="getHistoria()" >
+    <div class="box box-default" ng-show="septimo" ng-controller="HistoriaClinicaControllerNineth"
+         ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Inmunizacion</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1390,19 +1200,19 @@
                             <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Dosis:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="inmunizacionAdd.dosis_inmunizacion">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="inmunizacionAdd.dosis_inmunizacion">
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -1413,8 +1223,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
@@ -1432,7 +1241,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in inmunizacion | filter:search2| orderBy:item.descripcion_revision_sistemas" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in inmunizacion | filter:search2| orderBy:item.descripcion_revision_sistemas"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
 
                                         <td>{{ item.vacuna.nombre_vacuna }}</td>
@@ -1466,8 +1277,8 @@
 
                             </div>
                         </div><!--div fin contaniner-->
+                        </div><!--div fin contaniner-->
                     </div><!--div fin contaniner-->
-                </div><!--div fin contaniner-->
 
             </form>
 
@@ -1477,22 +1288,24 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 
-    <div class="box box-default" ng-show="octavo"  ng-controller="HistoriaClinicaTenth" ng-init="getHistoria()">
+    <div class="box box-default" ng-show="octavo" ng-controller="HistoriaClinicaTenth" ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Habitos Tóxicos</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1501,7 +1314,8 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Tipo Habito Toxico:</label>
-                                <select name="Alimentos" ng-model="habito_toxico.tipo_habito_toxico" class="form-control" simple
+                                <select name="Alimentos" ng-model="habito_toxico.tipo_habito_toxico"
+                                        class="form-control" simple
                                 >
                                     <option value={{al}}
                                             ng-repeat="al in listaTipoHabito | filter:search1| orderBy:al.nombre_vacuna">
@@ -1516,7 +1330,8 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Tipo Consumidor:</label>
-                                <select name="Alimentos" ng-model="habito_toxico.tipo_consumidor" class="form-control" simple
+                                <select name="Alimentos" ng-model="habito_toxico.tipo_consumidor" class="form-control"
+                                        simple
                                 >
                                     <option value={{al}}
                                             ng-repeat="al in listaTipoConsumidor | filter:search1| orderBy:al.nombre_vacuna">
@@ -1530,12 +1345,14 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Frecuencia:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="habito_toxico.frecuencia" max="50">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="habito_toxico.frecuencia" max="50">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Años Consumo:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="habito_toxico.anios_consumo">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="habito_toxico.anios_consumo">
                             </div>
 
                         </div>
@@ -1544,10 +1361,10 @@
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -1558,8 +1375,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
@@ -1578,7 +1394,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaHabitosToxicos | filter:search2" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in listaHabitosToxicos | filter:search2"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
 
                                         <td>{{ item.tipo_habito_toxico.descripcion_tipo_habito_toxico }}</td>
@@ -1610,13 +1428,10 @@
                                 </div>
 
 
-
-
-
+                            </div><!--div fin contaniner-->
                             </div><!--div fin contaniner-->
                         </div><!--div fin contaniner-->
                     </div><!--div fin contaniner-->
-                </div><!--div fin contaniner-->
 
             </form>
 
@@ -1626,21 +1441,23 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
-    <div class="box box-default" ng-show="noveno"  ng-controller="HistoriaClinicaEleventh" ng-init="getHistoria()">
+    <div class="box box-default" ng-show="noveno" ng-controller="HistoriaClinicaEleventh" ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Examen Fisico</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1649,16 +1466,19 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Tension Arterial Diastolica:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.tension_arterial_numerador">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="examen_fisico.tension_arterial_numerador">
                                 <label>Talla:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.talla">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="examen_fisico.talla">
 
 
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Tension Arterial Sistolica:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.tension_arterial_denominador">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="examen_fisico.tension_arterial_denominador">
                                 <label>Peso:</label>
                                 <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.peso">
 
@@ -1667,41 +1487,42 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Frecuencia Respiratoria Por Minuto:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.frecuencia_cardiaca">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="examen_fisico.frecuencia_cardiaca">
                                 <label>Indice Masa Corporal:</label>
-                                <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.indice_masa_corporal">
+                                <input type="number" class="form-control" placeholder="1"
+                                       ng-model="examen_fisico.indice_masa_corporal">
 
 
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Lateralidad Cerebral:</label>
-                                <select class="form-control" name="singleSelect" ng-model="selectLateralidadCerebral" ng-click="changeLateralidad()">
-                                    <option value="D">Dieztro </option>
-                                    <option value="Z">Zurdo </option>
-                                    <option value="A">Ambidiestro </option>
+                                <select class="form-control" name="singleSelect" ng-model="selectLateralidadCerebral"
+                                        ng-click="changeLateralidad()">
+                                    <option value="D">Dieztro</option>
+                                    <option value="Z">Zurdo</option>
+                                    <option value="A">Ambidiestro</option>
                                 </select>
                                 <label>Interpretacion IMC:</label>
-                                <select name="Alimentos" ng-model="examen_fisico.interpretacion_imc" class="form-control" simple  >
+                                <select name="Alimentos" ng-model="examen_fisico.interpretacion_imc"
+                                        class="form-control" simple>
                                     <option value={{al}}
                                             ng-repeat="al in listaImc | filter:search1| orderBy:al.descripcion_interpretacion_IMC">
                                         {{al.descripcion_interpretacion_IMC}}
                                     </option>
                                 </select><br><br>
                             </div>
-                        </div>
-
-
-
+                            </div>
 
 
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -1712,8 +1533,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
@@ -1734,7 +1554,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaExamenFisico " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in listaExamenFisico "
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.interpretacion_imc.descripcion_interpretacion_IMC }}</td>
                                         <td>{{ item.tension_arterial_numerador }}</td>
@@ -1769,20 +1591,12 @@
                                 </div>
 
 
-
-
-
                             </div><!--div fin contaniner-->
-                        </div><!--div fin contaniner-->
-
-
-
-
-
+                            </div><!--div fin contaniner-->
 
 
                     </div>
-                </div>
+                    </div>
 
 
             </form>
@@ -1793,22 +1607,25 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 
-    <div class="box box-default" ng-show="decimo"  ng-controller="HistoriaClinicaControllerTwelve" ng-init="getHistoria()">
+    <div class="box box-default" ng-show="decimo" ng-controller="HistoriaClinicaControllerTwelve"
+         ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Organos/Sistema</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1817,7 +1634,8 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Tipo de Organo o Sistema:</label>
-                                <select name="Alimentos" ng-model="tipoSelected" class="form-control" simple ng-click="changeType()"  >
+                                <select name="Alimentos" ng-model="tipoSelected" class="form-control" simple
+                                        ng-click="changeType()">
                                     <option value={{al}}
                                             ng-repeat="al in listaTipos">
                                         {{al.descripcion_tipo_organo}}
@@ -1829,7 +1647,7 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Sub Indicadores:</label>
-                                <select name="Alimentos" ng-model="organo_sistema.organo" class="form-control" simple  >
+                                <select name="Alimentos" ng-model="organo_sistema.organo" class="form-control" simple>
                                     <option value={{al}}
                                             ng-repeat="al in listaIndicadores ">
                                         {{al.descripcion_organo}}
@@ -1837,14 +1655,14 @@
                                 </select><br><br>
 
 
-
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Normal/Anormal:</label>
-                                <select class="form-control" name="singleSelect" ng-model="organo_sistema.normal_anormal" ng-click="changeLateralidad()">
-                                    <option value="normal">Normal </option>
-                                    <option value="anormal">Anormal </option>
+                                <select class="form-control" name="singleSelect"
+                                        ng-model="organo_sistema.normal_anormal" ng-click="changeLateralidad()">
+                                    <option value="normal">Normal</option>
+                                    <option value="anormal">Anormal</option>
 
                                 </select>
 
@@ -1853,22 +1671,20 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Observacion:</label>
-                                <input type="text" class="form-control" placeholder="Observacion" ng-model="organo_sistema.observacion">
+                                <input type="text" class="form-control" placeholder="Observacion"
+                                       ng-model="organo_sistema.observacion">
 
                             </div>
-                        </div>
-
-
-
+                            </div>
 
 
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -1879,8 +1695,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
@@ -1898,7 +1713,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaOrganosSistemas " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in listaOrganosSistemas "
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.organo.descripcion_organo }}</td>
                                         <td>{{ item.normal_anormal }}</td>
@@ -1932,16 +1749,11 @@
 
 
                             </div><!--div fin contaniner-->
-                        </div><!--div fin contaniner-->
-
-
-
-
-
+                            </div><!--div fin contaniner-->
 
 
                     </div>
-                </div>
+                    </div>
 
 
             </form>
@@ -1952,22 +1764,25 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 
-    <div class="box box-default" ng-show="once" ng-controller="HistoriaClinicaControllerThirteenth" ng-init="getHistoria()" >
+    <div class="box box-default" ng-show="once" ng-controller="HistoriaClinicaControllerThirteenth"
+         ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Examenes Laboratorio</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -1976,7 +1791,8 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Examen:</label>
-                                <select name="Alimentos" ng-model="examen.examen" class="form-control" simple ng-click="changeType()"  >
+                                <select name="Alimentos" ng-model="examen.examen" class="form-control" simple
+                                        ng-click="changeType()">
                                     <option value={{al}}
                                             ng-repeat="al in examenes">
                                         {{al.descripcion_examen_laboratorio}}
@@ -1989,18 +1805,18 @@
                                 <br>
 
                                 <label>Fecha:</label><br>
-                                <input class="datepicker" type="text" id="datepicker" name="date" /><br>
+                                <input class="datepicker" type="text" id="datepicker" name="date"/><br>
                                 <br><br>
-
 
 
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Normal/Anormal:</label>
-                                <select class="form-control" name="singleSelect" ng-model="examen.normal_anormal" ng-click="changeLateralidad()">
-                                    <option value="normal">Normal </option>
-                                    <option value="anormal">Anormal </option>
+                                <select class="form-control" name="singleSelect" ng-model="examen.normal_anormal"
+                                        ng-click="changeLateralidad()">
+                                    <option value="normal">Normal</option>
+                                    <option value="anormal">Anormal</option>
 
                                 </select>
 
@@ -2009,22 +1825,20 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Observacion:</label>
-                                <input type="text" class="form-control" placeholder="Observacion" ng-model="examen.observacion">
+                                <input type="text" class="form-control" placeholder="Observacion"
+                                       ng-model="examen.observacion">
 
                             </div>
-                        </div>
-
-
-
+                            </div>
 
 
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -2035,8 +1849,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
@@ -2055,7 +1868,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in listaExamenes " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in listaExamenes " ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.examen.descripcion_examen_laboratorio }}</td>
                                         <td>{{ item.normal_anormal }}</td>
@@ -2075,7 +1889,7 @@
                                     <br>
 
                                     <input class="btn btn-info" type="submit" ng-click="saveThirteen()"
-                                           value="Siguiente" data-widget="collapse" /><br><br>
+                                           value="Siguiente" data-widget="collapse"/><br><br>
 
                                 </div>
                                 <div class="col-md-3 col-xs-12">
@@ -2087,20 +1901,12 @@
                                 </div>
 
 
-
-
-
                             </div><!--div fin contaniner-->
-                        </div><!--div fin contaniner-->
-
-
-
-
-
+                            </div><!--div fin contaniner-->
 
 
                     </div>
-                </div>
+                    </div>
 
 
             </form>
@@ -2111,23 +1917,26 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 
-    <div class="box box-default" ng-show="doce"  ng-controller="HistoriaClinicaControllerFourteenth" ng-init="getHistoria()">
+    <div class="box box-default" ng-show="doce" ng-controller="HistoriaClinicaControllerFourteenth"
+         ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Examenes Paraclínico</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
@@ -2136,7 +1945,8 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Examen:</label>
-                                <select name="Alimentos" ng-model="selectedExamen" class="form-control" simple ng-click="charge_resultado()"  >
+                                <select name="Alimentos" ng-model="selectedExamen" class="form-control" simple
+                                        ng-click="charge_resultado()">
                                     <option value={{al}}
                                             ng-repeat="al in examenes">
                                         {{al.examen_paraclinico}}
@@ -2149,7 +1959,8 @@
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Resultado:</label>
-                                <select name="Alimentos" ng-model="paraclinico_seleccionado.resultado" class="form-control" simple   >
+                                <select name="Alimentos" ng-model="paraclinico_seleccionado.resultado"
+                                        class="form-control" simple>
                                     <option value={{al}}
                                             ng-repeat="al in resultados">
                                         {{al.resultado}}
@@ -2162,31 +1973,28 @@
                                 <br>
 
                                 <label>Fecha:</label><br>
-                                <input class="datepicker" type="text" id="datepicker" name="date" /><br>
+                                <input class="datepicker" type="text" id="datepicker" name="date"/><br>
                                 <br><br>
-
 
 
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
                                 <label>Observacion:</label>
-                                <input type="text" class="form-control" placeholder="Observacion" ng-model="paraclinico_seleccionado.observacion">
+                                <input type="text" class="form-control" placeholder="Observacion"
+                                       ng-model="paraclinico_seleccionado.observacion">
 
                             </div>
-                        </div>
-
-
-
+                            </div>
 
 
                         <div class="row">
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -2197,8 +2005,7 @@
                                        value="Quitar"/><br><br>
 
                             </div>
-                        </div>
-
+                            </div>
 
 
                         <div class="row">
@@ -2217,7 +2024,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="item in lista_paraclinicos_seleccionados " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                                    <tr ng-repeat="item in lista_paraclinicos_seleccionados "
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
                                         <td>{{$index}}</td>
                                         <td>{{ item.resultado.resultado }}</td>
                                         <td>{{ item.fecha }}</td>
@@ -2240,7 +2049,7 @@
                                 </div>
 
 
-                                <div class="col-md-3 col-xs-12" >
+                                <div class="col-md-3 col-xs-12">
                                     <br>
 
                                     <input class="btn btn-info" type="submit" ng-click="saveFourteen()"
@@ -2257,18 +2066,12 @@
                                 </div>
 
 
-
                             </div><!--div fin contaniner-->
-                        </div><!--div fin contaniner-->
-
-
-
-
-
+                            </div><!--div fin contaniner-->
 
 
                     </div>
-                </div>
+                    </div>
 
 
             </form>
@@ -2278,43 +2081,47 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 
-    <div class="box box-default" ng-show="trece"  ng-controller="HistoriaClinicaControllerFiveteenth" ng-init="getHistoria()">
+    <div class="box box-default" ng-show="trece" ng-controller="HistoriaClinicaControllerFiveteenth"
+         ng-init="getHistoria()">
         <div class="box-header with-border ">
             <h3 class="box-title ">Impresion Diagnostica</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
             </div>
-        </div>
+            </div>
         <!-- /.box-header -->
         <div class="box-body">
 
 
-            <form class="form" role="form" >
+            <form class="form" role="form">
                 <div class="panel panel-primary">
 
                     <div class="container">
 
                         <div class="row">
-                            <div class="col-md-12 col-xs-12" >
+                            <div class="col-md-12 col-xs-12">
                                 <br>
 
                                 <label> Tipo Cie 10: </label>
 
-                                <select name="cie10tipo"  class="form-control"   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
+                                <select name="cie10tipo" class="form-control" ng-model="cie10Selected"
+                                        ng-click="busquedaCie10Tipo()">
                                     <option id="valor1" value={{empresaAux1}}
-                                            ng-repeat="empresaAux1 in tipoCie10" >
+                                            ng-repeat="empresaAux1 in tipoCie10">
                                         {{empresaAux1.descripcion_tipo_CIE10}}
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-12 col-xs-12"  >
-                                <label>  Cie 10: </label>
-                                <select name="cie10"  class="form-control"   ng-model="cie10Select" >
+                            <div class="col-md-12 col-xs-12">
+                                <label> Cie 10: </label>
+                                <select name="cie10" class="form-control" ng-model="cie10Select">
                                     <option id="valor2" value={{empresaAux2}}
                                             ng-repeat="empresaAux2 in cie10">
                                         {{empresaAux2.sintoma}}
@@ -2324,32 +2131,32 @@
                             </div>
 
 
-
-                            <div class="col-md-11 col-xs-11" >
+                            <div class="col-md-11 col-xs-11">
                                 <br>
-                                <input class="form-control" placeholder="Busqueda Por Código CIE 10" ng-model="seleccionada">
+                                <input class="form-control" placeholder="Busqueda Por Código CIE 10"
+                                       ng-model="seleccionada">
                             </div>
-                            <div class="col-md-1 col-xs-1" >
+                            <div class="col-md-1 col-xs-1">
                                 <br>
-                                <input  type="submit" class="form-control " value="Buscar" ng-click="busquedaPorCodigoPropio()">
-                            </div>
-
-
-
-                            <div class="col-md-2 col-xs-12" >
-                                <br>
-                                <p data-ng-bind="encontrada.codigo_cie10">  </p>
-                            </div>
-                            <div class="col-md-10 col-xs-12" >
-                                <br>
-                                <p data-ng-bind="encontrada.sintoma">  </p>
+                                <input type="submit" class="form-control " value="Buscar"
+                                       ng-click="busquedaPorCodigoPropio()">
                             </div>
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-2 col-xs-12">
+                                <br>
+                                <p data-ng-bind="encontrada.codigo_cie10"></p>
+                            </div>
+                            <div class="col-md-10 col-xs-12">
+                                <br>
+                                <p data-ng-bind="encontrada.sintoma"></p>
+                            </div>
+
+
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -2361,25 +2168,25 @@
 
                             </div>
 
-                            <div class="col-md-12 col-xs-12" >
+                            <div class="col-md-12 col-xs-12">
                                 <br>
 
 
                                 <label> Cie 10 Seleccionado: </label>
 
-                                <select name="cie10tipo"  class="form-control"   ng-model="cie10Quitar"  multiple>
+                                <select name="cie10tipo" class="form-control" ng-model="cie10Quitar" multiple>
                                     <option id="valor" value={{empresaAux1}}
-                                            ng-repeat="empresaAux1 in listaSelectedCie10" >
+                                            ng-repeat="empresaAux1 in listaSelectedCie10">
                                         {{empresaAux1.sintoma}}
                                     </option>
                                 </select>
                             </div>
 
 
-                            <div class="col-md-3 col-xs-12" >
+                            <div class="col-md-3 col-xs-12">
                                 <br>
                                 <br>
-                                <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar2()">
+                                <input type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar2()">
                             </div>
                             <div class="col-md-3 col-xs-12">
                                 <br>
@@ -2391,75 +2198,78 @@
 
                             </div>
 
-                            <div class="col-md-12 col-xs-12" >
+                            <div class="col-md-12 col-xs-12">
                                 <br>
 
 
                                 <label> Ocupacionales: </label>
 
-                                <select name="cie10tipo"  class="form-control"   ng-model="cie10Quitar2"  multiple>
+                                <select name="cie10tipo" class="form-control" ng-model="cie10Quitar2" multiple>
                                     <option id="valor11" value={{empresaAux1}}
-                                            ng-repeat="empresaAux1 in listaSelectedCie102" >
+                                            ng-repeat="empresaAux1 in listaSelectedCie102">
                                         {{empresaAux1.sintoma}}
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Concepto:</label>
-                                <select class="form-control" name="singleSelect" ng-model="finalHistoria.concepto" >
-                                    <option value="A">Apto Para el Cargo </option>
-                                    <option value="AL">Apto con Limitaciones para el Cargo </option>
-                                    <option value="D">No Apto para el cargo </option>
+                                <select class="form-control" name="singleSelect" ng-model="finalHistoria.concepto">
+                                    <option value="A">Apto Para el Cargo</option>
+                                    <option value="AL">Apto con Limitaciones para el Cargo</option>
+                                    <option value="D">No Apto para el cargo</option>
 
                                 </select><br>
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Tipo de Restricciones o Limitaciones:</label>
-                                <input class="form-control" type="text" ng-model="finalHistoria.restricciones_limitaciones" >
+                                <input class="form-control" type="text"
+                                       ng-model="finalHistoria.restricciones_limitaciones">
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Recomendaciones:</label>
-                                <input class="form-control" type="text" ng-model="finalHistoria.recomendaciones" >
+                                <input class="form-control" type="text" ng-model="finalHistoria.recomendaciones">
                             </div>
-                        </div>
+                            </div>
                         <div class="row">
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Remision Especialista:</label>
-                                <select class="form-control" name="singleSelect" ng-model="finalHistoria.remision_especialista" >
-                                    <option value="S">SI </option>
-                                    <option value="N">NO </option>
+                                <select class="form-control" name="singleSelect"
+                                        ng-model="finalHistoria.remision_especialista">
+                                    <option value="S">SI</option>
+                                    <option value="N">NO</option>
 
 
                                 </select><br><br><br>
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Nombre:</label>
-                                <input class="form-control" type="text" ng-model="finalHistoria.nombre_especialista" >
+                                <input class="form-control" type="text" ng-model="finalHistoria.nombre_especialista">
                             </div>
-                            <div class="col-md-4 col-xs-12" >
+                            <div class="col-md-4 col-xs-12">
                                 <br>
                                 <label>Necesita Reubicacion:</label>
-                                <select class="form-control" name="singleSelect" ng-model="finalHistoria.reubicacion" >
+                                <select class="form-control" name="singleSelect" ng-model="finalHistoria.reubicacion">
                                     <option value="S">Si</option>
-                                    <option value="N">No </option>
+                                    <option value="N">No</option>
 
 
                                 </select><br>
 
                             </div>
 
-                            <div class="col-md-4 col-xs-12" >
-                                <input type="submit" class="form-control btn btn-primary" value="Ingresar Historia Clinica" ng-click="ingresarHistoriaClinica()">
+                            <div class="col-md-4 col-xs-12">
+                                <input type="submit" class="form-control btn btn-primary"
+                                       value="Ingresar Historia Clinica" ng-click="ingresarHistoriaClinica()">
+                            </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
             </form>
 
         </div>
@@ -2467,25 +2277,8 @@
         <div class="box-footer">
             footer
         </div>
-    </div>
+        </div>
 
 </form>
 
 <br>
-</div>
-
-<!-- jQuery 2.2.3 -->
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="../../scripts/bootstrap.min.js"></script>
-
-
-<!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<!-- Page script -->
-
-</body>
-</html>
-
