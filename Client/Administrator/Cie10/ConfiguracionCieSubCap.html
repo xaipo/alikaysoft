@@ -205,13 +205,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col xs-12">
-                    <!-- <input class="form-control" type="text" placeholder="search" ng-model="search"><br>
-                    <select multiple class="form-control scroll" style="height: 150px;" >
+                    <br>
+                    <br>
+                    <br>
+                     <input class="form-control" type="text" placeholder="search" ng-model="search1"><br>
+                    <select multiple class="form-control scroll" style="height: 150px;" ng-click="loadSubGroup()" ng-model="selectCap" >
                         <option value={{cap}}
-                                ng-repeat="cap in listCap | filter:search| orderBy:cap.descripcion">
+                                ng-repeat="cap in listCap | filter:search1| orderBy:cap.descripcion">
                             {{cap.descripcion}}
                         </option>
-                    </select>-->
+                    </select>
                 </div>
 
             </div>
@@ -239,10 +242,10 @@
                         </thead>
 
                         <tbody>
-                        <tr dir-paginate="item in listCap | filter:search | itemsPerPage:5 | orderBy:item.descripcion " pagination-id="capitulos" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)">
+                        <tr dir-paginate="item in listCap2 | filter:search | itemsPerPage:5 | orderBy:item.descripcion " pagination-id="capitulos" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)">
                             <td>{{$index}}</td>
-                            <td>{{ item.codigo_capitulo }}</td>
-                            <td>{{ item.descripcion }}</td>
+
+                            <td>{{ item.descripcion_tipo_CIE10 }}</td>
                             <td>{{ item.estado }}</td>
                         </tr>
                         <dir-pagination-controls pagination-id="capitulos"></dir-pagination-controls> <!--agregar botones paginacion-->
@@ -257,12 +260,10 @@
                     <br>
                     <br>
                     <br>
-                    <label>Codigo:</label>
-                    <input type="text" class="form-control" placeholder="Codigo" ng-model="capitulo.codigo"><br>
                     <label>Descripción:</label>
-                    <input type="text" class="form-control" placeholder="Descripción" ng-model="capitulo.descripcion"><br>
-                    <input type="submit" class="form-control btn-info" value="Ingresar" ng-click="inputCapitulo()"><br>
-                    <input type="submit" class="form-control btn-warning" value="Cambiar Estado" ng-click="changeStateCapitulo()">
+                    <input type="text" class="form-control" placeholder="Descripción" ng-model="sub_capitulo.descripcion"><br>
+                    <input type="submit" class="form-control btn-info" value="Ingresar" ng-click="input()"><br>
+                    <input type="submit" class="form-control btn-warning" value="Cambiar Estado" ng-click="changeState()">
                     <br>
                     <br>
                     <br>

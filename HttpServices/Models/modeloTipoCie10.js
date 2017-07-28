@@ -7,7 +7,8 @@ var mongoose= restful.mongoose;
 var categoriaSchema = new mongoose.Schema({
 
     capitulo:mongoose.Schema.ObjectId,
-    descripcion_tipo_CIE10: String
+    descripcion_tipo_CIE10: String,
+    estado:String
 
 });
 

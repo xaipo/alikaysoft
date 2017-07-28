@@ -50,6 +50,7 @@
 
 
 
+
 <!-----menu -->
 <header>
     <nav class="navbar navbar-default navbar-static-top " role="navigation">
@@ -164,7 +165,9 @@
 
 </div>
 
-
+<br>
+<br>
+<br>
 <footer class="footer">
     <div class="container">
         <h5 style="text-align: center;">TODOS LOS DERECHOS RESERVADOS 2017</h5>
@@ -178,6 +181,31 @@
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script>
 
+
+    $(function(){
+
+
+        $('.datepicker').datepicker();
+
+
+        $('#date').change(function(){
+
+            $scope.historiaClinica.fecha_examen = $("#date").val();
+        });
+        //  console.log('entra');
+
+    });
+
+    /*$("#datepicker").change("dp.change", function() {
+     console.log('entra1');
+     $scope.historiaClinica.fecha_examen = $("datepicker").val();
+     alert("selected date is " + $scope.historiaClinica.fecha_examen);
+
+     });*/
+
+
+</script>
 </body>
 </html>

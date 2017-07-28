@@ -75,4 +75,6 @@ app.controller('CargasController', function ($timeout, $rootScope, $scope, $loca
         }
 
     }
+
+
 });
