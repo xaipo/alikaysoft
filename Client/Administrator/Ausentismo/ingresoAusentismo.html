@@ -85,19 +85,20 @@
 
 
                     <label> Tipo Cie 10: </label>
-
-                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
+                    <input type="text" ng-model="search1" class="form-control" placeholder="Buscar"><br>
+                    <select name="cie10tipo"  class="form-control" multiple   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
                         <option id="valor1" value={{empresaAux1}}
-                                ng-repeat="empresaAux1 in tipoCie10" >
+                                ng-repeat="empresaAux1 in tipoCie10 | filter: search1" >
                             {{empresaAux1.descripcion_tipo_CIE10}}
                         </option>
                     </select>
                 </div>
                 <div class="col-md-12 col-xs-12"  >
                     <label>  Cie 10: </label>
-                    <select name="cie10"  class="form-control"   ng-model="cie10Select" >
+                    <input type="text" ng-model="search2" class="form-control" placeholder="Buscar"><br>
+                    <select name="cie10"  class="form-control"  multiple  ng-model="cie10Select" >
                         <option id="valor2" value={{empresaAux2}}
-                                ng-repeat="empresaAux2 in cie10">
+                                ng-repeat="empresaAux2 in cie10 | filter: search2">
                             {{empresaAux2.sintoma}}
                         </option>
                     </select>
@@ -187,9 +188,8 @@
 
                     <label> Observaciones: </label>
                 <textarea class="form-control"  ng-model="ausentismo.observaciones">
-
                 </textarea>
-
+                    <br>
                 </div>
                 <div class="col-md-3 col-xs-12" >
                     <input type="submit" class="form-control btn-primary" value="Guardar"

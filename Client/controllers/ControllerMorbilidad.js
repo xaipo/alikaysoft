@@ -3,6 +3,10 @@
  */
 app.controller('ControllerMorbilidad', ['$scope', '$http', '$location', 'myProvider', '$localStorage', function ($scope, $http, $location, myProvider, $localStorage) {
 
+
+
+
+
 $scope.morbilidad={
 
 

@@ -37,7 +37,9 @@ body {
     margin: 0 auto;
 }
 
-
+#ex1Slider .slider-selection {
+    background: #BABABA;
+}
 .img1{
     width: 20%;
     height: 20%;
