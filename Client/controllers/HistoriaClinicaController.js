@@ -517,6 +517,21 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
                         getCiudad($scope.pacienteEncontrado.ciudad);
                         getNivelEstudios($scope.pacienteEncontrado.nivel_estudio);
 
+                        console.log($scope.pacienteEncontrado.historias_clinicas.length);
+
+                        if ($scope.pacienteEncontrado.historias_clinicas.length == 0) {
+
+                            console.log("No existe historia");
+
+                            $scope.Hco = true;
+                            alert('clic en el boton sisguiente');
+                        } else {
+
+                            console.log(" existe historia");
+                            $scope.Hco = false;
+                            alert('Ya existe una Historia clinica activa de este paciente');
+
+                        }
 
                     }
 
@@ -536,6 +551,8 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
         }
 
     };
+
+    $scope.Hco = false;
 
 // </editor-fold >
     // <editor-fold defaultstate="collapsed" desc="Cargar el encabezado de historia clinica">
