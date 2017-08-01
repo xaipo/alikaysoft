@@ -223,43 +223,52 @@ app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 
     }
 
 
-    $scope.redireccion=function(){
-
-        console.log('entra');
-        console.log($scope.urlSeleccionada);
-            if($scope.urlSeleccionada!=''&& $scope.urlSeleccionada!=undefined){
-
-
-            switch ($scope.urlSeleccionada){
-
-                case '1':
-
-                    window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarAccidenteTrabajo.html','_blank'); ;
-                    break;
-                case '2':
-
-                    window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarGinecoObstetra.html','_blank'); ;
-                    break;
-                case '3':
-
-                    window.open( '/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarInmunizacion.html','_blank'); ;;
-                    break;
-                case '4':
-
-                    window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificacionHabitosToxicos.html','_blank'); ;;
-                    break;
-                case '5':
-
-                    window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificacionExamenLaboratorio.html','_blank'); ;;
-                    break;
-               ;
-
-            }
+    $scope.listaCombo = [
+        {
+            descripcion: "Accidentes Trabajo",
+            puesto: 1
         }
-      //  $//scope.pacienteEncontrado = JSON.parse(window.localStorage.getItem('pe'));
-     //   console.log($scope.pacienteEncontrado);
+
+
+    ]
+
+    $scope.primero = false;
+
+
+    $scope.combo = function (item) {
+
+
+        console.log(item);
+
+
+        switch (item) {
+
+            case 1:
+
+                $scope.primero = true;
+                break;
+            case 2:
+
+
+                break;
+            case 3:
+
+
+                break;
+            case 4:
+
+
+                break;
+            case 5:
+
+
+                break;
+
+
+        }
 
 
     }
+
 
 }]);

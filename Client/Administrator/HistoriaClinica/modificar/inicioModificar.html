@@ -37,16 +37,11 @@
                             <br>
                             <label > Lista Posibles Modificaciones: </label><br>
 
-                            <select class="form-control" name="singleSelect" ng-model="urlSeleccionada">
-                                <option value="1">Accidentes Trabajo </option>
-                                <option value="2">Ginecologo Obstetra </option>
-                                <option value="3">Inmunización </option>
-                                <option value="4">Hábitos Tóxicos </option>
-                                <option value="5">Examen Laboratorio </option>
+
+                            <select class=" form-control " ng-model="selectCombo" ng-change="combo(selectCombo)"
+                                    ng-options="item.puesto as item.descripcion for item in listaCombo"></select>
 
 
-                            </select><br>
-                            <input type="submit" class="form-control" value="Redireccionar" ng-click="redireccion()">
                         </div>
 
 
@@ -60,4 +55,266 @@
         <!--div fin contaniner-->
     </div>
     </div>
+
+    <div class="box box-default" ng-controller="HistoriaClinicaSecond " ng-show="primero">
+        <div class="box-header with-border ">
+            <h3 class="box-title ">Riesgos Ocupacionales</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <form class="form" role="form">
+                <div class="panel panel-primary">
+
+                    <div class="container">
+
+                        <div class="row">
+
+                            <div class="col-md-4 col-xs-12">
+                                <br>
+                                <label> Empresa: </label>
+
+                                <select name="Provimcia" class="form-control"
+                                        ng-model="riesgosOcupacionales.nombre_empresa">
+                                    <option id="valor1" value={{empresaAux1}}
+                                            ng-repeat="empresaAux1 in empresas">
+                                        {{empresaAux1.nombre_empresa}}
+                                    </option>
+                                </select>
+
+                                <label> Cargo Desempeñado: </label>
+                                <input type="text" class="form-control" placeholder="Cargo"
+                                       ng-model="riesgosOcupacionales.cargo_empresa"/>
+                                <label> Actividades: </label>
+                                <input type="text" class="form-control" placeholder="Actividades"
+                                       ng-model="riesgosOcupacionales.actividades"/>
+                                <br>
+                                <label> Factor Riesgo: </label>
+                                <select name="Provimcia" class="form-control" ng-model="factorRiesgoSeleccionado"
+                                        ng-click="changeDetalleFactorRiesgo()">
+                                    <option id="valor11" value={{fac._id}}
+                                            ng-repeat="fac in factoresRiesgo">
+                                        {{fac.descripcion_factor_riesgo}}
+                                    </option>
+                                </select>
+
+
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <br>
+                                <label> Tipo Actividad: </label>
+
+                                <select name="TipoActividad" class="form-control"
+                                        ng-model="riesgosOcupacionales.tipo_actividad">
+                                    <option id="valor2" value={{ac}}
+                                            ng-repeat="ac in tipoActividad">
+                                        {{ac.descripcion_tipo_actividad}}
+                                    </option>
+                                </select>
+
+                                <label> Tiempo Exposicion años:</label>
+                                <input type="number" class="form-control" placeholder="1" min="1"
+                                       ng-model="riesgosOcupacionales.tiempo_anios_exposicion"/>
+
+
+                                <label> Cualificación: </label>
+
+                                <select name="Cualificacion" class="form-control"
+                                        ng-model="riesgosOcupacionales.cualificacion">
+                                    <option id="valor3" value={{cua}}
+                                            ng-repeat="cua in cualificaciones">
+                                        {{cua.descripcion_cualificacion}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <br>
+                                <label> Sintomatología Individual: </label>
+                                <select class="form-control" name="singleSelect"
+                                        ng-model="riesgosOcupacionales.sintomatologia_individual">
+                                    <option value="Si">SI</option>
+                                    <option value="No">NO</option>
+
+                                </select>
+                                <label> Sintomatología Grupal: </label>
+                                <select class="form-control" name="singleSelect"
+                                        ng-model="riesgosOcupacionales.sintomatologia_grupal">
+                                    <option value="Si">SI</option>
+                                    <option value="No">NO</option>
+
+                                </select>
+                                <label> EPP: </label>
+                                <select class="form-control" name="singleSelect" ng-model="riesgosOcupacionales.epp">
+                                    <option value="Si">SI</option>
+                                    <option value="No">NO</option>
+
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-3 col-xs-12">
+                                <br>
+                                <label for="FactorRiesgo"> Factores Riesgo: </label><br>
+                                Búsqueda <input type="text" ng-model="search1" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="FactorRiesgo" ng-model="selectedFactorRiesgo" class="form-control"
+                                        multiple
+                                        style="height: 150px;" ng-click="FactorRiesgo()">
+                                    <option value={{empresaAux3}}
+                                            ng-repeat="empresaAux3 in listaDetalleFactorRiesgo | filter:search1| orderBy:empresaAux3.detalle_factor_riesgo">
+                                        {{empresaAux3.detalle_factor_riesgo}}
+                                    </option>
+                                </select><br>
+
+
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+
+                                <br>
+                                <label for="FactorRiesgo2"> Factores Riesgo Seleccionados: </label><br>
+                                Búsqueda <input type="text" ng-model="search2" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="FactorRiesgo2" ng-model="selectedFactorRiesgo" class="form-control"
+                                        multiple
+                                        style="height: 150px;" ng-click="FactorRiesgoSeleccionado()">
+                                    <option value={{empresaAux4}}
+                                            ng-repeat="empresaAux4 in listaFactoresRiesgoSeleccionado | filter:search2| orderBy:empresaAux4.descripcion_factor_riesgo">
+                                        {{empresaAux4.detalle_factor_riesgo}}
+                                    </option>
+                                </select><br>
+
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+                                <br>
+                                <label for="Alimentos"> Hábitos Alimenticios: </label><br>
+                                Búsqueda <input type="text" ng-model="search3" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="Alimentos" ng-model="alimentoSeleccionado" class="form-control" multiple
+                                        style="height: 150px;" ng-click="alimentosFunc()">
+                                    <option value={{al}}
+                                            ng-repeat="al in alimentos | filter:search3| orderBy:al.descripcion_alimentos">
+                                        {{al.descripcion_alimentos}}
+                                    </option>
+                                </select><br>
+                            </div>
+
+                            <div class="col-md-3 col-xs-12">
+
+                                <br>
+                                <label for="AlimentosSelect"> Hábitos Alimenticios Seleccionados: </label><br>
+                                Búsqueda <input type="text" ng-model="search4" class="form-control"
+                                                placeholder="Busqueda"><br>
+                                <select name="AlimentosSelect" ng-model="alimentoSeleccionado" class="form-control"
+                                        multiple
+                                        style="height: 150px;" ng-click="alimentosSeleccionadosFunc()">
+                                    <option value={{al1}}
+                                            ng-repeat="al1 in listaAlimentosSeleccionados | filter:search4| orderBy:al1.descripcion_alimentos">
+                                        {{al1.descripcion_alimentos}}
+                                    </option>
+                                </select><br>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-md-3 col-xs-12">
+                                <br>
+
+                                <input class="btn btn-info" type="submit" ng-click="agregar()"
+                                       value="Agregar"/><br><br>
+
+                            </div>
+                            <div class="col-md-3 col-xs-12">
+                                <br>
+
+                                <input class="btn btn-warning" type="submit" ng-click="quitar()"
+                                       value="Quitar"/><br><br>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <br>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre Empresa</th>
+                                        <th>Cargo Empresa</th>
+                                        <th>Actividades</th>
+                                        <th>Tipo Actividad</th>
+                                        <th>Tiempo Años Exposición</th>
+                                        <th>Cualificación</th>
+                                        <th>Sintomatologia Individual</th>
+                                        <th>Sintomatologia Grupal</th>
+                                        <th>Epp</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in listaRiesgosOcupacionales  | filter:search2| orderBy:item.sintoma"
+                                        ng-class="{'selected':$index == selectedRow}"
+                                        ng-click="setClickedRow($index,item)">
+                                        <td>{{$index}}</td>
+                                        <td>{{ item.nombre_empresa.nombre_empresa }}</td>
+                                        <td>{{ item.cargo_empresa }}</td>
+                                        <td>{{ item.actividades }}</td>
+                                        <td>{{ item.tipo_actividad.descripcion_tipo_actividad }}</td>
+                                        <td>{{ item.tiempo_anios_exposicion }}</td>
+                                        <td>{{ item.cualificacion.descripcion_cualificacion }}</td>
+                                        <td>{{ item.sintomatologia_individual }}</td>
+                                        <td>{{ item.sintomatologia_grupal }}</td>
+                                        <td>{{ item.epp }}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-md-3 col-xs-12">
+                                <br>
+
+                                <input class="btn btn-info" type="submit" ng-click="modificar()"
+                                       value="Guardar " data-widget="remove"/><br><br>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            footer
+        </div>
+    </div>
+
+
 </form>

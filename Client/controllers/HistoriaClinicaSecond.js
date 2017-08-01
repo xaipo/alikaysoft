@@ -472,6 +472,96 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
 
     console.log( $scope.segundo);
 
+
+    $scope.modificar = function () {
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaRiesgosOcupacionales);
+
+
+        var n = $scope.listaRiesgosOcupacionales.length;
+
+        for (var i = 0; i < n; i++) {
+            var vec = [];
+            // console.log($scope.historiaClinica.riesgosOcupacionales[i].factores_riesgo);
+            var m = $scope.listaRiesgosOcupacionales[i].factores_riesgo.length;
+            for (var j = 0; j < m; j++) {
+
+                vec.push($scope.listaRiesgosOcupacionales[i].factores_riesgo[j]._id);
+
+            }
+            $scope.listaRiesgosOcupacionales[i].factores_riesgo = vec;
+
+
+            vec = [];
+            m = $scope.listaRiesgosOcupacionales[i].alimentos.length;
+            for (var j = 0; j < m; j++) {
+
+                vec.push($scope.listaRiesgosOcupacionales[i].alimentos[j]._id);
+
+            }
+            $scope.listaRiesgosOcupacionales[i].alimentos = vec;
+
+
+            $http({
+                method: 'POST',
+                url: myProvider.getRiesgosOcupacionales(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    nombre_empresa: $scope.listaRiesgosOcupacionales[i].nombre_empresa._id,
+                    cargo_empresa: $scope.listaRiesgosOcupacionales[i].cargo_empresa,
+                    actividades: $scope.listaRiesgosOcupacionales[i].actividades,
+                    tipo_actividad: $scope.listaRiesgosOcupacionales[i].tipo_actividad._id,
+                    tiempo_anios_exposicion: $scope.listaRiesgosOcupacionales[i].tiempo_anios_exposicion,
+                    factores_riesgo: $scope.listaRiesgosOcupacionales[i].factores_riesgo,
+                    cualificacion: $scope.listaRiesgosOcupacionales[i].cualificacion._id,
+                    alimentos: $scope.listaRiesgosOcupacionales[i].alimentos,
+                    sintomatologia_individual: $scope.listaRiesgosOcupacionales[i].sintomatologia_individual,
+                    sintomatologia_grupal: $scope.listaRiesgosOcupacionales[i].sintomatologia_grupal,
+                    epp: $scope.listaRiesgosOcupacionales[i].epp
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.riesgos_ocupacionales.push(response.data._id);
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+
+                //actulizarla tabla de histira clinica
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+            //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
+
+            //  }
+
+        }
+
+
+    }
+
+
+
     $scope.nextSecond= function(){
 
        // console.log($scope.historiaClinica);
@@ -584,6 +674,7 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
 
 app.controller('HistoriaClinicaUnido', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ($scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
+    $rootScope.primero = false;
     $rootScope.segundo=false;
     $rootScope.tercero=false;
     $rootScope.cuarto=false;
