@@ -47,6 +47,10 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
 
     }
 
+
+    $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+    console.log($scope.historiaClinica);
+    
     $scope.getHistoria= function(){
 
         //   $scope.historiaClinica=JSON.parse(window.localStorage.getItem('hC'));
@@ -471,7 +475,7 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
     $scope.nextSecond= function(){
 
        // console.log($scope.historiaClinica);
-
+        console.clear();
         $scope.historiaClinica.riesgosOcupacionales=$scope.listaRiesgosOcupacionales;
         console.log($scope.historiaClinica.riesgosOcupacionales);
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));

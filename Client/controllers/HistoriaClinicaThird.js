@@ -146,6 +146,7 @@ app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvid
 
     $scope.saveThird= function (){
 
+        console.clear();
         $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
         console.log($scope.historiaClinica);
 

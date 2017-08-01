@@ -133,6 +133,10 @@ app.controller('HistoriaClinicaControllerThirteenth', ['$scope', '$http', '$loca
 
     $scope.saveThirteen= function(){
 
+        console.clear();
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
+
         $scope.historiaClinica.examenes_laboratorio=$scope.listaExamenes;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fourteenth.html';

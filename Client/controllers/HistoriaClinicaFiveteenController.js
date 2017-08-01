@@ -36,6 +36,7 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
 
     };
 
+
     $scope.getHistoria = function () {
 
         $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
@@ -308,11 +309,13 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
 
 
     $scope.ingresarHistoriaClinica=function(){
-
+        console.clear();
         console.log('ejecuta');
-        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
 
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
         console.log($scope.historiaClinica);
+
+
         console.log($scope.historiaClinicIngreso);
 
         console.log(JSON.parse(window.localStorage.getItem('hci')));
@@ -408,7 +411,7 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
 
         }
 
-        // $scope.second();
+        $scope.second();
 
     }
 
@@ -539,61 +542,11 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
              //
 
              }
-            $scope.fourth()
+        $scope.fiveth();
         }
 
 
-         $scope.fourth=function(){
 
-             $scope.historiaClinicIngreso = JSON.parse(window.localStorage.getItem('hci'));
-             var n = $scope.historiaClinica.ausentismo.length;
-             // console.log($scope.historiaClinica.ginecoObstetra);
-             // console.log($scope.historiaClinica);
-             for (var i = 0; i < n; i++) {
-
-                 // console.log( $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar);
-
-
-
-                 $http({
-                     method: 'POST',
-                     url: myProvider.getAusentismo1(),
-                     headers: {
-                         'Content-Type': 'application/json'
-                     },
-                     data: {
-
-                         causa : $scope.historiaClinica.ausentismo[i].causa,
-                         tiempo:  $scope.historiaClinica.ausentismo[i].tiempo,
-                     }
-
-
-                 }).then(function successCallback(response) {
-                     //console.log(response.data);
-                     $scope.historiaClinicaIngreso.ausentismo.push(response.data._id);
-                     window.localStorage.setItem("hci", JSON.stringify($scope.historiaClinicaIngreso));
-                     // console.log($scope.historiaClinicaIngreso.gineco_obstetra);
-
-
-
-
-
-                 }, function errorCallback(response) {
-                     // called asynchronously if an error occurs
-                     // or server returns response with an error status.
-                     // console.log(response);
-                     //$scope.mesaje = response.mensaje;
-
-                 });
-
-                 //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
-
-                 //
-
-             }
-
-             $scope.fiveth();
-         }
 
 
     $scope.fiveth=function(){
@@ -1040,7 +993,7 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
                         remision_especialista:$scope.finalHistoria.remision_especialista,
                         nombre_especialista:$scope.finalHistoria.nombre_especialista,
                         reubicacion:$scope.finalHistoria.reubicacion,
-                        estado:'1',
+                        estado: '2',
                     }
 
 
@@ -1053,7 +1006,53 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
 
                     $scope.historiaClinica.paciente.historias_clinicas.push(response.data._id);
 
+
                     $http({
+                        method: 'POST',
+                        url: myProvider.getHistoriaClinica(),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: {
+
+                            tipo_examen: '571bbe7825df3fa80c7be754',
+                            fecha_examen: $scope.historiaClinica.fecha_examen,
+                            riesgos_ocupacionales: $scope.historiaClinicaIngreso.riesgos_ocupacionales,
+                            accidentesTrabajo: $scope.historiaClinicaIngreso.accidentesTrabajo,
+                            gineco_obstetra: $scope.historiaClinicaIngreso.gineco_obstetra,
+                            ausentismo: $scope.historiaClinicaIngreso.ausentismo,
+                            enfermedades_actuales_historicas: $scope.historiaClinicaIngreso.enfermedades_actuales_historicas,
+                            antescedentes_familiares: $scope.historiaClinicaIngreso.antescedentes_familiares,
+                            antescedentes_personales: $scope.historiaClinicaIngreso.antescedentes_personales,
+                            inmunizacion: $scope.historiaClinicaIngreso.inmunizacion,
+                            habitos_toxicos: $scope.historiaClinicaIngreso.habitos_toxicos,
+                            organos_sistemas: $scope.historiaClinicaIngreso.organos_sistemas,
+                            examenes_laboratorio: $scope.historiaClinicaIngreso.examenes_laboratorio,
+                            examenes_paraclinicos: $scope.historiaClinicaIngreso.examenes_paraclinicos,
+                            examen_fisico: $scope.historiaClinicaIngreso.examen_fisico,
+                            diagnostico_ocupacional: $scope.finalHistoria.diagnostico_ocupacional,
+                            diagnostico_noOcupacioanl: $scope.finalHistoria.diagnostico_noOcupacioanl,
+                            concepto: $scope.finalHistoria.concepto,
+                            restricciones_limitaciones: $scope.finalHistoria.restricciones_limitaciones,
+                            recomendaciones: $scope.finalHistoria.recomendaciones,
+                            remision_especialista: $scope.finalHistoria.remision_especialista,
+                            nombre_especialista: $scope.finalHistoria.nombre_especialista,
+                            reubicacion: $scope.finalHistoria.reubicacion,
+                            estado: '1',
+                        }
+
+
+                    }).then(function successCallback(response) {
+                        //console.log(response.data);
+                        console.log(response.data._id);
+                        // window.localStorage.setItem("hci", JSON.stringify($scope.historiaClinicaIngreso));
+                        // console.log($scope.historiaClinicaIngreso.gineco_obstetra);
+
+
+                        $scope.historiaClinica.paciente.historias_clinicas.push(response.data._id);
+
+
+                        $http({
                         method: 'PUT',
                         url: myProvider.getPaciente() + '/' + $scope.historiaClinica.paciente._id,
                         headers: {
@@ -1071,8 +1070,9 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
 
                         localStorage.removeItem('hci');
                         localStorage.removeItem('hC');
-                        window.location = '/tesisSaludOcupacional/Client/Administrator/indexAdmin.html';
-
+                            console.log("termino ingreso");
+                            //window.location = '/tesisSaludOcupacional/Client/Administrator/indexAdmin.html';
+                            $location.path('/');
 
                     }, function errorCallback(response) {
                         // called asynchronously if an error occurs
@@ -1083,14 +1083,13 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
                     });
 
 
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        // console.log(response);
+                        //$scope.mesaje = response.mensaje;
 
-
-
-
-
-
-
-
+                    });
 
 
                 }, function errorCallback(response) {

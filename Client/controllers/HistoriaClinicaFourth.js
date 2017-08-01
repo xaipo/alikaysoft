@@ -275,12 +275,19 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
 
     $scope.saveFourth=function(){
 
+        console.clear();
+
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
+
 
         $scope.historiaClinica.enfermedades_actuales_historicas=$scope.listaCie10Selecionada;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fiveth.html';
 
+
         $rootScope.cuarto=true;
+
     }
 
     $scope.noAplica=function(){
@@ -301,5 +308,6 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
         window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/forth.html';
     }
+
 
 }]);

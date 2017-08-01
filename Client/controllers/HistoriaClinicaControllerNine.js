@@ -132,6 +132,11 @@ app.controller('HistoriaClinicaControllerNineth', ['$scope', '$http', '$location
 
     $scope.saveNine= function(){
 
+        console.clear();
+
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
+
         $scope.historiaClinica.inmunizacion=$scope.inmunizacion;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
        // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/tenth.html';

@@ -239,6 +239,12 @@ app.controller('HistoriaClinicaSixth', ['$scope', '$http', '$location','myProvid
     $scope.saveFiveth = function (){
 
 
+        console.clear();
+
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
+
+
         $scope.historiaClinica.antescedentes_familiares=$scope.listaAntescedentesFamiliares;
         $scope.historiaClinica.antescedentes_personales=$scope.listaAntescedentesPersonales;
 

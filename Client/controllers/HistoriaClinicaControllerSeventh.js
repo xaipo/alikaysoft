@@ -144,6 +144,10 @@ app.controller('HistoriaClinicaSeventh', ['$scope', '$http', '$location','myProv
     $scope.nextSeventh=function(){
 
 
+        console.clear();
+
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
 
         $scope.historiaClinica.ginecoObstetra=$scope.listaGinecoObstetra;
 

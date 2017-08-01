@@ -588,11 +588,10 @@ app.controller('HistoriaClinicaController', ['$scope', '$http', '$location','myP
         }
 
 
+    $scope.redirect1 = function () {
 
+        $location.path('/IP');
 
-    $scope.redirect1=function(url){
-    console.log(url);
-        window.location =url;
     }
 
 

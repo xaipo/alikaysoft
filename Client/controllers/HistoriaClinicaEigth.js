@@ -178,6 +178,11 @@ app.controller('HistoriaClinicaEigth', ['$scope', '$http', '$location','myProvid
 
     $scope.saveEigth= function(){
 
+        console.clear();
+        $scope.historiaClinica = JSON.parse(window.localStorage.getItem('hC'));
+        console.log($scope.historiaClinica);
+
+
         $scope.historiaClinica.revision_sistemas=$scope.revision_sistemas;
         window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
      //   window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/nineth.html';
