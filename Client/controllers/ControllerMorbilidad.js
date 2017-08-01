@@ -930,6 +930,9 @@ $scope.ingresoMorbilidad=function(){
 
 //}
 
-
+    $scope.printDiv=function() {
+        var divToPrint = document.getElementById('areaToPrint');
+        window.print();
+    }
 
 }]);

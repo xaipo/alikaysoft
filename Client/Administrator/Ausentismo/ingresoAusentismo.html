@@ -39,42 +39,28 @@
 
                 <div class="col-md-3 col-xs-12">
 
+                    <br> <label>Dias Ausencia:</label><br>
+                    <input class="datepicker" type="text" id="datepicker1" name="date" value="mm/dd/aaa"/><br>
+                    <label>laboral/NoLaboral:</label>
+                    <select class="form-control" name="singleSelect" ng-model="ausentismo.laboral_nolaboral">
+                        <option value="L">Laboral </option>
+                        <option value="NL">No Laboral </option>
+
+                    </select><br>
+
+                </div>
+
+                <div class="col-md-3 col-xs-12">
                     <br>
-                    <label>Desde:</label>
-                    <input type="number" placeholder="1" max="31" class="form-control" min="1" max="31" ng-model="ausentismo.desde"><br>
                     <label>Horas:</label>
                     <input type="number" placeholder="1" class="form-control" min="0" ng-model="ausentismo.horas">
 
-                </div>
 
+                </div>
                 <div class="col-md-3 col-xs-12">
                     <br>
-                    <label>Hasta:</label>
-                    <input type="number" placeholder="1" max="31" class="form-control" min="0" max="31" ng-model="ausentismo.hasta"><br>
                     <label>Minutos:</label>
-
                     <input type="number" placeholder="1" class="form-control" max="59" min="0" ng-model="ausentismo.minutos">
-
-                </div>
-                <div class="col-md-3 col-xs-12">
-                    <br>
-                    <label>Mes:</label>
-                    <select class="form-control" name="singleSelect" ng-model="ausentismo.mes" >
-                        <option value="Enero">Enero </option>
-                        <option value="Febrero">Febreo </option>
-                        <option value="Marzo">Marzo </option>
-                        <option value="Abril">Abril </option>
-                        <option value="Mayo">Mayo </option>
-                        <option value="Junio">Junio </option>
-                        <option value="Julio">Julio </option>
-                        <option value="Agosto">Agosto </option>
-                        <option value="Septiembre">Septiembre </option>
-                        <option value="Octubre">Octubre </option>
-                        <option value="Noviembre">Noviembre </option>
-                        <option value="Diciembre">Diciembre </option>
-                    </select><br>
-                    <label>Dias:</label>
-                    <input type="number" placeholder="1" class="form-control" min="0" ng-model="ausentismo.dias">
 
                 </div>
 
@@ -88,12 +74,7 @@
                         <option value="LOES">LOES </option>
 
                     </select><br>
-                    <label>laboral/NoLaboral:</label>
-                    <select class="form-control" name="singleSelect" ng-model="ausentismo.laboral_nolaboral">
-                        <option value="L">Laboral </option>
-                        <option value="NL">No Laboral </option>
 
-                    </select><br>
                 </div>
 
             </div><!--div fin contaniner-->

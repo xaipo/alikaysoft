@@ -2,18 +2,22 @@
  * Created by xaipo on 10/4/2016.
  */
 app.controller('ControllerMostrarAusentismo', ['$scope', '$http', '$location', 'myProvider', '$localStorage', function ($scope, $http, $location, myProvider, $localStorage) {
-
+    var ficha;
+$scope.inicialize= function (){
 
     console.log(JSON.parse(localStorage.getItem("ficha")));
 
-    var ficha = JSON.parse(localStorage.getItem("ficha"));
+   ficha = JSON.parse(localStorage.getItem("ficha"));
+    console.log(ficha);
+    console.log(ficha.fechas);
 
 
     $scope.ausentismo = {
 
-        mes: ficha.mes,
-        desde: Number(ficha.desde),
-        hasta: Number(ficha.hasta),
+     //   mes: ficha.mes,
+       // desde: Number(ficha.desde),
+      //  hasta: Number(ficha.hasta),
+        fechas:ficha.fechas,
         dias: ficha.dias,
         horas: ficha.horas,
         minutos: ficha.minutos,
@@ -24,8 +28,6 @@ app.controller('ControllerMostrarAusentismo', ['$scope', '$http', '$location', '
         observaciones: ficha.observaciones,
         regimen: ficha.regimen
     };
-
-
     for (var i = 0; i < ficha.diagnostico.length; i++) {
 
 
@@ -35,37 +37,6 @@ app.controller('ControllerMostrarAusentismo', ['$scope', '$http', '$location', '
 
     }
 
-    $scope.listaCie = [];
-
-    function cargarCies(cie) {
-
-
-        $http({
-
-            method: 'GET',
-            url: myProvider.getCie10() + "?_id=" + cie,
-
-            headers: {
-                'Content-Type': 'application/json'
-            }
-
-        }).then(function successCallback(response) {
-            //console.log('entra url');
-            console.log(response.data);
-
-            $scope.listaCie.push(response.data[0]);
-            //   $scope.listaSelectedCie10.push(response.data);
-            console.log($scope.listaCie);
-
-        }, function errorCallback(response) {
-            console.log('entra');
-            //  Console.log(response);
-            // $scope.mesaje = response.mensaje;
-
-        });
-
-
-    }
 
 
     $http({
@@ -105,45 +76,6 @@ app.controller('ControllerMostrarAusentismo', ['$scope', '$http', '$location', '
 
     });
 
-
-    $scope.cambiarEstado = function () {
-
-
-        console.log(ficha);
-
-
-        $http({
-            method: 'Put',
-            url: myProvider.getAusentismo() + "/" + ficha._id,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
-
-
-                estado: "inactivo"
-
-
-            }
-
-
-        }).then(function successCallback(response) {
-            alert('Eliminado Correctamente')
-            $location.path('/BA');
-
-        }, function errorCallback(response) {
-
-            console.log('falla');
-        });
-
-
-
-
-
-    }
-
-
-    $scope.medicos = [];
 
 
     $http({
@@ -186,6 +118,103 @@ app.controller('ControllerMostrarAusentismo', ['$scope', '$http', '$location', '
         $scope.mesaje = response.mensaje;
 
     });
+}
+
+
+
+    $(function () {
+
+
+
+
+        $('.datepicker').datepicker({
+            multidate: true,
+            language: 'es',
+        });
+
+
+        $timeout(function () {
+        $('.datepicker').datepicker('setDates',  $scope.ausentismo.fechas)
+        }, 100, false);
+    });
+
+
+
+    $scope.listaCie = [];
+
+    function cargarCies(cie) {
+
+
+        $http({
+
+            method: 'GET',
+            url: myProvider.getCie10() + "?_id=" + cie,
+
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        }).then(function successCallback(response) {
+            //console.log('entra url');
+            console.log(response.data);
+
+            $scope.listaCie.push(response.data[0]);
+            //   $scope.listaSelectedCie10.push(response.data);
+            console.log($scope.listaCie);
+
+        }, function errorCallback(response) {
+            console.log('entra');
+            //  Console.log(response);
+            // $scope.mesaje = response.mensaje;
+
+        });
+
+
+    }
+
+
+
+
+    $scope.cambiarEstado = function () {
+
+
+        console.log(ficha);
+
+
+        $http({
+            method: 'Put',
+            url: myProvider.getAusentismo() + "/" + ficha._id,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+
+
+                estado: "inactivo"
+
+
+            }
+
+
+        }).then(function successCallback(response) {
+            alert('Eliminado Correctamente')
+            $location.path('/BA');
+
+        }, function errorCallback(response) {
+
+            console.log('falla');
+        });
+
+
+
+
+
+    }
+
+
+    $scope.medicos = [];
+
+
 
 
 }]);

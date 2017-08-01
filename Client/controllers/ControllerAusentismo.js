@@ -16,6 +16,38 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
 
 
     };
+
+
+    ;(function($){
+        $.fn.datepicker.dates['es'] = {
+            days: ["Domingo", "Lunes", "Martes", "Mi�rcoles", "Jueves", "Viernes", "S�bado"],
+            daysShort: ["Dom", "Lun", "Mar", "Mi�", "Jue", "Vie", "S�b"],
+            daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+            months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+            today: "Hoy",
+            monthsTitle: "Meses",
+            clear: "Borrar",
+            weekStart: 1,
+            format: "dd/mm/yyyy"
+        };
+    }(jQuery));
+
+    $(function () {
+
+
+
+
+        $('.datepicker').datepicker({
+            multidate: true,
+            language: 'es',
+        });
+
+
+
+        $('.datepicker').datepicker('setDates', [])
+
+    });
     $scope.pacienteEncontrado ='';
     $scope.search;
     $scope.pacienteSelected = '';
@@ -555,16 +587,16 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
 
     $scope.control2 = function () {
 
-        if ($scope.ausentismo.mes != '' && $scope.ausentismo.mes != undefined) {
+        //if ($scope.ausentismo.mes != '' && $scope.ausentismo.mes != undefined) {
             if ($scope.pacienteEncontrado != '' && $scope.pacienteEncontrado != undefined) {
 
-                if ($scope.ausentismo.desde != '' && $scope.ausentismo.hasta != undefined) {
+             //   if ($scope.ausentismo.desde != '' && $scope.ausentismo.hasta != undefined) {
 
-                    if ($scope.ausentismo.dias != '' && $scope.ausentismo.dias != undefined) {
+                    //if ($scope.ausentismo.dias != '' && $scope.ausentismo.dias != undefined) {
 
-                        if ($scope.ausentismo.horas != '' && $scope.ausentismo.horas != undefined) {
+                      //  if ($scope.ausentismo.horas != '' && $scope.ausentismo.horas != undefined) {
 
-                            if ($scope.ausentismo.minutos != '' && $scope.ausentismo.minutos != undefined) {
+                          //  if ($scope.ausentismo.minutos != '' && $scope.ausentismo.minutos != undefined) {
 
                                 if ($scope.ausentismo.laboral_nolaboral != '' && $scope.ausentismo.laboral_nolaboral != undefined) {
 
@@ -598,36 +630,39 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
                                 return false;
                             }
 
-                        }else{
-                            return false;
-                        }
-                    }else{
-                        return false;
-                    }
+                        //}else{
+                       //     return false;
+                       // }
+                 //   }else{
+                    //    return false;
+                   // }
 
-                }else{
-                    return false;
-                }
-
-
-            } else {
-                return false;
-            }
+               // }else{
+               //     return false;
+               // }
 
 
-        } else {
+           // } else {
+            //    return false;
+         //   }
 
 
-    }
+      //  } else {
+
+
+   // }
 
 
 }
 
-
     $scope.ingresarAusentismo = function () {
 
         if($scope.control2()){
+        $scope.days= document.getElementById('datepicker1').value;
+        $scope.vecDays= $scope.days.split(',');
+        $scope.ausentismo.dias=$scope.vecDays.length;
 
+        console.log($scope.days);
         $scope.ausentismo.medico=JSON.parse($scope.ausentismo.medico);
       //  $scope.ausentismo.paciente=JSON.parse($scope.ausentismo.paciente);
         console.log($scope.listaSelectedCie10[i]);
@@ -647,10 +682,11 @@ app.controller('ControllerAusentismo', ['$scope', '$http', '$location', 'myProvi
                 data: {
 
 
-                    mes : $scope.ausentismo.mes,
+                   // mes : $scope.ausentismo.mes,
                     paciente:  $scope.pacienteEncontrado._id,
-                    desde:$scope.ausentismo.desde,
-                    hasta: $scope.ausentismo.hasta,
+                   // desde:$scope.ausentismo.desde,
+                    //hasta: $scope.ausentismo.hasta,
+                    fechas:$scope.vecDays,
                     dias:$scope.ausentismo.dias,
                     horas:$scope.ausentismo.horas,
                     minutos:$scope.ausentismo.minutos,

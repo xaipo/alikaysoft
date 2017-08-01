@@ -7,11 +7,12 @@ var mongoose= restful.mongoose;
 var categoriaSchema = new mongoose.Schema({
 
 
-    mes : String,
+    //mes : String,
     paciente:  mongoose.Schema.ObjectId,
-    desde:String,
-    hasta: String,
+   // desde:String,
+    //hasta: String,
     dias:Number,
+    fechas:String,
     horas:Number,
     minutos:Number,
     laboral_nolaboral:String,

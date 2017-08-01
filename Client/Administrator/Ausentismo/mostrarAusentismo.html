@@ -1,4 +1,4 @@
-<form class="form" role="form">
+<form class="form" role="form" ng-init="inicialize()">
     <div class="panel panel-primary">
         <div class="panel-heading">
 
@@ -28,49 +28,34 @@
             </div>
 
             <div class="row">
+                <div class="col-md-12 col-xs-12">
 
-
+                    <br>
+                    <label>Fechas:</label><br>
+                    <textarea class="form-control" readonly  ng-model="ausentismo.fechas" ></textarea>
+                </div>
                 <div class="col-md-3 col-xs-12">
 
                     <br>
-                    <label>Desde:</label>
-                    <input type="number" placeholder="1" max="31" class="form-control" min="1" max="31"
-                           ng-model="ausentismo.desde"><br>
                     <label>Horas:</label>
-                    <input type="number" placeholder="1" class="form-control" min="0" ng-model="ausentismo.horas">
+                    <input type="number" placeholder="1" readonly  class="form-control" min="0" ng-model="ausentismo.horas">
 
                 </div>
 
                 <div class="col-md-3 col-xs-12">
                     <br>
-                    <label>Hasta:</label>
-                    <input type="number" placeholder="1" max="31" class="form-control" min="0" max="31"
-                           ng-model="ausentismo.hasta"><br>
+
                     <label>Minutos:</label>
 
-                    <input type="number" placeholder="1" class="form-control" max="59" min="0"
+                    <input type="number" placeholder="1" readonly  class="form-control" max="59" min="0"
                            ng-model="ausentismo.minutos">
 
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <br>
-                    <label>Mes:</label>
-                    <select class="form-control" name="singleSelect" ng-model="ausentismo.mes">
-                        <option value="Enero">Enero</option>
-                        <option value="Febrero">Febreo</option>
-                        <option value="Marzo">Marzo</option>
-                        <option value="Abril">Abril</option>
-                        <option value="Mayo">Mayo</option>
-                        <option value="Junio">Junio</option>
-                        <option value="Julio">Julio</option>
-                        <option value="Agosto">Agosto</option>
-                        <option value="Septiembre">Septiembre</option>
-                        <option value="Octubre">Octubre</option>
-                        <option value="Noviembre">Noviembre</option>
-                        <option value="Diciembre">Diciembre</option>
-                    </select><br>
+
                     <label>Dias:</label>
-                    <input type="number" placeholder="1" class="form-control" min="0" ng-model="ausentismo.dias">
+                    <input type="number" placeholder="1" readonly  class="form-control" min="0" ng-model="ausentismo.dias">
 
                 </div>
 
@@ -78,14 +63,14 @@
                 <div class="col-md-3 col-xs-12">
                     <br>
                     <label>Regimen:</label>
-                    <select class="form-control" name="singleSelec1" ng-model="ausentismo.regimen">
+                    <select class="form-control" name="singleSelec1" readonly  ng-model="ausentismo.regimen">
                         <option value="LOSEP">LOSEP</option>
                         <option value="COD.TRABAJO">COD.TRABAJO</option>
                         <option value="LOES">LOES</option>
 
                     </select><br>
                     <label>laboral/NoLaboral:</label>
-                    <select class="form-control" name="singleSelect" ng-model="ausentismo.laboral_nolaboral">
+                    <select class="form-control" name="singleSelect" readonly  ng-model="ausentismo.laboral_nolaboral">
                         <option value="L">Laboral</option>
                         <option value="NL">No Laboral</option>
 
@@ -102,7 +87,7 @@
 
                     <label> Cie 10 Seleccionado: </label>
 
-                    <select name="cie10tipo" class="form-control" ng-model="cie10Quitar" multiple>
+                    <select name="cie10tipo" class="form-control" readonly  ng-model="cie10Quitar" multiple>
                         <option id="valor" value={{empresaAux1}}
                                 ng-repeat="empresaAux1 in listaCie">
                             {{empresaAux1.sintoma}}
@@ -117,7 +102,7 @@
 
                     <label> Especialista: </label>
 
-                    <select class="form-control " style="width: 100%;" ng-model="ausentismo.medico"
+                    <select readonly  class="form-control " style="width: 100%;" ng-model="ausentismo.medico"
                             ng-options="item._id as item.nombre_medico for item in medicos"></select>
 
 
@@ -125,7 +110,7 @@
                 <div class="col-md-4 col-xs-12">
                     <br>
                     <label>Institucion:</label>
-                    <select class="form-control" name="singleSelect" ng-model="ausentismo.tipo_certificado">
+                    <select class="form-control" readonly  name="singleSelect" ng-model="ausentismo.tipo_certificado">
                         <option value="UNACH">UNACH</option>
                         <option value="IESS">IESS</option>
                         <option value="OTROS">OTROS</option>
@@ -137,11 +122,11 @@
                     <br>
 
 
-                    <label> Observaciones: </label>
-                <textarea class="form-control" ng-model="ausentismo.observaciones">
+                    <label> Observaciones:   </label>
+                <textarea class="form-control" readonly ng-model="ausentismo.observaciones">
 
                 </textarea>
-
+                    <br>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <input type="submit" class="form-control btn-danger" value="Eliminar" ng-click="cambiarEstado()">
