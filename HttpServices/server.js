@@ -8,10 +8,8 @@ var cors = require('cors');
 // <editor-fold defaultstate="collapsed" desc="MongoDb">
 //mongoose.connect('mongodb://localhost/TesisSaludOcupacional');
 //mongoose.connect('xaipo:xaipo14@ds064278.mlab.com:64278/MongoLab-l');
-
-
-//mongoose.connect('mongodb://localhost/SaludOcupacional', function(error){
-mongoose.connect('mongodb://localhost/salud_ocupacional', function (error) {
+mongoose.connect('mongodb://localhost/SaludOcupacional', function(error){
+//mongoose.connect('mongodb://localhost/salud_ocupacional', function (error) {
     if(error){
         throw error;
     }else{
@@ -102,6 +100,7 @@ app.use('/api',require('./Routes/apiGetDate'));
 app.use('/api',require('./Routes/apiCapituloCie10'));
 
 app.use('/api', require('./Routes/eventos'));
+app.use('/api', require('./Routes/apiManyInsert'));
 
 // </editor-fold >
 

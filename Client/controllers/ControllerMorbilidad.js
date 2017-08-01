@@ -1,13 +1,25 @@
 /**
  * Created by xaipo on 12/8/2016.
  */
-app.controller('ControllerMorbilidad', ['$scope', '$http', '$location', 'myProvider', '$localStorage', function ($scope, $http, $location, myProvider, $localStorage) {
+app.controller('ControllerMorbilidad', ['$scope', '$http', '$location', 'myProvider','$q', '$localStorage', function ($scope, $http, $location, myProvider,$q, $localStorage) {
 
 
 
 
 
-$scope.morbilidad={
+    $scope.morbilidad={
+
+    antescedentes_personales :[],
+    motivo_consulta: '',
+    enfermedad_actual: '',
+    examen_fisico: '',
+    organos_sistemas:[],
+    examenes:[],
+    diagnostico: [],
+    paciente: '',
+    fecha:'',
+    receta:'',
+    indicaciones:''
 
 
 }
@@ -858,6 +870,95 @@ $scope.certificado='';
 
 
 
+$scope.printvalue=function(){
+
+        console.log($scope.listaAntescedentesPersonales);
+  //  $scope.inmorbilidad($scope.inputAntescedentes($scope.inputExam()));
+        $scope.inputAntescedentes().then($scope.inputExam().then($scope.inmorbilidad()));
+    }
+
+$scope.inputExam=function(){
+    var defered = $q.defer();
+    var promise = defered.promise;
+    console.log('examenes');
+    return promise;
+}
+
+$scope.inmorbilidad=function (){
+    var defered = $q.defer();
+    var promise = defered.promise;
+    console.log(JSON.stringify($scope.resultado1));
+    return promise;
+}
+
+
+$scope.resultado1=[];
+$scope.inputAntescedentes = function ( ){
+    var defered = $q.defer();
+    var promise = defered.promise;
+        var n = $scope.listaAntescedentesPersonales.length;
+        $scope.listaSend=[];
+        for(var i=0; i<n;i++) {
+            var data = {
+
+
+                tipo_presonales: $scope.listaAntescedentesPersonales[i].tipo._id,
+                enfermedad_cie10: $scope.listaAntescedentesPersonales[i].enfermedad,
+                observacion: $scope.listaAntescedentesPersonales[i].observacion
+
+            }
+            $scope.listaSend.push(data);
+        }
+            $http({
+                method: 'POST',
+                url: myProvider.getPersonalesMany()+'?table=personales',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data:   $scope.listaSend
+
+
+
+
+
+
+
+            }).then(function successCallback(response) {
+
+                //console.log('ingresa antescedente 1')
+                var aux=response.data;
+                console.log(aux);
+                $scope.resultado1=response.data.insertedIds;
+                console.log($scope.resultado1);
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+                console.log('falla');
+            });
+
+
+    return promise;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $scope.ingresoMorbilidad=function(){
 
   //  if($scope.control2()){
@@ -874,7 +975,7 @@ $scope.ingresoMorbilidad=function(){
 
         $http({
             method: 'POST',
-            url: myProvider.getAusentismo(),
+            url: myProvider.getMorbilidad(),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -938,5 +1039,8 @@ $scope.ingresoMorbilidad=function(){
         var divToPrint = document.getElementById('areaToPrint');
         window.print();
     }
+
+
+
 
 }]);

@@ -185,6 +185,13 @@ function ApiUrl(){
     this.getCapituloCie=function(){
         return 'http://'+server+':3000/api/capitulosCie10';
     }
+    this.getMorbilidad=function(){
+        return 'http://'+server+':3000/api/morbilidad';
+    }
+    this.getPersonalesMany=function(){
+        return 'http://'+server+':3000/api/apiManyPersonales';
+    }
+
 }
 
 app.factory("myProvider",function(){
