@@ -151,4 +151,101 @@ app.controller('HistoriaClinicaControllerThirteenth', ['$scope', '$http', '$loca
         // window.location ='/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/fourteenth.html';
         $rootScope.doce=true;
     }
+
+
+    $scope.modificar = function () {
+
+
+
+
+
+
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.examenes_laboratorio = $scope.listaExamenes;
+
+
+        var n = $scope.historiaClinica.examenes_laboratorio.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            $http({
+                method: 'POST',
+                url: myProvider.getExamenesPracticados(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    observacion: $scope.historiaClinica.examenes_laboratorio[i].observacion,
+                    examen: $scope.historiaClinica.examenes_laboratorio[i].examen._id,
+                    normal_anormal: $scope.historiaClinica.examenes_laboratorio[i].normal_anormal,
+                    fecha: $scope.historiaClinica.examenes_laboratorio[i].fecha,
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.examenes_laboratorio.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        examenes_laboratorio: hm.examenes_laboratorio
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.once = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+        }
+
+
+    }
+
+
+
 }]);

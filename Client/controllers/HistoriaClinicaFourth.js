@@ -193,7 +193,7 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
 
     $scope.agregar=function(){
 
-        $scope.antecedentesHistoricos.fecha=document.getElementById('datepicker').value;
+        $scope.antecedentesHistoricos.fecha = document.getElementById('datepicker1').value;
         if($scope.encontrada!='' &&  $scope.antecedentesHistoricos.fecha!='' &&  $scope.antecedentesHistoricos.fecha!=undefined)
         {
 
@@ -213,6 +213,7 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
 
         }else{
             console.log( JSON.parse($scope.cie10Select));
+
             if($scope.cie10Select=="" || $scope.cie10Select==undefined ||  $scope.antecedentesHistoricos.fecha=='' ||  $scope.antecedentesHistoricos.fecha==undefined){
 
                alert('Seleccione una enfermedad de la lista o busquela por c�digo');
@@ -310,4 +311,107 @@ app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvi
     }
 
 
+    $scope.modificar = function () {
+
+
+
+
+
+
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.enfermedades_actuales_historicas = $scope.listaCie10Selecionada;
+
+
+        var n = $scope.historiaClinica.enfermedades_actuales_historicas.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+
+            // console.log( $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar);
+
+
+            $http({
+                method: 'POST',
+                url: myProvider.getEnfermedadesActualesHistoricas(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    sintomas_cie10: $scope.historiaClinica.enfermedades_actuales_historicas[i].sintoma_cie10._id,
+                    fecha: $scope.historiaClinica.enfermedades_actuales_historicas[i].fecha,
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.enfermedades_actuales_historicas.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        enfermedades_actuales_historicas: hm.enfermedades_actuales_historicas
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.tercero = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+            //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
+
+            //
+
+        }
+
+
+    }
+    
+    
+    
+    
+    
 }]);

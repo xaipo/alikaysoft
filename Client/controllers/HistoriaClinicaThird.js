@@ -211,5 +211,95 @@ app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvid
     }
 
 
+    $scope.modificar = function () {
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.accidentesTrabajo = $scope.listaAccidentesTrabajo;
+
+
+        var n = $scope.historiaClinica.accidentesTrabajo.length;
+
+        for (var i = 0; i < n; i++) {
+
+
+            $http({
+                method: 'POST',
+                url: myProvider.getAccidentesTrabajo(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    fecha_ocurrencia: $scope.historiaClinica.accidentesTrabajo[i].fecha_ocurrencia,
+                    nombre_empresa: $scope.historiaClinica.accidentesTrabajo[i].nombre_empresa.nombre_empresa,
+                    naturaleza_lesion: $scope.historiaClinica.accidentesTrabajo[i].naturaleza_lesion,
+                    parte_cuerpo_afectada: $scope.historiaClinica.accidentesTrabajo[i].parte_cuerpo_afectada,
+                    dias_incapcidad: $scope.historiaClinica.accidentesTrabajo[i].dias_incapcidad,
+                    secuelas: $scope.historiaClinica.accidentesTrabajo[i].secuelas
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.accidentesTrabajo.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        accidentesTrabajo: hm.accidentesTrabajo
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.segundo = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+        }
+
+
+    }
+
+
 
 }]);

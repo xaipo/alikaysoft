@@ -206,4 +206,97 @@ app.controller('HistoriaClinicaControllerTwelve', ['$scope', '$http', '$location
         $rootScope.once=true;
     }
 
+
+    $scope.modificar = function () {
+
+
+
+
+
+
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.organos_sistemas = $scope.listaOrganosSistemas;
+
+
+        var n = $scope.historiaClinica.organos_sistemas.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            $http({
+                method: 'POST',
+                url: myProvider.getOrganoSelected(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    observacion: $scope.historiaClinica.organos_sistemas[i].observacion,
+                    organo: $scope.historiaClinica.organos_sistemas[i].organo._id,
+                    normal_anormal: $scope.historiaClinica.organos_sistemas[i].normal_anormal,
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.organos_sistemas.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        organos_sistemas: hm.organos_sistemas
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.decimo = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+        }
+
+
+    }
+
+
 }]);

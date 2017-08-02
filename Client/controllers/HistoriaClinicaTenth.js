@@ -205,4 +205,91 @@ app.controller('HistoriaClinicaTenth', ['$scope', '$http', '$location','myProvid
    
     }
 
+
+    $scope.modificar = function () {
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.habitos_toxicos = $scope.listaHabitosToxicos;
+
+
+        var n = $scope.historiaClinica.habitos_toxicos.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            $http({
+                method: 'POST',
+                url: myProvider.gethabitosToxicos(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    tipo_habito_toxico: $scope.historiaClinica.habitos_toxicos[i].tipo_habito_toxico._id,
+                    tipo_consumidor: $scope.historiaClinica.habitos_toxicos[i].tipo_consumidor._id,
+                    frecuencia: $scope.historiaClinica.habitos_toxicos[i].frecuencia,
+                    anios_consumo: $scope.historiaClinica.habitos_toxicos[i].anios_consumo,
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.habitos_toxicos.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        habitos_toxicos: hm.habitos_toxicos
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.octavo = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+        }
+
+
+    }
+
+
+
 }]);

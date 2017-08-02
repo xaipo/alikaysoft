@@ -200,4 +200,26 @@ app.controller('HistoriaClinicaEigth', ['$scope', '$http', '$location','myProvid
 
     }
 
+
+    $scope.modificar = function () {
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+
+        $scope.historiaClinica.revision_sistemas = $scope.revision_sistemas;
+
+        $rootScope.sexto = false;
+
+    }
+
+
+
+
+
 }]);

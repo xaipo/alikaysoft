@@ -268,4 +268,187 @@ app.controller('HistoriaClinicaSixth', ['$scope', '$http', '$location','myProvid
 
     }
 
+
+    $scope.modificar = function () {
+
+
+
+
+
+
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        $scope.historiaClinica.antescedentes_familiares = $scope.listaAntescedentesFamiliares;
+
+
+        var n = $scope.historiaClinica.antescedentes_familiares.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+
+            // console.log( $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar);
+
+
+            $http({
+                method: 'POST',
+                url: myProvider.getFamiliares(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    patologia_cie10: $scope.historiaClinica.antescedentes_familiares[i].patologia,
+                    parentezco: $scope.historiaClinica.antescedentes_familiares[i].parentezco._id,
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+                // console.log($scope.historiaClinicaIngreso.gineco_obstetra);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.antescedentes_familiares.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        antescedentes_familiares: hm.antescedentes_familiares
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.cuarto = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+            //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
+
+            //
+
+        }
+
+
+        $scope.historiaClinica.antescedentes_personales = $scope.listaAntescedentesPersonales;
+
+
+        var n = $scope.historiaClinica.antescedentes_personales.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+
+            // console.log( $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar);
+
+
+            $http({
+                method: 'POST',
+                url: myProvider.getPersonales(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    tipo_presonales: $scope.historiaClinica.antescedentes_personales[i].tipo._id,
+                    enfermedad_cie10: $scope.historiaClinica.antescedentes_personales[i].enfermedad,
+                    observacion: $scope.historiaClinica.antescedentes_personales[i].observacion
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.antescedentes_personales.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        antescedentes_personales: hm.antescedentes_personales
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.cuarto = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+            //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
+
+            //
+
+        }
+
+
+    }
+
+
+
+
+
+
 }]);

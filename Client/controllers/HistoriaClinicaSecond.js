@@ -536,11 +536,40 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
                 var hm = JSON.parse(window.localStorage.getItem('hm'));
 
                 hm.riesgos_ocupacionales.push(response.data._id);
+
                 window.localStorage.setItem("hm", JSON.stringify(hm));
                 // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
 
-
+                console.log(hm);
                 //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        riesgos_ocupacionales: hm.riesgos_ocupacionales
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.primero = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+
 
 
             }, function errorCallback(response) {

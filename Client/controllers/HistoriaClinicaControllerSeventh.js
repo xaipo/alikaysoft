@@ -234,5 +234,118 @@ app.controller('HistoriaClinicaSeventh', ['$scope', '$http', '$location','myProv
     }
 
 
+    $scope.modificar = function () {
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+
+        $scope.historiaClinica.ginecoObstetra = $scope.listaGinecoObstetra;
+
+
+        var n = $scope.historiaClinica.ginecoObstetra.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            var vec = [];
+//           // console.log($scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar.length);
+            var m = $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar.length;
+            for (var j = 0; j < m; j++) {
+
+                vec.push($scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar[j]._id)
+
+            }
+            $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar = vec;
+            // console.log( $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar);
+
+
+            $http({
+                method: 'POST',
+                url: myProvider.getGinecoObstetra(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    normal_anormal: $scope.historiaClinica.ginecoObstetra[i].normal_anormal,
+                    fecha_ultima_regla: $scope.historiaClinica.ginecoObstetra[i].fecha_ultima_regla,
+
+                    partos: $scope.historiaClinica.ginecoObstetra[i].partos,
+                    aborto: $scope.historiaClinica.ginecoObstetra[i].abortos,
+                    hijos_vivos: $scope.historiaClinica.ginecoObstetra[i].hijos_vivos,
+                    embarazos: $scope.historiaClinica.ginecoObstetra[i].embarazos,
+                    fecha_ultima_citologia: $scope.historiaClinica.ginecoObstetra[i].fecha_ultima_citologia,
+                    resultados_citologia: $scope.historiaClinica.ginecoObstetra[i].resultados_citologia,
+
+                    metodos_planifiacion_familiar: $scope.historiaClinica.ginecoObstetra[i].metodos_planificacion_familiar,
+                    observaciones: $scope.historiaClinica.ginecoObstetra[i].observacion
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.gineco_obstetra.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        gineco_obstetra: hm.gineco_obstetra
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.quinto = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+            //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
+
+            //
+
+        }
+
+
+    }
+
+
+
+
+
 
 }]);

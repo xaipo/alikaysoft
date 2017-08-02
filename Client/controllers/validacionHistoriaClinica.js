@@ -2,7 +2,7 @@
  * Created by Leo on 06/11/2016.
  */
 
-app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 'myProvider', '$localStorage', function ($scope, $http, $location, myProvider, $localStorage) {
+app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 'myProvider', '$localStorage', '$rootScope', function ($scope, $http, $location, myProvider, $localStorage, $rootScope) {
 
     $scope.cedula;
     $scope.pacienteEncontrado;
@@ -225,42 +225,152 @@ app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 
 
     $scope.listaCombo = [
         {
-            descripcion: "Accidentes Trabajo",
+            descripcion: "Riesgos Ocupacionales",
             puesto: 1
+        },
+        {
+            descripcion: "Accidentes de trabajo ",
+            puesto: 2
+        },
+
+        {
+            descripcion: "  Enfermedad Profesional",
+            puesto: 3
+        },
+
+        {
+            descripcion: "  Antescedentes Patológicos",
+            puesto: 4
+        },
+
+        {
+            descripcion: "  Gineco Obstetricos",
+            puesto: 5
+        },
+
+
+        {
+            descripcion: " Revisión Sistemas",
+            puesto: 6
         }
 
 
+        ,
+
+
+        {
+            descripcion: " Inmunizacion",
+            puesto: 7
+        },
+
+        {
+            descripcion: "  Habitos Tóxicos",
+            puesto: 8
+        }
+        ,
+        {
+            descripcion: "  Examen Fisico",
+            puesto: 9
+        },
+
+        {
+            descripcion: "  Organos/Sistema",
+            puesto: 10
+        },
+
+
+        {
+            descripcion: " Examenes Laboratorio",
+            puesto: 11
+        },
+
+        {
+            descripcion: " Examenes Paraclínico",
+            puesto: 12
+        }
+
     ]
 
-    $scope.primero = false;
+
 
 
     $scope.combo = function (item) {
 
 
+        $rootScope.primero = false;
+        $rootScope.segundo = false;
+        $rootScope.tercero = false;
+        $rootScope.cuarto = false;
+        $rootScope.quinto = false;
+        $rootScope.sexto = false;
+        $rootScope.septimo = false;
+        $rootScope.octavo = false;
+        $rootScope.noveno = false;
+        $rootScope.decimo = false;
+        $rootScope.once = false;
+        $rootScope.doce = false;
+
+        $rootScope.trece = false;
+
         console.log(item);
+
 
 
         switch (item) {
 
             case 1:
 
-                $scope.primero = true;
+                $rootScope.primero = true;
                 break;
             case 2:
-
+                $rootScope.segundo = true;
 
                 break;
             case 3:
-
+                $rootScope.tercero = true;
 
                 break;
             case 4:
 
-
+                $rootScope.cuarto = true;
                 break;
             case 5:
+                $rootScope.quinto = true;
 
+                break;
+
+            case 6:
+                $rootScope.sexto = true;
+
+                break;
+
+            case 7:
+                $rootScope.septimo = true;
+
+                break;
+            case 8:
+                $rootScope.octavo = true;
+
+                break;
+
+
+            case 9:
+                $rootScope.noveno = true;
+
+                break;
+
+            case 10:
+                $rootScope.decimo = true;
+
+                break;
+
+            case 11:
+                $rootScope.once = true;
+
+                break;
+
+            case 12:
+                $rootScope.doce = true;
 
                 break;
 
@@ -269,6 +379,25 @@ app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 
 
 
     }
+
+
+    $rootScope.primero = false;
+    $rootScope.segundo = false;
+    $rootScope.tercero = false;
+    $rootScope.cuarto = false;
+    $rootScope.quinto = false;
+    $rootScope.sexto = false;
+    $rootScope.septimo = false;
+    $rootScope.octavo = false;
+    $rootScope.noveno = false;
+    $rootScope.decimo = false;
+    $rootScope.once = false;
+    $rootScope.doce = false;
+
+    $rootScope.trece = false;
+
+
+
 
 
 }]);

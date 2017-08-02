@@ -193,4 +193,111 @@ app.controller('HistoriaClinicaEleventh', ['$scope', '$http', '$location','myPro
         $rootScope.decimo=true;
     }
 
+
+    $scope.modificar = function () {
+
+
+
+
+
+
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.examen_fisico = $scope.listaExamenFisico;
+
+
+        var n = $scope.historiaClinica.examen_fisico.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            $http({
+                method: 'POST',
+                url: myProvider.getExamenFisico(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    tension_arterial_numerador: $scope.historiaClinica.examen_fisico[i].tension_arterial_numerador,
+                    tension_arterial_denominador: $scope.historiaClinica.examen_fisico[i].tension_arterial_denominador,
+                    frecuencia_cardiaca: $scope.historiaClinica.examen_fisico[i].frecuencia_cardiaca,
+                    frecuencia_respiratoria: $scope.historiaClinica.examen_fisico[i].frecuencia_respiratoria,
+                    dieztro: $scope.historiaClinica.examen_fisico[i].dieztro,
+                    zurdo: $scope.historiaClinica.examen_fisico[i].zurdo,
+                    ambidiestro: $scope.historiaClinica.examen_fisico[i].ambidiestro,
+                    talla: $scope.historiaClinica.examen_fisico[i].talla,
+                    peso: $scope.historiaClinica.examen_fisico[i].peso,
+                    indiceMasaCorporal: $scope.historiaClinica.examen_fisico[i].indiceMasaCorporal,
+                    interpretacion_imc: $scope.historiaClinica.examen_fisico[i].interpretacion_imc._id,
+                    fecha: ''
+                }
+
+
+            }).then(function successCallback(response) {
+
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.examen_fisico.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        examen_fisico: hm.examen_fisico
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.noveno = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+
+            //$scope.mensaje = "Para ingresar debe llenar el nombre de la empresa";
+
+            //
+
+        }
+
+
+    }
+
+
 }]);

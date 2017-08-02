@@ -209,6 +209,104 @@ app.controller('HistoriaClinicaControllerFourteenth', ['$scope', '$http', '$loca
         $rootScope.trece=true;
     }
 
+    $scope.modificar = function () {
+
+
+
+
+
+
+
+
+
+
+        // console.log($scope.historiaClinica);
+        console.clear();
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        console.log(JSON.parse(window.localStorage.getItem('hm')));
+
+        console.log($scope.listaAccidentesTrabajo);
+
+
+        $scope.historiaClinica.examenes_paraclinicos = $scope.lista_paraclinicos_seleccionados;
+        $scope.historiaClinica.observacion_paraclinicos = $scope.observacion_paraclinicos;
+
+
+        var n = $scope.historiaClinica.examenes_paraclinicos.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            $http({
+                method: 'POST',
+                url: myProvider.getParaclinico(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    observacion: $scope.historiaClinica.examenes_paraclinicos[i].observacion,
+                    respuesta_examen_paraclinico: $scope.historiaClinica.examenes_paraclinicos[i].resultado._id,
+                    fecha: $scope.historiaClinica.examenes_paraclinicos[i].fecha
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+
+                var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+                hm.examenes_paraclinicos.push(response.data._id);
+
+                window.localStorage.setItem("hm", JSON.stringify(hm));
+                // console.log($scope.historiaClinicaIngreso.riesgos_ocupacionales);
+
+                console.log(hm);
+                //actulizarla tabla de histira clinica
+
+
+                $http({
+                    method: 'Put',
+                    url: myProvider.getHistoriaClinica() + "/" + hm._id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+
+                        examenes_paraclinicos: hm.examenes_paraclinicos
+
+
+                    }
+
+
+                }).then(function successCallback(response) {
+                    alert('Actulizado Corectamente')
+                    $rootScope.doce = false;
+
+                }, function errorCallback(response) {
+
+                    console.log('falla');
+                });
+
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+        }
+
+
+    }
+
+
+
+
+
+
+
 
 
 }]);

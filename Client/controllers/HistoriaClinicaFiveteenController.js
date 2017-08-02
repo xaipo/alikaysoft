@@ -341,6 +341,7 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
         $scope.historiaClinicaIngreso.revision_sistemas=aux;
         window.localStorage.setItem("hci", JSON.stringify($scope.historiaClinicaIngreso));
 
+
         var n=$scope.historiaClinica.riesgosOcupacionales.length;
 
         for(var i=0;i<n;i++){
@@ -425,10 +426,6 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
         var n=$scope.historiaClinica.accidentesTrabajo.length;
 
         for(var i=0;i<n;i++){
-
-
-
-
 
 
             $http({
@@ -943,6 +940,8 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
                 console.log('final historia');
                 $scope.historiaClinicIngreso = JSON.parse(window.localStorage.getItem('hci'));
                 console.log($scope.historiaClinicIngreso);
+
+
                 var n= $scope.listaSelectedCie10.length;
                 for(var i=0;i<n;i++){
 
@@ -1123,8 +1122,6 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
         //console.log('final');
       // $scope.finalHc();
     }
-
-
 
 
 }]);
