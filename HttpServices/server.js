@@ -102,6 +102,9 @@ app.use('/api',require('./Routes/apiCapituloCie10'));
 app.use('/api', require('./Routes/eventos'));
 app.use('/api', require('./Routes/apiManyInsert'));
 
+
+app.use('/api', require('./Routes/apiContacto'));
+
 // </editor-fold >
 
 // <editor-fold defaultstate="collapsed" desc="Server Run">
