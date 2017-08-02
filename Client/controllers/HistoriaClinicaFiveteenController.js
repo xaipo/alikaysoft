@@ -898,7 +898,25 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
             });
         }
 
-        $scope.thirdth();
+
+        console.log($scope.historiaClinica);
+
+        //
+
+
+        var num = $scope.historiaClinica.paciente.historias_clinicas.length;
+
+
+        if (num == 0) {
+            $scope.thirdth();
+
+        } else {
+
+            $scope.thirdthBaja();
+
+        }
+
+
     }
 
 
@@ -1123,5 +1141,161 @@ app.controller('HistoriaClinicaControllerFiveteenth', ['$scope', '$http', '$loca
       // $scope.finalHc();
     }
 
+
+    $scope.thirdthBaja = function () {
+        $scope.historiaClinicIngreso = JSON.parse(window.localStorage.getItem('hci'));
+        var n = $scope.historiaClinica.examen_fisico.length;
+        // console.log($scope.historiaClinica.ginecoObstetra);
+        // console.log($scope.historiaClinica);
+        for (var i = 0; i < n; i++) {
+            $http({
+                method: 'POST',
+                url: myProvider.getExamenFisico(),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+
+                    tension_arterial_numerador: $scope.historiaClinica.examen_fisico[i].tension_arterial_numerador,
+                    tension_arterial_denominador: $scope.historiaClinica.examen_fisico[i].tension_arterial_denominador,
+                    frecuencia_cardiaca: $scope.historiaClinica.examen_fisico[i].frecuencia_cardiaca,
+                    frecuencia_respiratoria: $scope.historiaClinica.examen_fisico[i].frecuencia_respiratoria,
+                    dieztro: $scope.historiaClinica.examen_fisico[i].dieztro,
+                    zurdo: $scope.historiaClinica.examen_fisico[i].zurdo,
+                    ambidiestro: $scope.historiaClinica.examen_fisico[i].ambidiestro,
+                    talla: $scope.historiaClinica.examen_fisico[i].talla,
+                    peso: $scope.historiaClinica.examen_fisico[i].peso,
+                    indiceMasaCorporal: $scope.historiaClinica.examen_fisico[i].indiceMasaCorporal,
+                    interpretacion_imc: $scope.historiaClinica.examen_fisico[i].interpretacion_imc._id,
+                    fecha: ''
+                }
+
+
+            }).then(function successCallback(response) {
+                //console.log(response.data);
+                $scope.historiaClinicaIngreso.examen_fisico.push(response.data._id);
+                window.localStorage.setItem("hci", JSON.stringify($scope.historiaClinicaIngreso));
+                console.log($scope.historiaClinicaIngreso);
+
+                console.log('final historia');
+                $scope.historiaClinicIngreso = JSON.parse(window.localStorage.getItem('hci'));
+                console.log($scope.historiaClinicIngreso);
+
+
+                var n = $scope.listaSelectedCie10.length;
+                for (var i = 0; i < n; i++) {
+
+                    $scope.finalHistoria.diagnostico_noOcupacioanl.push($scope.listaSelectedCie10[i]._id);
+
+                }
+                n = $scope.listaSelectedCie102.length;
+
+                for (var i = 0; i < n; i++) {
+
+                    $scope.finalHistoria.diagnostico_ocupacional.push($scope.listaSelectedCie102[i]._id);
+
+                }
+                console.log($scope.historiaClinicIngreso);
+                // console.log($scope.finalHistoria);
+                // console.log($scope.historiaClinica.tipo_examen);
+                //$scope.historiaClinica.tipo_examen=JSON.parse($scope.historiaClinica.tipo_examen);*/
+                // console.log($scope.historiaClinica.tipo_examen);
+
+                $http({
+                    method: 'POST',
+                    url: myProvider.getHistoriaClinica(),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+
+                        tipo_examen: '571bbe6825df3fa80c7be753',
+                        fecha_examen: $scope.historiaClinica.fecha_examen,
+                        riesgos_ocupacionales: $scope.historiaClinicaIngreso.riesgos_ocupacionales,
+                        accidentesTrabajo: $scope.historiaClinicaIngreso.accidentesTrabajo,
+                        gineco_obstetra: $scope.historiaClinicaIngreso.gineco_obstetra,
+                        ausentismo: $scope.historiaClinicaIngreso.ausentismo,
+                        enfermedades_actuales_historicas: $scope.historiaClinicaIngreso.enfermedades_actuales_historicas,
+                        antescedentes_familiares: $scope.historiaClinicaIngreso.antescedentes_familiares,
+                        antescedentes_personales: $scope.historiaClinicaIngreso.antescedentes_personales,
+                        inmunizacion: $scope.historiaClinicaIngreso.inmunizacion,
+                        habitos_toxicos: $scope.historiaClinicaIngreso.habitos_toxicos,
+                        organos_sistemas: $scope.historiaClinicaIngreso.organos_sistemas,
+                        examenes_laboratorio: $scope.historiaClinicaIngreso.examenes_laboratorio,
+                        examenes_paraclinicos: $scope.historiaClinicaIngreso.examenes_paraclinicos,
+                        examen_fisico: $scope.historiaClinicaIngreso.examen_fisico,
+                        diagnostico_ocupacional: $scope.finalHistoria.diagnostico_ocupacional,
+                        diagnostico_noOcupacioanl: $scope.finalHistoria.diagnostico_noOcupacioanl,
+                        concepto: $scope.finalHistoria.concepto,
+                        restricciones_limitaciones: $scope.finalHistoria.restricciones_limitaciones,
+                        recomendaciones: $scope.finalHistoria.recomendaciones,
+                        remision_especialista: $scope.finalHistoria.remision_especialista,
+                        nombre_especialista: $scope.finalHistoria.nombre_especialista,
+                        reubicacion: $scope.finalHistoria.reubicacion,
+                        estado: '2',
+                    }
+
+
+                }).then(function successCallback(response) {
+                    //console.log(response.data);
+                    console.log(response.data._id);
+                    // window.localStorage.setItem("hci", JSON.stringify($scope.historiaClinicaIngreso));
+                    // console.log($scope.historiaClinicaIngreso.gineco_obstetra);
+
+
+                    $scope.historiaClinica.paciente.historias_clinicas.push(response.data._id);
+
+
+                    $http({
+                        method: 'PUT',
+                        url: myProvider.getPaciente() + '/' + $scope.historiaClinica.paciente._id,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: {
+                            historias_clinicas: $scope.historiaClinica.paciente.historias_clinicas,
+
+                        }
+
+
+                    }).then(function successCallback(response) {
+
+
+                        localStorage.removeItem('hci');
+                        localStorage.removeItem('hC');
+                        console.log("termino ingreso");
+                        //window.location = '/tesisSaludOcupacional/Client/Administrator/indexAdmin.html';
+                        $location.path('/');
+
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        // console.log(response);
+                        //$scope.mesaje = response.mensaje;
+
+                    });
+
+
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    // console.log(response);
+                    //$scope.mesaje = response.mensaje;
+
+                });
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                // console.log(response);
+                //$scope.mesaje = response.mensaje;
+
+            });
+        }
+
+
+        //console.log('final');
+        // $scope.finalHc();
+    }
 
 }]);

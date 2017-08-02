@@ -184,6 +184,8 @@ app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 
                             $scope.historiaClinica = response.data[0];
                             window.localStorage.setItem("pe", JSON.stringify($scope.pacienteEncontrado));
                             window.localStorage.setItem("hm", JSON.stringify($scope.historiaClinica));
+                            $scope.baja = true;
+                            $scope.op = true;
                             // console.log($scope.tipoCie10);
 
                             // }
@@ -380,7 +382,8 @@ app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 
 
     }
 
-
+    $scope.op = false;
+    $scope.baja = false;
     $rootScope.primero = false;
     $rootScope.segundo = false;
     $rootScope.tercero = false;
@@ -397,7 +400,60 @@ app.controller('ControllerValidacionHistoria', ['$scope', '$http', '$location', 
     $rootScope.trece = false;
 
 
+    $scope.darBaja = function () {
 
+
+        console.log("dar baja");
+
+
+        //
+
+
+        //  window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+
+
+        console.log(JSON.parse(window.localStorage.getItem('pe')));
+        $scope.historiaClinica.paciente = JSON.parse(window.localStorage.getItem('pe'));
+        console.log($scope.historiaClinica);
+
+
+        var hm = JSON.parse(window.localStorage.getItem('hm'));
+
+
+        window.localStorage.setItem("hC", JSON.stringify($scope.historiaClinica));
+
+
+        console.log(hm);
+
+
+        $http({
+            method: 'Put',
+            url: myProvider.getHistoriaClinica() + "/" + hm._id,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+
+
+                estado: 2
+
+
+            }
+
+
+        }).then(function successCallback(response) {
+            console.log("cambio a dos");
+
+        }, function errorCallback(response) {
+
+            console.log('falla');
+        });
+
+
+        $location.path('/HC1');
+
+
+    }
 
 
 }]);

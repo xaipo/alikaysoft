@@ -213,6 +213,14 @@ app.factory("myProvider",function(){
             templateUrl: "HistoriaClinica/modificar/inicioModificar.html",
             controller: 'ControllerValidacionHistoria'
         });
+
+
+        $routeProvider.when("/HCB", {
+            templateUrl: "HistoriaClinica/modificar/darBaja.html",
+            controller: 'ControllerValidacionHistoria'
+        });
+
+
         $routeProvider.when("/IP", {
             templateUrl: "Paciente/ingresoPaciente.html",
             controller: 'PacienteController'
@@ -267,7 +275,7 @@ app.factory("myProvider",function(){
         });
 
 
-});
+    });
 
 
 
