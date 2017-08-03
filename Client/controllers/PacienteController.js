@@ -1048,6 +1048,8 @@ app.controller('PacienteController', ['$scope', '$http', '$location','myProvider
                     }).then(function successCallback(response) {
 
                         alert("ingresado correctamente");
+                        window.localStorage.setItem("pa", JSON.stringify(response.data));
+                        $scope.flag=true;
                         $scope.paciente={
                             ci:"",
                             primer_nombre:"",
@@ -1107,8 +1109,18 @@ app.controller('PacienteController', ['$scope', '$http', '$location','myProvider
 
     };
 
+$scope.flag= false;
+$scope.redirect1= function (){
+
+if($scope.flag==true){
+    $location.path('/IPD1');
+}else{
+    alert('Debe ingresar un paciente para proceder al ingreso de discapacidad')
+}
 
 
+
+}
     $scope.save=function(){
 
 

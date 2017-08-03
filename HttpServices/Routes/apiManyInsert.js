@@ -14,8 +14,7 @@ var url = 'mongodb://localhost:27017/SaludOcupacional';
 
 router.post('/apiManyPersonales',function(req,res){
 
-
-   // console.log();
+//if(req.body.lenght>0){
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
 
@@ -31,7 +30,11 @@ router.post('/apiManyPersonales',function(req,res){
 
         db.close();
 
-    });
+   });
+
+//}
+   // console.log();
+
 });
 
 module.exports=router;

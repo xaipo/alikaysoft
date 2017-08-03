@@ -1,45 +1,71 @@
 /**
  * Created by xaipo on 12/8/2016.
  */
-app.controller('ControllerMorbilidad', ['$scope', '$http', '$location', 'myProvider','$q', '$localStorage', function ($scope, $http, $location, myProvider,$q, $localStorage) {
+app.controller('ControllerMorbilidad', ['$scope', '$http', '$location', 'myProvider', '$q', '$localStorage', function ($scope, $http, $location, myProvider, $q, $localStorage) {
 
 
+    ;
+    (function ($) {
+        $.fn.datepicker.dates['es'] = {
+            days: ["Domingo", "Lunes", "Martes", "Mi�rcoles", "Jueves", "Viernes", "S�bado"],
+            daysShort: ["Dom", "Lun", "Mar", "Mi�", "Jue", "Vie", "S�b"],
+            daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+            months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+            today: "Hoy",
+            monthsTitle: "Meses",
+            clear: "Borrar",
+            weekStart: 1,
+            format: "dd/mm/yyyy"
+        };
+    }(jQuery));
+
+    $(function () {
 
 
+        $('.datepicker').datepicker({
 
-    $scope.morbilidad={
-
-    antescedentes_personales :[],
-    motivo_consulta: '',
-    enfermedad_actual: '',
-    examen_fisico: '',
-    organos_sistemas:[],
-    examenes:[],
-    diagnostico: [],
-    paciente: '',
-    fecha:'',
-    receta:'',
-    indicaciones:''
+            language: 'es',
+        });
 
 
-}
+        $('.datepicker').datepicker('setDates', [])
+
+    });
+
+    $scope.morbilidad = {
+
+        antescedentes_personales: [],
+        motivo_consulta: '',
+        enfermedad_actual: '',
+        examen_fisico: '',
+        organos_sistemas: [],
+        examenes: [],
+        diagnostico: [],
+        paciente: '',
+        fecha: '',
+        receta: '',
+        indicaciones: ''
+
+
+    }
 
     $scope.cedula;
     $scope.pacienteEncontrado;
     $scope.historiaClinica;
-    $scope.listaImc=[];
-    $scope.urlSeleccionada='';
-    $scope.tipo =[];
-    $scope.lsita_parentezco=[];
-    $scope.listaAntescedentesPersonales=[];
-    $scope.contador=0;
-    $scope.tipo=[];
+    $scope.listaImc = [];
+    $scope.urlSeleccionada = '';
+    $scope.tipo = [];
+    $scope.lsita_parentezco = [];
+    $scope.listaAntescedentesPersonales = [];
+    $scope.contador = 0;
+    $scope.tipo = [];
     $scope.personal_selected;
     $scope.listaSelectedCie10 = [];
     $scope.listaSelectedCie102 = [];
     $scope.medicos = [];
     $scope.cie10Quitar;
-    $scope.cie10Quitar2='';
+    $scope.cie10Quitar2 = '';
     $scope.tipoCie10 = [];
     $scope.cie10Selected;
     $scope.cie10Select = '';
@@ -47,45 +73,45 @@ app.controller('ControllerMorbilidad', ['$scope', '$http', '$location', 'myProvi
     $scope.encontrada = "";
     $scope.cie10 = [];
     $scope.listaCie10Selecionada = [];
-    $scope.search1="";
-    $scope.search2="";
-    $scope.examenes=[];
-    $scope.listaExamenes=[];
-    $scope.examen={
+    $scope.search1 = "";
+    $scope.search2 = "";
+    $scope.examenes = [];
+    $scope.listaExamenes = [];
+    $scope.examen = {
 
-        codigo:'',
-        examen:'',
-        normal_anormal:'',
-        fecha:'',
-        observacion:''
+        codigo: '',
+        examen: '',
+        normal_anormal: '',
+        fecha: '',
+        observacion: ''
 
     };
-    $scope.contador=0;
-    $scope.examenQuitar='';
-$scope.now='';
-$scope.certificado='';
+    $scope.contador = 0;
+    $scope.examenQuitar = '';
+    $scope.now = '';
+    $scope.certificado = '';
 
-    $scope.morbilidad={
+    $scope.morbilidad = {
 
-        antescedentes_personales : '',
+        antescedentes_personales: '',
         motivo_consulta: '',
         enfermedad_actual: '',
         examen_fisico: '',
-        organos_sistemas:[],
-        examenes:[],
+        organos_sistemas: [],
+        examenes: [],
         diagnostico: '',
         paciente: '',
-        fecha:'',
-        receta:'',
-        indicaciones:''
+        fecha: '',
+        receta: '',
+        indicaciones: ''
     }
 
     $scope.searchUser = function () {
-        console.log(myProvider.getUser()+'?cedula='+$scope.cedula);
+        console.log(myProvider.getUser() + '?cedula=' + $scope.cedula);
         $http({
 
             method: 'GET',
-            url: myProvider.getPaciente()+'?cedula='+$scope.cedula,
+            url: myProvider.getPaciente() + '?cedula=' + $scope.cedula,
 
             headers: {
                 'Content-Type': 'application/json'
@@ -110,7 +136,7 @@ $scope.certificado='';
                 //  window.localStorage.setItem("pe", JSON.stringify($scope.pacienteEncontrado));
                 console.log($scope.pacienteEncontrado);
                 window.localStorage.setItem("peMor", JSON.stringify($scope.pacienteEncontrado));
-                window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarAccidenteTrabajo.html','_blank');
+                window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarAccidenteTrabajo.html', '_blank');
 
             }
         }, function errorCallback(response) {
@@ -140,14 +166,14 @@ $scope.certificado='';
         var n = response.data.length;
         // console.log(n);
 
-        if(n==0){
+        if (n == 0) {
 
             alert('no se encontro provincias');
 
-        }else {
-            $scope.listaImc=[];
+        } else {
+            $scope.listaImc = [];
 
-            for(var i=0;i<n;i++){
+            for (var i = 0; i < n; i++) {
 
                 $scope.listaImc.push(response.data[i]);
 
@@ -181,18 +207,19 @@ $scope.certificado='';
         //console.log(url);
 
         var n = response.data.length;
+
         // console.log(n);
 
-        if(n==0){
+        if (n == 0) {
 
             alert('no se encontro provincias');
 
-        }else {
+        } else {
 
             console.log(response.data);
-                $scope.now=response.data;
-                  console.log($scope.now);
-                // ;
+            $scope.now = response.data;
+            console.log($scope.now);
+            // ;
 
             //  $scope.tipoActividadSeleccionada=$scope.empresas[0]._id;
             //console.log($scope.empresaSeleccionada);
@@ -212,23 +239,22 @@ $scope.certificado='';
 
     $scope.changeLateralidad = function () {
 
-        if($scope.selectLateralidadCerebral=='D'){
-            $scope.examen_fisico.dieztro=true;
-            $scope.examen_fisico.zurdo=false;
-            $scope.examen_fisico.ambidiestro=false;
+        if ($scope.selectLateralidadCerebral == 'D') {
+            $scope.examen_fisico.dieztro = true;
+            $scope.examen_fisico.zurdo = false;
+            $scope.examen_fisico.ambidiestro = false;
         }
-        if($scope.selectLateralidadCerebral=='Z'){
-            $scope.examen_fisico.dieztro=false;
-            $scope.examen_fisico.zurdo=true;
-            $scope.examen_fisico.ambidiestro=false;
+        if ($scope.selectLateralidadCerebral == 'Z') {
+            $scope.examen_fisico.dieztro = false;
+            $scope.examen_fisico.zurdo = true;
+            $scope.examen_fisico.ambidiestro = false;
         }
-        if($scope.selectLateralidadCerebral=='A'){
-            $scope.examen_fisico.dieztro=false;
-            $scope.examen_fisico.zurdo=false;
-            $scope.examen_fisico.ambidiestro=true;
+        if ($scope.selectLateralidadCerebral == 'A') {
+            $scope.examen_fisico.dieztro = false;
+            $scope.examen_fisico.zurdo = false;
+            $scope.examen_fisico.ambidiestro = true;
         }
     }
-
 
 
     $http({
@@ -247,13 +273,13 @@ $scope.certificado='';
         var n = response.data.length;
         // console.log(n);
 
-        if(n==0){
+        if (n == 0) {
 
             alert('no se encontro el paciente');
 
-        }else {
+        } else {
             //  $scope.tipoCie10=[];
-            for(var i=0;i<n;i++){
+            for (var i = 0; i < n; i++) {
 
                 $scope.tipo.push(response.data[i]);
                 // console.log($scope.tipoCie10);
@@ -271,52 +297,52 @@ $scope.certificado='';
         $scope.mesaje = response.mensaje;
 
     });
-    $scope.agregarP1 = function(){
+    $scope.agregarP1 = function () {
         //  console.log($scope.antescedentes_familiares)
-        if($scope.antescedetnes_personales.enfermedad!=''&&$scope.antescedetnes_personales.enfermedad!=undefined){
-            $scope.antescedetnes_personales.codigo=$scope.contador++;
-            $scope.antescedetnes_personales.tipo=JSON.parse($scope.antescedetnes_personales.tipo);
+        if ($scope.antescedetnes_personales.enfermedad != '' && $scope.antescedetnes_personales.enfermedad != undefined) {
+            $scope.antescedetnes_personales.codigo = $scope.contador++;
+            $scope.antescedetnes_personales.tipo = JSON.parse($scope.antescedetnes_personales.tipo);
             $scope.listaAntescedentesPersonales.push($scope.antescedetnes_personales);
-            $scope.antescedetnes_personales={
+            $scope.antescedetnes_personales = {
 
-                codigo:'',
-                enfermedad:'',
-                tipo:'',
-                observacion:''
+                codigo: '',
+                enfermedad: '',
+                tipo: '',
+                observacion: ''
             };
 
-        }else{
+        } else {
             alert('Ingrese Patologia y parentezco para agregar a la lista');
 
         }
     }
 
 
-    $scope.quitar1= function (){
+    $scope.quitar1 = function () {
         // console.log($scope.accidentesTrabajoSelected);
-        var n=  $scope.listaAntescedentesPersonales.length;
+        var n = $scope.listaAntescedentesPersonales.length;
         console.log(n);
         var pos;
-        for(var i=0;i<n;i++ ){
+        for (var i = 0; i < n; i++) {
 
-            if($scope.listaAntescedentesPersonales[i].codigo==$scope.personal_selected.codigo){
+            if ($scope.listaAntescedentesPersonales[i].codigo == $scope.personal_selected.codigo) {
 
 
-                pos=i;
+                pos = i;
                 break;
             }
         }
         console.log(pos);
-        $scope.listaAntescedentesPersonales.splice(pos,1);
+        $scope.listaAntescedentesPersonales.splice(pos, 1);
         //  console.log($scope.listaRiesgosOcupacionales);
         //  console.log($scope.contador);
     }
 
-    $scope.setClickedRow1 = function(index,item){  //function that sets the value of selectedRow to current index
+    $scope.setClickedRow1 = function (index, item) {  //function that sets the value of selectedRow to current index
 
         console.log('entra');
         $scope.selectedRow = index;
-        $scope.personal_selected=item;
+        $scope.personal_selected = item;
         // console.log(item);
         // console.log($scope.accidentesTrabajoSelected);
 
@@ -481,7 +507,7 @@ $scope.certificado='';
     }
 
 
-    $scope.agregar = function () {
+    $scope.agregar10 = function () {
 
 
         if ($scope.cie10Select != undefined && $scope.cie10Select != '') {
@@ -513,7 +539,7 @@ $scope.certificado='';
 
     }
 
-    $scope.quitar = function () {
+    $scope.quitar10 = function () {
         // console.log($scope.accidentesTrabajoSelected);
 
         if ($scope.cie10Quitar != undefined && $scope.cie10Quitar != '') {
@@ -539,19 +565,17 @@ $scope.certificado='';
     }
 
 
+    $scope.agregar2 = function () {
 
+        if ($scope.cie10Quitar != '' && $scope.cie10Quitar != undefined) {
 
-    $scope.agregar2=function(){
-
-        if($scope.cie10Quitar!=''&& $scope.cie10Quitar!=undefined){
-
-            $scope.cie10Quitar=JSON.parse($scope.cie10Quitar);
+            $scope.cie10Quitar = JSON.parse($scope.cie10Quitar);
             $scope.listaSelectedCie102.push($scope.cie10Quitar);
         }
 
     }
 
-    $scope.quitar2=function(){
+    $scope.quitar2 = function () {
 
         if ($scope.cie10Quitar2 != undefined && $scope.cie10Quitar2 != '') {
             $scope.cie10Quitar2 = JSON.parse($scope.cie10Quitar2);
@@ -590,14 +614,14 @@ $scope.certificado='';
         var n = response.data.length;
         // console.log(n);
 
-        if(n==0){
+        if (n == 0) {
 
             alert('no se encontro provincias');
 
-        }else {
-            $scope.examenes=[];
+        } else {
+            $scope.examenes = [];
 
-            for(var i=0;i<n;i++){
+            for (var i = 0; i < n; i++) {
 
                 $scope.examenes.push(response.data[i]);
 
@@ -619,12 +643,11 @@ $scope.certificado='';
     });
 
 
-
-    $scope.setClickedRow = function(index,item){  //function that sets the value of selectedRow to current index
+    $scope.setClickedRow = function (index, item) {  //function that sets the value of selectedRow to current index
 
         console.log('entra');
         $scope.selectedRow = index;
-        $scope.examenQuitar=item;
+        $scope.examenQuitar = item;
         // console.log(item);
         // console.log($scope.accidentesTrabajoSelected);
 
@@ -633,80 +656,79 @@ $scope.certificado='';
     }
 
 
+    $scope.agregar = function () {
 
-    $scope.agregar = function(){
-
-        $scope.examen.fecha=document.getElementById('datepicker').value;
+        $scope.examen.fecha = document.getElementById('datepicker').value;
 
         //  console.log($scope.selectRevision);
-        $scope.examen.codigo=$scope.contador++;
-        $scope.examen.examen=JSON.parse($scope.examen.examen);
+        $scope.examen.codigo = $scope.contador++;
+        $scope.examen.examen = JSON.parse($scope.examen.examen);
         // $scope.selectRevision.codigo=$scope.contador++;
 
         $scope.listaExamenes.push($scope.examen);
-        $scope.examen={
+        $scope.examen = {
 
-            codigo:'',
-            examen:'',
-            normal_anormal:'',
-            fecha:'',
-            observacion:''
+            codigo: '',
+            examen: '',
+            normal_anormal: '',
+            fecha: '',
+            observacion: ''
 
         };
 
 
     }
 
-    $scope.quitar= function (){
+    $scope.quitar = function () {
         // console.log($scope.accidentesTrabajoSelected);
-        var n=  $scope.listaExamenes.length;
+        var n = $scope.listaExamenes.length;
         console.log(n);
         var pos;
-        for(var i=0;i<n;i++ ){
+        for (var i = 0; i < n; i++) {
 
 
-            if($scope.listaExamenes[i].codigo==$scope.examenQuitar.codigo){
+            if ($scope.listaExamenes[i].codigo == $scope.examenQuitar.codigo) {
                 console.log('entra');
 
-                pos=i;
+                pos = i;
                 break;
             }
         }
         console.log(pos);
-        $scope.listaExamenes.splice(pos,1);
+        $scope.listaExamenes.splice(pos, 1);
         //  console.log($scope.listaRiesgosOcupacionales);
         //  console.log($scope.contador);
     }
 
 
-    $scope.redirect=function(){
+    $scope.redirect = function () {
         console.log('entra12');
-        $scope.aux=window.localStorage.getItem('usuario');
-        $scope.usuario=JSON.parse(window.localStorage.getItem('usuario'));
+        $scope.aux = window.localStorage.getItem('usuario');
+        $scope.usuario = JSON.parse(window.localStorage.getItem('usuario'));
         console.log($scope.pacienteEncontrado);
-        $scope.certificado={'now':$scope.now,
-            'nombre_usr':$scope.usuario.nombre,
-            'cedula':$scope.pacienteEncontrado.cedula,
-            'paciente':$scope.pacienteEncontrado,
-            'mmorbilidad':$scope.morbilidad.diagnostico
-    }
+        $scope.certificado = {
+            'now': $scope.now,
+            'nombre_usr': $scope.usuario.nombre,
+            'cedula': $scope.pacienteEncontrado.cedula,
+            'paciente': $scope.pacienteEncontrado,
+            'mmorbilidad': $scope.morbilidad.diagnostico
+        }
         console.log($scope.certificado);
-       window.localStorage.setItem("cert", JSON.stringify($scope.certificado));
-       // window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarAccidenteTrabajo.html','_blank');
+        window.localStorage.setItem("cert", JSON.stringify($scope.certificado));
+        // window.open('/tesisSaludOcupacional/Client/Administrator/HistoriaClinica/modificar/modificarAccidenteTrabajo.html','_blank');
 
     }
 
 
-
-    $scope.tipoSelected='';
-    $scope.listaTipos=[];
-    $scope.listaIndicadores=[];
-    $scope.listaOrganosSistemas=[];
-    $scope.organo_sistema={
-        codigo:'',
-        observacion:'',
-        organo:'',
-        normal_anormal:''
+    $scope.tipoSelected = '';
+    $scope.listaTipos = [];
+    $scope.listaIndicadores = [];
+    $scope.listaOrganosSistemas = [];
+    $scope.organo_sistema = {
+        codigo: '',
+        observacion: '',
+        organo: '',
+        normal_anormal: ''
     }
     $scope.selectedQuitar;
 
@@ -726,14 +748,14 @@ $scope.certificado='';
         var n = response.data.length;
         // console.log(n);
 
-        if(n==0){
+        if (n == 0) {
 
             alert('no se encontro provincias');
 
-        }else {
-            $scope.listaTipos=[];
+        } else {
+            $scope.listaTipos = [];
 
-            for(var i=0;i<n;i++){
+            for (var i = 0; i < n; i++) {
 
                 $scope.listaTipos.push(response.data[i]);
 
@@ -755,17 +777,16 @@ $scope.certificado='';
     });
 
 
+    $scope.changeType = function () {
 
-    $scope.changeType=function(){
 
-
-        if($scope.tipoSelected!=''&&$scope.tipoSelected!=undefined){
+        if ($scope.tipoSelected != '' && $scope.tipoSelected != undefined) {
             //console.log($scope.tipoSelected);
-            $scope.tipoSelected=JSON.parse($scope.tipoSelected);
+            $scope.tipoSelected = JSON.parse($scope.tipoSelected);
             $http({
 
                 method: 'GET',
-                url: myProvider.getOrganos()+"?tipo_organo="+$scope.tipoSelected._id,
+                url: myProvider.getOrganos() + "?tipo_organo=" + $scope.tipoSelected._id,
 
                 headers: {
                     'Content-Type': 'application/json'
@@ -778,14 +799,14 @@ $scope.certificado='';
                 var n = response.data.length;
                 // console.log(n);
 
-                if(n==0){
+                if (n == 0) {
 
                     alert('no se encontro provincias');
 
-                }else {
-                    $scope.listaIndicadores=[];
+                } else {
+                    $scope.listaIndicadores = [];
 
-                    for(var i=0;i<n;i++){
+                    for (var i = 0; i < n; i++) {
 
                         $scope.listaIndicadores.push(response.data[i]);
 
@@ -810,14 +831,13 @@ $scope.certificado='';
         }
 
 
-
     }
 
-    $scope.setClickedRow12 = function(index,item){  //function that sets the value of selectedRow to current index
+    $scope.setClickedRow12 = function (index, item) {  //function that sets the value of selectedRow to current index
 
         console.log('entra');
         $scope.selectedRow = index;
-        $scope.selectedQuitar=item;
+        $scope.selectedQuitar = item;
         // console.log(item);
         // console.log($scope.accidentesTrabajoSelected);
 
@@ -826,79 +846,70 @@ $scope.certificado='';
     }
 
 
-
-    $scope.agregar12 = function(){
+    $scope.agregar12 = function () {
 
         // $scope.inmunizacionAdd.fecha_inmunizacion=document.getElementById('datepicker').value;
 
         //  console.log($scope.selectRevision);
-        $scope.organo_sistema.codigo=$scope.contador++;
-        $scope.organo_sistema.organo=JSON.parse($scope.organo_sistema.organo);
+        $scope.organo_sistema.codigo = $scope.contador++;
+        $scope.organo_sistema.organo = JSON.parse($scope.organo_sistema.organo);
         // $scope.selectRevision.codigo=$scope.contador++;
 
         $scope.listaOrganosSistemas.push($scope.organo_sistema);
-        $scope.organo_sistema={
-            codigo:'',
-            observacion:'',
-            organo:'',
-            normal_anormal:''
+        $scope.organo_sistema = {
+            codigo: '',
+            observacion: '',
+            organo: '',
+            normal_anormal: ''
         }
 
 
     }
 
-    $scope.quitar12= function (){
+    $scope.quitar12 = function () {
         // console.log($scope.accidentesTrabajoSelected);
-        var n=  $scope.listaOrganosSistemas.length;
+        var n = $scope.listaOrganosSistemas.length;
         console.log(n);
         var pos;
-        for(var i=0;i<n;i++ ){
+        for (var i = 0; i < n; i++) {
 
 
-            if($scope.listaOrganosSistemas[i].codigo==$scope.selectedQuitar.codigo){
+            if ($scope.listaOrganosSistemas[i].codigo == $scope.selectedQuitar.codigo) {
                 console.log('entra');
 
-                pos=i;
+                pos = i;
                 break;
             }
         }
         console.log(pos);
-        $scope.listaOrganosSistemas.splice(pos,1);
+        $scope.listaOrganosSistemas.splice(pos, 1);
         //  console.log($scope.listaRiesgosOcupacionales);
         //  console.log($scope.contador);
     }
 
 
+    $scope.printvalue = function () {
 
-$scope.printvalue=function(){
-
-        console.log($scope.listaAntescedentesPersonales);
-  //  $scope.inmorbilidad($scope.inputAntescedentes($scope.inputExam()));
-        $scope.inputAntescedentes().then($scope.inputExam().then($scope.inmorbilidad()));
+       // console.log($scope.examen_fisico);
+        //  $scope.inmorbilidad($scope.inputAntescedentes($scope.inputExam()));
+        $scope.inputAntescedentes();
     }
 
-$scope.inputExam=function(){
-    var defered = $q.defer();
-    var promise = defered.promise;
-    console.log('examenes');
-    return promise;
-}
-
-$scope.inmorbilidad=function (){
-    var defered = $q.defer();
-    var promise = defered.promise;
-    console.log(JSON.stringify($scope.resultado1));
-    return promise;
-}
 
 
-$scope.resultado1=[];
-$scope.inputAntescedentes = function ( ){
-    var defered = $q.defer();
-    var promise = defered.promise;
+
+    $scope.resultado1 = [];
+    $scope.inputAntescedentes = function () {
+
+
+        var defered = $q.defer();
+        var promise = defered.promise;
+        $scope.morbilidad.paciente=$scope.pacienteEncontrado._id;
+        $scope.morbilidad.fecha=$scope.now;
+
         var n = $scope.listaAntescedentesPersonales.length;
-        $scope.listaSend=[];
-        for(var i=0; i<n;i++) {
+        $scope.listaSend = [];
+        for (var i = 0; i < n; i++) {// formeatar listas para ingresar mediante api ingreso many
             var data = {
 
 
@@ -909,27 +920,144 @@ $scope.inputAntescedentes = function ( ){
             }
             $scope.listaSend.push(data);
         }
+        n = $scope.listaExamenes.length;
+        $scope.listaSend1 = [];
+        for (var i = 0; i < n; i++) {
+
+            var aux = {
+                observacion: $scope.listaExamenes[i].observacion,
+                examen: $scope.listaExamenes[i].examen._id,
+                normal_anormal: $scope.listaExamenes[i].normal_anormal,
+                fecha: $scope.listaExamenes[i].fecha,
+
+            }
+            $scope.listaSend1.push(aux);
+        }
+        n=$scope.listaOrganosSistemas.length;
+        $scope.listaSend2 = [];
+        for (var i = 0; i < n; i++) {
+
+            var aux = {
+                observacion: $scope.listaOrganosSistemas[i].observacion,
+                organo: $scope.listaOrganosSistemas[i].organo._id,
+                normal_anormal: $scope.listaOrganosSistemas[i].normal_anormal,
+
+
+            }
+            $scope.listaSend2.push(aux);
+        }
+
+        n=$scope.listaSelectedCie10.length;
+        $scope.listaSend3 = [];
+        for (var i = 0; i < n; i++) {
+
+
+
+            $scope.listaSend3.push($scope.listaSelectedCie10[i]._id);
+        }
+        $scope.morbilidad.diagnostico=$scope.listaSend3;
+      //  console.log($scope.listaSend3);
+        $http({
+            method: 'POST',
+            url: myProvider.getPersonalesMany() + '?table=personales',//IN GRESO DE  ANTESCEDENTES PERSONALES
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: $scope.listaSend
+
+
+        }).then(function successCallback(response) {
+
+            //console.log('ingresa antescedente 1')
+
+            $scope.morbilidad.antescedentes_personales = response.data.insertedIds;
+
+
             $http({
                 method: 'POST',
-                url: myProvider.getPersonalesMany()+'?table=personales',
+                url: myProvider.getPersonalesMany() + '?table=examenes_practicados',// INGRESO DE EXAMENES
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data:   $scope.listaSend
-
-
-
-
-
+                data: $scope.listaSend1
 
 
             }).then(function successCallback(response) {
 
-                //console.log('ingresa antescedente 1')
-                var aux=response.data;
-                console.log(aux);
-                $scope.resultado1=response.data.insertedIds;
-                console.log($scope.resultado1);
+                $scope.morbilidad.examenes = response.data.insertedIds;
+
+                $http({
+                    method: 'POST',
+                    url: myProvider.getPersonalesMany() + '?table=organo_selecteds',//organos
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: $scope.listaSend2
+
+
+                }).then(function successCallback(response) {
+
+                    //console.log('ingresa antescedente 1')
+
+                    $scope.morbilidad.organos_sistemas = response.data.insertedIds;
+
+                    $http({
+                        method: 'POST',
+                        url: myProvider.getExamenFisico() ,//examen fisico
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data:{
+                            tension_arterial_numerador : $scope.examen_fisico.tension_arterial_numerador,
+                            tension_arterial_denominador :  $scope.examen_fisico.tension_arterial_denominador,
+                            frecuencia_cardiaca :  $scope.examen_fisico.frecuencia_cardiaca,
+                            dieztro :  $scope.examen_fisico.dieztro,
+                            zurdo :  $scope.examen_fisico.zurdo,
+                            ambidiestro :  $scope.examen_fisico.ambidiestro,
+                            talla :  $scope.examen_fisico.talla,
+                            peso :  $scope.examen_fisico.peso,
+                            interpretacion_imc : $scope.examen_fisico.interpretacion_imc._id,
+                            fecha : $scope.now
+                        } //$scope.morbilidad.examen_fisico
+
+
+                    }).then(function successCallback(response) {
+
+                         $scope.morbilidad.examen_fisico=response.data._id
+
+                        $http({
+                            method: 'POST',
+                            url: myProvider.getMorbilidad() ,//examen fisico
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            data:$scope.morbilidad
+
+
+                        }).then(function successCallback(response) {
+                        console.log($scope.morbilidad);
+
+                        }, function errorCallback(response) {
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                            // console.log(response);
+                            //$scope.mesaje = response.mensaje;
+                            console.log('falla');
+                        });
+                    }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        // console.log(response);
+                        //$scope.mesaje = response.mensaje;
+                        console.log('falla');
+                    });
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    // console.log(response);
+                    //$scope.mesaje = response.mensaje;
+                    console.log('falla');
+                });
             }, function errorCallback(response) {
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
@@ -938,36 +1066,29 @@ $scope.inputAntescedentes = function ( ){
                 console.log('falla');
             });
 
-
-    return promise;
-
-}
-
-
-
-
-
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            // console.log(response);
+            //$scope.mesaje = response.mensaje;
+            console.log('falla');
+        });
 
 
+        return promise;
+
+    }
 
 
+    $scope.ingresoMorbilidad = function () {
 
+        //  if($scope.control2()){
 
-
-
-
-
-
-
-$scope.ingresoMorbilidad=function(){
-
-  //  if($scope.control2()){
-
-        $scope.ausentismo.medico=JSON.parse($scope.ausentismo.medico);
+        $scope.ausentismo.medico = JSON.parse($scope.ausentismo.medico);
         //  $scope.ausentismo.paciente=JSON.parse($scope.ausentismo.paciente);
         console.log($scope.listaSelectedCie10[i]);
-        var n= $scope.listaSelectedCie10.length;
-        for(var i=0; i<n ;i++){
+        var n = $scope.listaSelectedCie10.length;
+        for (var i = 0; i < n; i++) {
 
             $scope.ausentismo.diagnostico.push($scope.listaSelectedCie10[i]._id);
         }
@@ -982,26 +1103,26 @@ $scope.ingresoMorbilidad=function(){
             data: {
 
 
-                mes : $scope.ausentismo.mes,
-                paciente:  $scope.pacienteEncontrado._id,
-                desde:$scope.ausentismo.desde,
+                mes: $scope.ausentismo.mes,
+                paciente: $scope.pacienteEncontrado._id,
+                desde: $scope.ausentismo.desde,
                 hasta: $scope.ausentismo.hasta,
-                dias:$scope.ausentismo.dias,
-                horas:$scope.ausentismo.horas,
-                minutos:$scope.ausentismo.minutos,
-                laboral_nolaboral:$scope.ausentismo.laboral_nolaboral,
-                diagnostico:$scope.ausentismo.diagnostico,
+                dias: $scope.ausentismo.dias,
+                horas: $scope.ausentismo.horas,
+                minutos: $scope.ausentismo.minutos,
+                laboral_nolaboral: $scope.ausentismo.laboral_nolaboral,
+                diagnostico: $scope.ausentismo.diagnostico,
                 medico: $scope.ausentismo.medico,
-                tipo_certificado:$scope.ausentismo.tipo_certificado,
-                observaciones:$scope.ausentismo.observaciones,
-                regimen:$scope.ausentismo.regimen,
+                tipo_certificado: $scope.ausentismo.tipo_certificado,
+                observaciones: $scope.ausentismo.observaciones,
+                regimen: $scope.ausentismo.regimen,
 
             }
 
 
         }).then(function successCallback(response) {
             alert('Ingresado Correctamente')
-            $scope.listaSelectedCie10=[];
+            $scope.listaSelectedCie10 = [];
             $scope.ausentismo = {
 
                 mes: '',
@@ -1027,7 +1148,7 @@ $scope.ingresoMorbilidad=function(){
         });
 
 
-  //  }else{
+        //  }else{
         console.log($scope.ausentismo);
         alert('Verifique que todos los datos esten ingresados')
     }
@@ -1035,12 +1156,10 @@ $scope.ingresoMorbilidad=function(){
 
 //}
 
-    $scope.printDiv=function() {
+    $scope.printDiv = function () {
         var divToPrint = document.getElementById('areaToPrint');
         window.print();
     }
-
-
 
 
 }]);

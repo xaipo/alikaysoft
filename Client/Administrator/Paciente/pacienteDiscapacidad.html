@@ -1,0 +1,132 @@
+<form class="form" role="form">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <h3 class="panel-title" style="text-align: center">Paciente Discapacidad </h3>
+
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <h3>Datos Generales</h3>
+                <div class="col-md-3 col-xs-12" >
+                    <br>
+                    <label>Porcentaje Discapacidad</label>
+                    <input type="number"  placeholder="0" max="100" class="form-control" min="0" step="1" >
+                    <br>
+                    <label> Origen Discapacidad: </label>
+                    <select class="form-control" name="singleSelect"  >
+                        <option value="1" >Natal</option>
+                        <option value="2" >Adquirida</option>
+
+                    </select>
+                </div>
+                <div class="col-md-3 col-xs-12" >
+
+                    <br>
+                    <label> Grado Discapacidad: </label>
+                    <select class="form-control" name="singleSelect"  >
+                        <option value="1" >Leve</option>
+                        <option value="2" >Moderado</option>
+                        <option value="S" >Severa</option>
+                        <option value="4" >Profunda</option>
+
+                    </select>
+                </div>
+                <div class="col-md-3 col-xs-12" >
+                    <br>
+                    <label>Descripcion Enfermedad</label>
+                    <input type="text"  placeholder="Descripcion Enfermedad"  class="form-control"  >
+                </div>
+
+
+                <div class="col-md-3 col-xs-12" >
+
+                    <br>
+                    <label> Parte del Cuerpo Afectada: </label>
+                    <select class="form-control" name="singleSelect"  >
+                        <option value="1" >Cabeza</option>
+                        <option value="2" >Ojo</option>
+                        <option value="S" >Boca</option>
+                        <option value="4" >Brazos</option>
+
+                    </select>
+                </div>
+            </div>
+                <div class="row">
+
+
+                    <h3>Contactos</h3>
+                    <div class="col-md-3 col-xs-12" >
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-3 col-xs-12" >
+                        <label>Telefono</label>
+                        <input type="tel" class="form-control" placeholder="Telefono">
+                    </div>
+                    <div class="col-md-3 col-xs-12" >
+                        <label>Direccion</label>
+                        <input type="tel" class="form-control" placeholder="Direccion">
+                    </div>
+                    <div class="col-md-3 col-xs-12" >
+                        <label>Correo Electronico</label>
+                        <input type="email" class="form-control" placeholder="Correo Electronico">
+                    </div>
+
+
+                    <div class="col-md-3 col-xs-12" >
+                        <br>
+                        <br>
+                        <input type="submit" class="form-control btn-info" value="Agregar">
+                    </div>
+                    <div class="col-md-3 col-xs-12" >
+                        <br>
+                        <br>
+                        <input type="submit" class="form-control btn-warning" value="Quitar">
+                    </div>
+
+                </div>
+
+
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <br>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                            <th>Correo Electronico</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in listaContactos " ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,item)" >
+                            <td>{{$index}}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.telefono }}</td>
+                            <td>{{ item.direccion }}</td>
+                            <td>{{ item.correo }}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-md-3 col-xs-12" >
+
+                    <br>
+                    <input type="submit" class="form-control btn btn-info" value="Guardar">
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+</form>

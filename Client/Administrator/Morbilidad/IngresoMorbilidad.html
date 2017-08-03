@@ -53,14 +53,14 @@
                     <label>Tension Arterial Diastolica:</label>
                     <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.tension_arterial_numerador">
                     <label>Talla:</label>
-                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.talla">
+                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.talla" min="0">
 
 
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <br>
                     <label>Tension Arterial Sistolica:</label>
-                    <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.tension_arterial_denominador">
+                    <input type="number" class="form-control" placeholder="1"  ng-model="examen_fisico.tension_arterial_denominador">
                     <label>Peso:</label>
                     <input type="number" class="form-control" placeholder="1" ng-model="examen_fisico.peso">
 
@@ -377,7 +377,7 @@
                     <h2> IMPRESIÓN DIAGNÓSTICA </h2><br>
                     <label> Tipo Cie 10: </label>
                     Búsqueda <input type="text" ng-model="search1" class="form-control" placeholder="Busqueda"><br>
-                    <select name="cie10tipo"  class="form-control"   ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
+                    <select name="cie10tipo"  class="form-control" multiple  ng-model="cie10Selected" ng-click="busquedaCie10Tipo()">
                         <option id="valor1" value={{empresaAux1}}
                                 ng-repeat="empresaAux1 in tipoCie10 |filter:search1" >
                             {{empresaAux1.descripcion_tipo_CIE10}}
@@ -386,8 +386,8 @@
                 </div>
                 <div class="col-md-12 col-xs-12"  >
                     <label>  Cie 10: </label>
-                    Búsqueda <input type="text" ng-model="search2" class="form-control" placeholder="Busqueda"><br>
-                    <select name="cie10"  class="form-control"   ng-model="cie10Select" >
+                    Búsqueda <input type="text" ng-model="search2"  class="form-control" placeholder="Busqueda"><br>
+                    <select name="cie10"  class="form-control"  multiple  ng-model="cie10Select" >
                         <option id="valor2" value={{empresaAux2}}
                                 ng-repeat="empresaAux2 in cie10 |filter:search2">
                             {{empresaAux2.sintoma}}
@@ -422,14 +422,14 @@
                 <div class="col-md-3 col-xs-12" >
                     <br>
                     <br>
-                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar()">
+                    <input  type="submit" class="btn btn-submit" value="Agregar" ng-click="agregar10()">
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <br>
                     <br>
 
 
-                    <input class="btn btn-warning" type="submit" ng-click="quitar()"
+                    <input class="btn btn-warning" type="submit" ng-click="quitar10()"
                            value="Quitar"/><br><br>
 
                 </div>

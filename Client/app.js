@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 var app = angular.module("myApp", ['ngStorage','ngRoute','angularUtils.directives.dirPagination'])
-var server='localhost';
+var server='13.67.221.169';
 
 function ApiUrl(){
 
@@ -273,9 +273,11 @@ app.factory("myProvider",function(){
             templateUrl: "HistoriaClinica/first.html",
             controller: 'HistoriaClinicaUnido'
         });
-
-
-    });
+        $routeProvider.when("/IPD1", {
+            templateUrl: "Paciente/pacienteDiscapacidad.html",
+            controller: 'PacienteDiscapacidad'
+        });
+});
 
 
 
