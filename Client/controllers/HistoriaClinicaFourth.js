@@ -4,7 +4,8 @@
 app.controller('HistoriaClinicaFourth', ['$scope', '$http', '$location','myProvider','$localStorage','$rootScope',  function ( $scope,$http,$location,myProvider,$localStorage,$rootScope) {
 
 
-
+    $scope.bus1='';
+    $scope.bus2='';
     $scope.tipoCie10=[];
     $scope.cie10Selected;
     $scope.cie10Select='';

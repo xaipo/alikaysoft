@@ -300,4 +300,27 @@ app.controller('HistoriaClinicaEleventh', ['$scope', '$http', '$location','myPro
     }
 
 
+
+
+
+    $scope.calcularIMC= function () {
+
+        var resp1=parseFloat($scope.examen_fisico.talla)*parseFloat($scope.examen_fisico.talla);
+        $scope.respuestaIMC=(parseFloat($scope.examen_fisico.peso)/(resp1)).toFixed(2);
+        console.log($scope.respuestaIMC);
+        if($scope.respuestaIMC<18.5){
+            $scope.examen_fisico.interpretacion_imc='Bajo Peso'
+        }else{
+                if($scope.respuestaIMC<=24.9){
+                    $scope.examen_fisico.interpretacion_imc='Normal'
+                }else{
+                    if($scope.respuestaIMC<=29.9){
+                        $scope.examen_fisico.interpretacion_imc='Sobrepeso'
+                    }else{
+                        $scope.examen_fisico.interpretacion_imc='Obesidad'
+                    }
+                }
+        }
+    }
+
 }]);

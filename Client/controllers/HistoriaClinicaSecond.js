@@ -272,12 +272,11 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
         }else {
             $scope.factoresRiesgo=[];
 
-            for(var i=0;i<n;i++){
 
-                $scope.factoresRiesgo.push(response.data[i]);
 
-                // console.log($scope.empresas);
-            }
+                $scope.factoresRiesgo=response.data;
+
+
         //    $scope.fac=$scope.empresas[0]._id;
             console.log($scope.factoresRiesgo);
             // console.log($scope.empresas);
@@ -410,7 +409,7 @@ app.controller('HistoriaClinicaSecond', ['$scope', '$http', '$location','myProvi
 
     $scope.agregar=function(){
 
-        $scope.riesgosOcupacionales.nombre_empresa=JSON.parse($scope.riesgosOcupacionales.nombre_empresa);
+      //  $scope.riesgosOcupacionales.nombre_empresa=JSON.parse($scope.riesgosOcupacionales.nombre_empresa);
         $scope.riesgosOcupacionales.tipo_actividad=JSON.parse($scope.riesgosOcupacionales.tipo_actividad);
         $scope.riesgosOcupacionales.cualificacion=JSON.parse($scope.riesgosOcupacionales.cualificacion);
         $scope.riesgosOcupacionales.alimentos=$scope.listaAlimentosSeleccionados;

@@ -13,6 +13,7 @@ var categoriaSchema = new mongoose.Schema({
     partos:String,
     aborto: String,
     hijos_vivos:String,
+    hijos_muertos:String,
     embarazos:String,
     fecha_ultima_citologia:String,
     resultados_citologia:String,

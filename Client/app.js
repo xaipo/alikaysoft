@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 var app = angular.module("myApp", ['ngStorage','ngRoute','angularUtils.directives.dirPagination'])
-var server='13.67.221.169';
+var server='localhost';
 
 function ApiUrl(){
 

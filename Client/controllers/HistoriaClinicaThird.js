@@ -35,7 +35,7 @@ app.controller('HistoriaClinicaThird', ['$scope', '$http', '$location','myProvid
 
 
         $scope.accidentesTrabajo.fecha_ocurrencia= document.getElementById(('datepicker')).value;
-        $scope.accidentesTrabajo.nombre_empresa= JSON.parse($scope.accidentesTrabajo.nombre_empresa);
+       // $scope.accidentesTrabajo.nombre_empresa= JSON.parse($scope.accidentesTrabajo.nombre_empresa);
         $scope.accidentesTrabajo.codigo=$scope.contador;
         $scope.contador++;
         $scope.listaAccidentesTrabajo.push($scope.accidentesTrabajo);
