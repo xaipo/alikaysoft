@@ -6,6 +6,12 @@
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "mongoose": "^4.3.4",
-    "node-restful": "^0.2.4"
+    "node-restful": "^0.2.4",
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "7.4.1",
+    "jwt-simple": "^0.5.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^2.2.1"
   }
 }

@@ -2124,20 +2124,21 @@
                                 <br>
 
                                 <label> Tipo Cie 10: </label>
-
+                                <input class="form-control" type="text" ng-model="busq1" placeholder="Búsqueda"><br>
                                 <select name="cie10tipo" class="form-control" ng-model="cie10Selected"
-                                        ng-click="busquedaCie10Tipo()">
+                                        ng-click="busquedaCie10Tipo()" multiple>
                                     <option id="valor1" value={{empresaAux1}}
-                                            ng-repeat="empresaAux1 in tipoCie10">
+                                            ng-repeat="empresaAux1 in tipoCie10 | filter: busq1">
                                         {{empresaAux1.descripcion_tipo_CIE10}}
                                     </option>
                                 </select>
                             </div>
                             <div class="col-md-12 col-xs-12">
                                 <label> Cie 10: </label>
-                                <select name="cie10" class="form-control" ng-model="cie10Select">
+                                <input class="form-control" type="text" ng-model="busq2" placeholder="Búsqueda"><br>
+                                <select name="cie10" class="form-control" ng-model="cie10Select" multiple>
                                     <option id="valor2" value={{empresaAux2}}
-                                            ng-repeat="empresaAux2 in cie10">
+                                            ng-repeat="empresaAux2 in cie10 | filter:busq2">
                                         {{empresaAux2.sintoma}}
                                     </option>
                                 </select>
